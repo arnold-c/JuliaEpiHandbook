@@ -1,0 +1,31 @@
+project:
+  type: book
+
+book:
+  title: "JuliaEpiHandbook"
+  subtitle: "A Guide to Julia for Epidemiologists"
+  author: "Callum Arnold"
+  date: "5/20/2023"
+  chapters:
+    - index.qmd
+    # - references.qmd
+  repo-url: https://github.com/arnold-c/JuliaEpiHandbook
+  repo-actions: [edit]
+  downloads: [pdf]
+  sidebar:
+    search: true
+    border: true
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: [cosmo, format/_light.scss]
+      dark: [cosmo, format/_dark.scss]
+    code-copy: true
+    code-fold: false
+    code-overflow: wrap
+  pdf:
+    pdf-engine: xelatex
+    documentclass: scrreprt

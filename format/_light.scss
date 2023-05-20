@@ -1,0 +1,12 @@
+/*-- scss:defaults --*/
+// Fonts
+@import '_fonts';
+
+// Box colors
+:root {
+    --box-bg: ghostwhite;
+    --box-border-color: lightgray;
+}
+
+// Box class
+@import '_box';

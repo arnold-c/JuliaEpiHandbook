@@ -1,0 +1,22 @@
+/*-- scss:defaults --*/
+// Fonts
+@import '_fonts';
+
+// Base document colors
+$body-bg: #181825 !default;
+$body-color: #cdd6f4 !default;
+$link-color: #eba0ac !default;
+$headings-color: #a6adc8 !default;
+$code-color: #a6e3a1 !default;
+$code-bg: #11111b !default;
+$code-block-bg: $code-bg !default;
+$btn-code-copy-colo: $code-bg !default;
+
+// Box colors
+:root {
+    --box-bg: #242532;
+    --box-border-color: $body-bg;
+}
+
+// Box class
+@import '_box';
