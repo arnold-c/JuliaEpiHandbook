@@ -78,10 +78,6 @@ But if you've got experience with R (or another language), then I hope to try an
 - [Quarto](https://quarto.org)
 - [Julia](https://julialang.org)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
 ## Contact
 
 You can contact me via my email: "arnold dot crk at gmail dot com".
@@ -96,3 +92,7 @@ If you are interested in contributing text, please email me and we can make it h
 ## Acknowledgements
 
 - [EpiRHandbook](https://epirhandbook.com) for inspiration
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
