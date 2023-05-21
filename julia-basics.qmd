@@ -1,0 +1,18 @@
+---
+date: "2023-05-21"
+---
+
+# Julia Basics {.unnumbered}
+
+## Additional Resources
+
+- [Scientific Computing for the Rest of Us](https://sciencecomputing.io)
+- [Julia Academy](https://juliaacademy.com)
+- [PumasAI Tutorials](https://tutorials.pumas.ai)
+- [Julia Data Science](https://juliadatascience.io)
+- [Think Julia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
+- [Doggo JL](https://www.youtube.com/@doggodotjl)
+- [Julia Documentation](https://docs.julialang.org/en/v1/)
+- [Julia For Economists Video Series](https://www.youtube.com/playlist?list=PLbuwVVKCI3sRW0Y5ehBFwdFVuyuy87ram)
+- [Advanced Scientific Computing: Producing Better Code](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA)
+- [Quantitative Economics with Julia](https://julia.quantecon.org/intro.html)

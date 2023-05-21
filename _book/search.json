@@ -110,5 +110,12 @@
     "title": "Keywords, Code, and Other Formatting",
     "section": "Code Style",
     "text": "Code Style\nThere are many different ways to write code, and many different styles. But, in the interest of consistency and ease of collaboration, I would strongly recommend you use the {JuliaFormatter} package to format your code according to a specific style guide. In this book, I will use a lightly modified version of the Blue style guide, and you can see the specific changes to the default style in the .JuliaFormatter.toml file in the root directory of this book’s GitHub repository. In the next section, I will discuss how you can use the {JuliaFormatter} package to format your code."
+  },
+  {
+    "objectID": "julia-basics.html#additional-resources",
+    "href": "julia-basics.html#additional-resources",
+    "title": "Julia Basics",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nScientific Computing for the Rest of Us\nJulia Academy\nPumasAI Tutorials\nJulia Data Science\nThink Julia\nDoggo JL\nJulia Documentation\nJulia For Economists Video Series\nAdvanced Scientific Computing: Producing Better Code\nQuantitative Economics with Julia"
   }
 ]

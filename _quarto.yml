@@ -16,6 +16,9 @@ book:
       chapters:
       - motivations-background.qmd
       - technical-background.qmd
+    - part: "Getting Started With Julia"
+      chapters: 
+        - julia-basics.qmd
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]

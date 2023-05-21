@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Callum Arnold-Leps">
-<meta name="dcterms.date" content="2023-05-20">
+<meta name="dcterms.date" content="2023-05-21">
 
-<title>JuliaEpiHandbook - What Is Julia and Why Should I Care</title>
+<title>JuliaEpiHandbook - Julia Basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,8 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./technical-background.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./technical-background.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">What Is Julia and Why Should I Care</h1>
+      <h1 class="quarto-secondary-nav-title">Julia Basics</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -82,42 +81,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">What Is Julia and Why Should I Care</h1>
-                      </div>
-  </div>
-    
-  <div class="quarto-title-meta-author">
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-heading">Affiliation</div>
-    
-      <div class="quarto-title-meta-contents">
-      <a href="https://callumarnold.com">Callum Arnold-Leps</a> <a href="https://orcid.org/0000-0002-3245-6956" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
-    </div>
-      <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              Pennsylvania State University
-            </p>
-        </div>
-      </div>
-
-  <div class="quarto-title-meta">
-
-        
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">May 20, 2023</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
@@ -152,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./motivations-background.html" class="sidebar-item-text sidebar-link active">What Is Julia and Why Should I Care</a>
+  <a href="./motivations-background.html" class="sidebar-item-text sidebar-link">What Is Julia and Why Should I Care</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -172,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">julia-basics.html</span></a>
+  <a href="./julia-basics.html" class="sidebar-item-text sidebar-link active">Julia Basics</a>
   </div>
 </li>
       </ul>
@@ -186,44 +150,63 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#it-cant-all-be-sunshine-and-roses" id="toc-it-cant-all-be-sunshine-and-roses" class="nav-link" data-scroll-target="#it-cant-all-be-sunshine-and-roses">It Can’t All Be Sunshine and Roses</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link active" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/motivations-background.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/julia-basics.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Julia Basics</h1>
+</div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <a href="https://callumarnold.com">Callum Arnold-Leps</a> <a href="https://orcid.org/0000-0002-3245-6956" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Pennsylvania State University
+          </p>
+      </div>
+    </div>
 
+<div class="quarto-title-meta">
 
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Now that we’ve gotten a sense of what this book aims to achieve, let’s take a step back and talk about what Julia is, and why you should care. Julia is a relatively new <em>free</em> programming language that was first released in 2012 by some computational scientists at MIT, and has been growing in popularity ever since. It’s a general purpose language, meaning that it can be used for pretty much anything, but it’s particularly well suited for scientific computing, and is often compared to R, Python, and Matlab. There are plenty of reasons why you might want to learn Julia, but the main ones are that it’s fast, easy to learn (as far as coding goes), and has a great community. And with that, let’s dive in to the benefits and drawbacks of Julia!</p>
-</section>
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<blockquote class="blockquote">
-<p>Why write a book for Julia?</p>
-<p>What’s wrong with R, or Stata, or Python, or (insert your favourite language here)?</p>
-</blockquote>
-<p>Excellent questions. I use R every day and think it’s a great language for epidemiology, statistics, visualization, and many more things. But it’s not exactly a fast language. And for me, and plenty more epidemiologists, that can be a problem when working with large data sets or running simulations. Large data is less of an issue because package developers often have already rewritten the core code in a faster language, typically C++. But this is less that ideal if you want to look under the hood as it requires you to learn a second language (and C++ isn’t exactly known for being friendly to newcomers). The bigger issues, though, come when you need to write something from scratch, such as creating a large and complex simulation model, R is sometimes just too slow to actually run on your laptop in a reasonable time period, breaking up the development workflow. In this instance, you have two options: 1) suck it up and just hope your first attempt at the code was correct and don’t need to change anything, or 2) learn and rewrite your slow code in something faster. This is the classic “2 language problem”, and there are plenty of excellent articles on this, such as <a href="https://www.nature.com/articles/s41592-023-01832-z">this Nature Methods article</a> about Julia for Biologists, and <a href="https://julialang.org/blog/2012/02/why-we-created-julia/">this blog post</a> from the creators of Julia.</p>
-<blockquote class="blockquote">
-<p>OK, but not everyone needs to run big simulations or work with big data. Why learn Julia over R in that case?</p>
-</blockquote>
-<p>Another good question that covers a decent chunk of working epidemiologists. If you don’t need performance, I think it’s a slightly less compelling case, but there are still plenty of good reasons to think about learning Julia.</p>
-<p>Firstly, it has an excellent syntax and design structure that makes it one of the easier (and fun!) languages out there to learn. It’s incredibly helpful to be able to think in plain language and pretty much just implement that in code - for loops are quick so you don’t need to do mental gymnastics to think about how to <em>vectorize</em> your code. I know that’s a jargony term that might not mean anything to you, but in slower languages, you have to think about more abstract and unintuitive ways of implementing what you want, whereas much of your instincts <em>are idiomatic</em> in Julia i.e.&nbsp;are a fast and preferred implentation. This means that you can do more things more easily in Julia than you could in R, which has shoehorned many capabilities into it with varying degrees of success. Metaprogramming and multiple-dispatch are killer features that are core to how Julia works, and will eventually allow you to write simple and interpretable code that would require tons of <code>if</code> statements that result in hard-to-read code in other languages, such as R. And the package manager is excellent, making it so easy to create fully reproducible code, whereas R and Python almost seem to be it intentionally hard to do.</p>
-<p>Secondly, and this is a pretty big one, but Julia is a general purpose language whose syntax is rather similar to Python a lot of the time. Whether we like it or not, Python isn’t going anywhere. There’s a decent chance that at some point you will come across some Python code, or maybe even need to write some for a collaboration, and knowing Julia will make it pretty simple to pick up the key points, without needing to rely on using slow Python in your day-to-day life.</p>
-<p>Finally, if you need it, Julia is first-rate when it comes to scientific computing. A lot of aspects of epidemiology rely on differential equations, math, and increasingly, machine learning. Not only is there the excellent <a href="https://sciml.ai">SciML ecosystem</a> that houses a huge collection of state-of-the-art ODE solvers, but also, because Unicode symbols are valid code in Julia, you can literally write mathematical equations that you lifted out of a paper or book, and there’s a decent chance it’ll run with only minor modifications!</p>
-</section>
-<section id="it-cant-all-be-sunshine-and-roses" class="level2">
-<h2 class="anchored" data-anchor-id="it-cant-all-be-sunshine-and-roses">It Can’t All Be Sunshine and Roses</h2>
-<p>Correct. Julia is by no means perfect, and you will have to decide if the benefits outweigh the tradeoffs (I believe they do for a lot of us)!</p>
-<p>Firstly, while Julia has an active, friendly, and very enthusiatic community that is often willing to help when you get stuck, it is a relatively new language so support will be more limited than can be found in others. Related to this, not everything you will want to do will have a perfect pre-built package ready to go. Most of the time, this actually isn’t too big a deal as it’s either simple enough that you can quickly figure it out, or complex enough that you probably want to have ownership over the implementation, but occassionally it is genuinely an issue. Both of these issues, however, are improving rapidly as the Julia userbase grows and more people share their questions, expertise, and even turning solutions into packages that can be shared!</p>
-<p>The next common stumbling block is related to performance. Despite what I said about it being a very fast language, it’s quite a bit slower at the start of a session than R or Python, for example. This is known as the “Time to first X” (TTFX) problem, and while everything will be almost instantaneous the second time you run it, it can be annoying. Thankfully, with the recent <a href="https://julialang.org/blog/2023/04/julia-1.9-highlights/#:~:text=9%20May%202023%20%7C%20The%20Julia,finally(!)%20been%20released.">release of Julia 1.9.0</a>, this is effectively a problem of the past, with most Julia sessions loading packages and creating your first plot within a few seconds, not a minute.</p>
-<p>And the last main issue with Julia is that packages aren’t always documented as clearly as in other languages, and debugging can be a painful experience. Every package is different, and while the <a href="https://documenter.juliadocs.org/stable/">Documenter.jl package</a> does an excellent job of standardizing package documentation, unfortuately not everyone does a great job of writing robust tests and guides to help the user. Sometimes you just need to dig in the weeds to figure something out.</p>
-<p>But, that’s part of the motivation for writing this book. For a lot of what we do as epidemiologists, we can work with very established packages that have solid code bases, so we won’t need to worry too much about the code quality as it’s already been tested by thousands of individuals. Instead, this book is to help guide someone new to Julia through the core tasks of epidemiology, and show you how to use the tools that exist in the community, but may have confusing documentation to someone new to the language, or even programming in general.</p>
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 21, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="additional-resources" class="level2">
+<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="https://sciencecomputing.io">Scientific Computing for the Rest of Us</a></li>
+<li><a href="https://juliaacademy.com">Julia Academy</a></li>
+<li><a href="https://tutorials.pumas.ai">PumasAI Tutorials</a></li>
+<li><a href="https://juliadatascience.io">Julia Data Science</a></li>
+<li><a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">Think Julia</a></li>
+<li><a href="https://www.youtube.com/@doggodotjl">Doggo JL</a></li>
+<li><a href="https://docs.julialang.org/en/v1/">Julia Documentation</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLbuwVVKCI3sRW0Y5ehBFwdFVuyuy87ram">Julia For Economists Video Series</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA">Advanced Scientific Computing: Producing Better Code</a></li>
+<li><a href="https://julia.quantecon.org/intro.html">Quantitative Economics with Julia</a></li>
+</ul>
 
 
 </section>
@@ -479,14 +462,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About This Project</span>
+      <a href="./technical-background.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Keywords, Code, and Other Formatting</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./technical-background.html" class="pagination-link">
-        <span class="nav-page-text">Keywords, Code, and Other Formatting</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
