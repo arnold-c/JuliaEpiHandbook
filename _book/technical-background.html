@@ -9,7 +9,7 @@
 <meta name="author" content="Callum Arnold-Leps">
 <meta name="dcterms.date" content="2023-05-20">
 
-<title>JuliaEpiHandbook</title>
+<title>JuliaEpiHandbook - Keywords, Code, and Other Formatting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -32,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./motivations-background.html" rel="next">
+<link href="./motivations-background.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">JuliaEpiHandbook</h1>
+      <h1 class="quarto-secondary-nav-title">Keywords, Code, and Other Formatting</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -103,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">About This Project</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">About This Project</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -121,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./technical-background.html" class="sidebar-item-text sidebar-link">Keywords, Code, and Other Formatting</a>
+  <a href="./technical-background.html" class="sidebar-item-text sidebar-link active">Keywords, Code, and Other Formatting</a>
   </div>
 </li>
       </ul>
@@ -135,25 +198,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-this-project" id="toc-about-this-project" class="nav-link active" data-scroll-target="#about-this-project">About This Project</a>
-  <ul class="collapse">
-  <li><a href="#who-is-this-for-pre-requisite-knowledge" id="toc-who-is-this-for-pre-requisite-knowledge" class="nav-link" data-scroll-target="#who-is-this-for-pre-requisite-knowledge">Who Is This For &amp; Pre-Requisite Knowledge?</a></li>
-  <li><a href="#built-with" id="toc-built-with" class="nav-link" data-scroll-target="#built-with">Built With</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
-  <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing">Contributing</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  </ul></li>
+  <li><a href="#general-formatting" id="toc-general-formatting" class="nav-link active" data-scroll-target="#general-formatting">General Formatting</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style">Code Style</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/index.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/technical-background.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">JuliaEpiHandbook</h1>
-<p class="subtitle lead">A Guide to Julia for Epidemiologists</p>
+<h1 class="title d-none d-lg-block">Keywords, Code, and Other Formatting</h1>
 </div>
 
 
@@ -187,29 +243,22 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="about-this-project" class="level1 unnumbered">
-<h1 class="unnumbered">About This Project</h1>
-<p>The purpose of this book is to create a similar document as the excellent EpiRHandbook for epidemiologist who are interested in becoming Julia language users. Most people in epidemiology and statistics use R, Stata, or SAS. There are still plenty of people who exclusively use Excel to great results. That’s OK, and I’m not trying to tell you that those options are bad and you should convert to Julia immediately. But there are some advantages that I think make it an attractive option for epidemiologists to consider.</p>
-<section id="who-is-this-for-pre-requisite-knowledge" class="level2">
-<h2 class="anchored" data-anchor-id="who-is-this-for-pre-requisite-knowledge">Who Is This For &amp; Pre-Requisite Knowledge?</h2>
-<p>Because this book aims to provide ground-up instruction on using Julia as an epidemiologist, it does not assume any prior coding experience. Many people get started with Excel analysis, and this book tries to provide a new path that will be easier and more reliable for those individuals moving forward. As a result, the earlier chapters will lay out fundamental concepts of Julia and best practices for setting up a project, including concepts on version control and Git. But if you’ve got experience with R (or another language), then I hope to try and draw parallels and examples that will help speed up your learning.</p>
-<p>The purpose of this book is not to teach you how to write the most performant code, though we will cover some key concepts as we go along, nor show you ever way to do a particular task. Neither is it’s purpose to teach you to become a Julia developer. There are many other resources that are better suited for those purposes, and I’ve tried to include links where appropriate. Instead, the goal is to help you get started with Julia, working through problems that you might encounter in your day-to-day work, providing you with the tools to carry out your work as an epidemiologist, and sufficient Julia knowledge to know how to research and think your way through other obstacles you may encounter. As a result, this book will make choices that prioritize readability and reproducibility over performance, because they are more important when you are getting started. Unlike Python, which takes the approach that there should <a href="https://peps.python.org/pep-0020/">only be one obvious way to complete a task</a>, Julia provides the user with more flexibility because it is so fast that there are often multiple solutions that are similarly performant, and which one to use comes down to a stylistic choice. Where I make a deliberate choice, I will try to explain why I made that choice, and refer you to alternative approaches that you can explore on your own as you become more proficient with computational epidemiology and Julia.</p>
-<p>Not only will this book help you learn how to use Julia, but I hope that it will also help teach you how to think about problems that are relevant to you in a way that will help you solve them in Julia. Like everything in life, you will not be great at this immediately, and you may even be slower at problem solving with Julia that you are with your current tool. But, with practice, you will get better and faster, and you will soon be able to solve problems that you could not have solved before!</p>
-</section>
-<section id="built-with" class="level2">
-<h2 class="anchored" data-anchor-id="built-with">Built With</h2>
-<ul>
-<li><a href="https://quarto.org">Quarto</a></li>
-<li><a href="https://julialang.org">Julia</a></li>
-</ul>
-</section>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>You can contact me via my email: “arnold <em>dot</em> crk <em>at</em> gmail <em>dot</em> com”.</p>
-</section>
-<section id="contributing" class="level2">
-<h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
-<p>If you see any issues, please open an Issue or Discussion on the book’s <a href="https://github.com/arnold-c/JuliaEpiHandbook">GitHub page</a>. Or, if you know Git, you can open a Pull Request to fix the issue directly, which is even better!</p>
+<section id="general-formatting" class="level2">
+<h2 class="anchored" data-anchor-id="general-formatting">General Formatting</h2>
+<p>Throughout the book, you’ll see some keywords, code, and other points that I’ll try to delineate with the following formatting:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This will be a note, and will be used to highlight important points, or to provide additional information.</p>
+</div>
+</div>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -220,23 +269,73 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can directly go to the code for each page by clicking the “Edit this page on GitHub” link at the bottom of each page’s TOC on the right. This can be useful if you would like to point out an issue or propose a change.</p>
+<p>This will be used to highlight a useful tip.</p>
 </div>
 </div>
-<p>If you are interested in contributing text, please email me and we can make it happen!</p>
-</section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This will provide a warning that you may get an unexpected result if you’re not careful.</p>
+</div>
+</div>
 <ul>
-<li><a href="https://epirhandbook.com">EpiRHandbook</a> for inspiration</li>
+<li><code>code</code> will be used to highlight code.</li>
+<li><code>{package.function()}</code> will be used to denote a specific package and function, e.g., <code>{DataFrames.subset()}</code> denotes the <code>subset()</code> function from the <code>{DataFrames}</code> package. Some languages use a different convention, such as <code>package::function()</code> in R, but so where relevant, I will do my best to provide the correct syntax.</li>
+<li><strong>keywords</strong> will be used to highlight keywords and phrases, e.g., <strong>Git</strong> or <strong>GitHub</strong>.
+<ul>
+<li><strong>actions</strong> will also be highlighted in this way, e.g., <strong>commits</strong> or <strong>pushed</strong> being the result of the code <code>git commit</code> or <code>git push</code></li>
+</ul></li>
+<li><strong><em>files</em></strong> will be used to highlight file names, e.g., <strong><em>README.md</em></strong> or <strong><em>LICENSE</em></strong>.</li>
+<li><em>italics</em> will be used for emphasis in certain circumstances, e.g., signifying a question from an interactive terminal command.</li>
 </ul>
 </section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>
-
-
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>Throughout this book, I will use a number of packages to help with the analysis and visualization of data. For each section, I will provide a list of the packages used in a particular set of analyses at the top of the page. The Julia language has an excellent package manager that makes it easy to install and use packages, and also share projects and collaborate with others without running into issues regarding dependencies that often plagues other languages. In the next section, I will walk through the process of getting started with Julia, and therefore, the process of installing packages, but below you can see the full list of packages and the installed version of Julia used in this book.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">versioninfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Julia Version 1.9.0
+Commit 8e630552924 (2023-05-07 11:25 UTC)
+Platform Info:
+  OS: macOS (arm64-apple-darwin22.4.0)
+  CPU: 8 × Apple M1
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-14.0.6 (ORCJIT, apple-m1)
+  Threads: 5 on 4 virtual cores
+Environment:
+  JULIA_NUM_THREADS = auto</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Status `~/Documents/Repos/JuliaEpiHandbook/Project.toml`
+  [336ed68f] CSV v0.10.10
+  [13f3f980] CairoMakie v0.10.5
+  [a93c6f00] DataFrames v1.5.0
+  [1313f7d8] DataFramesMeta v0.14.0
+  [634d3b9d] DrWatson v2.12.5
+  [7073ff75] IJulia v1.24.0
+  [98e50ef6] JuliaFormatter v1.0.29
+  [295af30f] Revise v3.5.2</code></pre>
+</div>
+</div>
 </section>
+<section id="code-style" class="level2">
+<h2 class="anchored" data-anchor-id="code-style">Code Style</h2>
+<p>There are many different ways to write code, and many different styles. But, in the interest of consistency and ease of collaboration, I would strongly recommend you use the <a href="https://domluna.github.io/JuliaFormatter.jl/dev/"><code>{JuliaFormatter}</code> package</a> to format your code according to a specific style guide. In this book, I will use a lightly modified version of the <a href="https://github.com/invenia/BlueStyle">Blue style guide</a>, and you can see the specific changes to the default style in the <strong><em>.JuliaFormatter.toml</em></strong> file in the root directory of this book’s GitHub repository. In the next section, I will discuss how you can use the <code>{JuliaFormatter}</code> package to format your code.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -490,11 +589,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./motivations-background.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What Is Julia and Why Should I Care</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./motivations-background.html" class="pagination-link">
-        <span class="nav-page-text">What Is Julia and Why Should I Care</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

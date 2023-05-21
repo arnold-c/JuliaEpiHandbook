@@ -1,6 +1,16 @@
 /*-- scss:defaults --*/
-// Base document fonts
-$font-family-sans-serif: 'Roboto', 'Open Sans', 'Noto Sans', 'Helvetica Neue', 'Arial', !default; //system-ui,
-$font-family-monospace: 'Roboto Mono', monospace, !default;
-// $headings-font-family: 'Roboto Slab', 'Roboto Serif', 'Source Serif Pro', 'IBM Plex Serif', 'Montserrat', 'Noto Serif', !default;
-$headings-font-weight: 800 !default;
+// Fonts
+@import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@200..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@200..900&display=swap';
+
+
+$font-family-sans-serif: 'Atkinson Hyperlegible', 'Open Sans', 'Roboto', !default;
+$headings-font-family: 'Open Sans','Atkinson Hyperlegible', 'Roboto', !default;
+$headings-font-weight: 700, !default;
+
+/*-- scss:rules --*/
+body {
+    font-family: $font-family-sans-serif;
+    font-weight: 500;
+}

@@ -1,12 +1,5 @@
 /*-- scss:defaults --*/
-// Fonts
-@import '_fonts';
 
-// Box colors
-:root {
-    --box-bg: ghostwhite;
-    --box-border-color: lightgray;
-}
-
-// Box class
-@import '_box';
+// Navbar
+$navbar-color: #f5e0dc !default;
+$navbar-padding-y: 1.5rem !default;

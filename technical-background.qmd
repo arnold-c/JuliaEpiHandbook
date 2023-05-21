@@ -1,0 +1,55 @@
+---
+date: "2023-05-20"
+jupyter: julia-1.9
+---
+
+# Keywords, Code, and Other Formatting {.unnumbered}
+
+## General Formatting
+
+Throughout the book, you'll see some keywords, code, and other points that I'll try to delineate with the following formatting:
+
+::: {.callout-note}
+This will be a note, and will be used to highlight important points, or to provide additional information.
+:::
+
+::: {.callout-tip}
+This will be used to highlight a useful tip.
+:::
+
+::: {.callout-warning}
+
+This will provide a warning that you may get an unexpected result if you're not careful.
+
+:::
+
+- `code` will be used to highlight code.
+- `{package.function()}` will be used to denote a specific package and function, e.g., `{DataFrames.subset()}` denotes the `subset()` function from the `{DataFrames}` package.
+Some languages use a different convention, such as `package::function()` in R, but so where relevant, I will do my best to provide the correct syntax.
+- **keywords** will be used to highlight keywords and phrases, e.g., **Git** or **GitHub**.
+    - **actions** will also be highlighted in this way, e.g., **commits** or **pushed** being the result of the code `git commit` or `git push` 
+- ***files*** will be used to highlight file names, e.g., ***README.md*** or ***LICENSE***.
+- *italics* will be used for emphasis in certain circumstances, e.g., signifying a question from an interactive terminal command.
+
+## Packages
+
+Throughout this book, I will use a number of packages to help with the analysis and visualization of data.
+For each section, I will provide a list of the packages used in a particular set of analyses at the top of the page.
+The Julia language has an excellent package manager that makes it easy to install and use packages, and also share projects and collaborate with others without running into issues regarding dependencies that often plagues other languages.
+In the next section, I will walk through the process of getting started with Julia, and therefore, the process of installing packages, but below you can see the full list of packages and the installed version of Julia used in this book.
+
+```{julia}
+versioninfo()
+```
+
+```{julia}
+using Pkg
+Pkg.status()
+```
+
+## Code Style
+
+There are many different ways to write code, and many different styles.
+But, in the interest of consistency and ease of collaboration, I would strongly recommend you use the [`{JuliaFormatter}` package](https://domluna.github.io/JuliaFormatter.jl/dev/) to format your code according to a specific style guide.
+In this book, I will use a lightly modified version of the [Blue style guide](https://github.com/invenia/BlueStyle), and you can see the specific changes to the default style in the ***.JuliaFormatter.toml*** file in the root directory of this book's GitHub repository.
+In the next section, I will discuss how you can use the `{JuliaFormatter}` package to format your code.

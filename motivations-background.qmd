@@ -1,32 +1,18 @@
-# JuliaEpiHandbook
-## About This Project
+---
+date: "2023-05-20"
+---
 
-The purpose of this book is to create a similar document as the excellent EpiRHandbook for epidemiologist who are interested in becoming Julia language users.
-Most people in epidemiology and statistics use R, Stata, or SAS.
-There are still plenty of people who exclusively use Excel to great results.
-That's OK, and I'm not trying to tell you that those options are bad and you should convert to Julia immediately.
-But there are some advantages that I think make it an attractive option for epidemiologists to consider.
+# What Is Julia and Why Should I Care {.unnumbered}
 
-### Who Is This For & Pre-Requisite Knowledge?
+## Background
 
-Because this book aims to provide ground-up instruction on using Julia as an epidemiologist, it does not assume any prior coding experience.
-Many people get started with Excel analysis, and this book tries to provide a new path that will be easier and more reliable for those individuals moving forward.
-As a result, the earlier chapters will lay out fundamental concepts of Julia and best practices for setting up a project, including concepts on version control and Git.
-But if you've got experience with R (or another language), then I hope to try and draw parallels and examples that will help speed up your learning.
+Now that we've gotten a sense of what this book aims to achieve, let's take a step back and talk about what Julia is, and why you should care.
+Julia is a relatively new *free* programming language that was first released in 2012 by some computational scientists at MIT, and has been growing in popularity ever since.
+It's a general purpose language, meaning that it can be used for pretty much anything, but it's particularly well suited for scientific computing, and is often compared to R, Python, and Matlab.
+There are plenty of reasons why you might want to learn Julia, but the main ones are that it's fast, easy to learn (as far as coding goes), and has a great community.
+And with that, let's dive in to the benefits and drawbacks of Julia!
 
-The purpose of this book is not to teach you how to write the most performant code, though we will cover some key concepts as we go along, nor show you ever way to do a particular task.
-Neither is it's purpose to teach you to become a Julia developer.
-There are many other resources that are better suited for those purposes, and I've tried to include links where appropriate.
-Instead, the goal is to help you get started with Julia, working through problems that you might encounter in your day-to-day work, providing you with the tools to carry out your work as an epidemiologist, and sufficient Julia knowledge to know how to research and think your way through other obstacles you may encounter.
-As a result, this book will make choices that prioritize readability and reproducibility over performance, because they are more important when you are getting started.
-Unlike Python, which takes the approach that there should [only be one obvious way to complete a task](https://peps.python.org/pep-0020/), Julia provides the user with more flexibility because it is so fast that there are often multiple solutions that are similarly performant, and which one to use comes down to a stylistic choice.
-Where I make a deliberate choice, I will try to explain why I made that choice, and refer you to alternative approaches that you can explore on your own as you become more proficient with computational epidemiology and Julia.
-
-Not only will this book help you learn how to use Julia, but I hope that it will also help teach you how to think about problems that are relevant to you in a way that will help you solve them in Julia.
-Like everything in life, you will not be great at this immediately, and you may even be slower at problem solving with Julia that you are with your current tool.
-But, with practice, you will get better and faster, and you will soon be able to solve problems that you could not have solved before!
-
-### Motivation
+## Motivation
 
 > Why write a book for Julia?
 >
@@ -62,7 +48,7 @@ Finally, if you need it, Julia is first-rate when it comes to scientific computi
 A lot of aspects of epidemiology rely on differential equations, math, and increasingly, machine learning.
 Not only is there the excellent [SciML ecosystem](https://sciml.ai) that houses a huge collection of state-of-the-art ODE solvers, but also, because Unicode symbols are valid code in Julia, you can literally write mathematical equations that you lifted out of a paper or book, and there's a decent chance it'll run with only minor modifications!
 
-### It Can't All Be Sunshine and Roses
+## It Can't All Be Sunshine and Roses
 
 Correct.
 Julia is by no means perfect, and you will have to decide if the benefits outweigh the tradeoffs (I believe they do for a lot of us)!
@@ -84,27 +70,3 @@ Sometimes you just need to dig in the weeds to figure something out.
 But, that's part of the motivation for writing this book.
 For a lot of what we do as epidemiologists, we can work with very established packages that have solid code bases, so we won't need to worry too much about the code quality as it's already been tested by thousands of individuals.
 Instead, this book is to help guide someone new to Julia through the core tasks of epidemiology, and show you how to use the tools that exist in the community, but may have confusing documentation to someone new to the language, or even programming in general.
-
-## Built With
-
-- [Quarto](https://quarto.org)
-- [Julia](https://julialang.org)
-
-## Contact
-
-You can contact me via my email: "arnold dot crk at gmail dot com".
-
-## Contributing
-
-If you see any issues, please open an Issue or Discussion on the book's GitHub page.
-Or, if you know Git, you can open a Pull Request to fix the issue directly, which is even better!
-
-If you are interested in contributing text, please email me and we can make it happen!
-
-## Acknowledgements
-
-- [EpiRHandbook](https://epirhandbook.com) for inspiration
-
-## License
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.

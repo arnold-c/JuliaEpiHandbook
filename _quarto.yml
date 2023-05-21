@@ -4,10 +4,18 @@ project:
 book:
   title: "JuliaEpiHandbook"
   subtitle: "A Guide to Julia for Epidemiologists"
-  author: "Callum Arnold"
+  author:
+    - name: "Callum Arnold-Leps"
+      url: https://callumarnold.com
+      affiliation: Pennsylvania State University
+      orcid: 0000-0002-3245-6956
   date: "5/20/2023"
   chapters:
     - index.qmd
+    - part: "Background"
+      chapters:
+      - motivations-background.qmd
+      - technical-background.qmd
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]
@@ -18,11 +26,35 @@ book:
 
 bibliography: references.bib
 
+license: "CC BY"
+
+# Default for table of contents
+toc: true
+toc-title: Table of contents
+toc-location: right
+
+# Default knitr options
+execute:
+  echo: true
+  message: true
+  warning: true
+  cache: false
+
+# Default author
+author:
+  - name: Callum Arnold-Leps
+    url: https://callumarnold.com
+    affiliation: Pennsylvania State University
+    orcid: 0000-0002-3245-6956
+
+# Default fields for citation
+citation: true
+
 format:
   html:
     theme:
-      light: [cosmo, format/_light.scss]
-      dark: [cosmo, format/_dark.scss]
+      light: [cosmo, format/_fonts.scss, format/_light.scss]
+      dark: [cosmo, format/_fonts.scss, format/_dark.scss]
     code-copy: true
     code-fold: false
     code-overflow: wrap
