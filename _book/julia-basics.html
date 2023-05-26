@@ -515,7 +515,7 @@ Tip
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>global_x <span class="op">=</span> <span class="fl">5</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">print_global_x</span>()</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(global_x)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">println</span>(global_x)</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print_global_x</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -603,13 +603,13 @@ Note
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Danger
+Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -623,8 +623,80 @@ Danger
 </section>
 <section id="control-flow" class="level2">
 <h2 class="anchored" data-anchor-id="control-flow">Control Flow</h2>
+<p>Control flow refers to the order in which the statements in a program are executed. There are many different ways to control how a program is executed, but we will focus on the most common ones here. See the <a href="https://docs.julialang.org/en/v1/manual/control-flow/">Julia documentation</a> for more information.</p>
 <section id="if-statements" class="level3">
 <h3 class="anchored" data-anchor-id="if-statements">If Statements</h3>
+<p>If statements are a way to control whether or not a block of code is executed, and fall under the general category of <strong>conditional evaluation</strong> (but I think “if statements” gives you a more intuitive sense of what we’re talking about in this section). There are many uses for conditional evaluation, so we’ll just show you some examples of how to use it, and you can explore further if you need to. The following is an example from the <a href="https://docs.julialang.org/en/v1/manual/control-flow/#man-conditional-evaluation-1">Julia documentation</a>.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">number_relations</span>(x, y)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;</span> y</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        relation <span class="op">=</span> <span class="st">"less than"</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> x <span class="op">==</span> y</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        relation <span class="op">=</span> <span class="st">"equal to"</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        relation <span class="op">=</span> <span class="st">"greater than"</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">println</span>(<span class="st">"x is "</span>, relation, <span class="st">" y."</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="fu">number_relations</span>(<span class="fl">2</span>, <span class="fl">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x is greater than y.</code></pre>
+</div>
+</div>
+<p>In this example we are using an <code>if</code> statement to determine the relationship between two numbers. It’s important to note that the <strong>conditional statements</strong> are evaluated in sequence, and the first one that evaluates to <code>true</code> is executed i.e.&nbsp;<code>if</code> then <code>elseif</code> then <code>else</code> in this example.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>elseif</code> and <code>else</code> statements are both optional (i.e.&nbsp;just an <code>if</code> statement is valid), and you can have as many <code>elseif</code> statements as you like (including 0 i.e.&nbsp;just <code>if</code> and <code>else</code> statements).</p>
+</div>
+</div>
+<section id="short-circuit-evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="short-circuit-evaluation">Short-Circuit Evaluation</h4>
+<p>If you want to check multiple conditions, you can use the <code>&amp;&amp;</code> (and) and <code>||</code> (or) operators. These is known as <strong>short-circuit evaluation</strong>. For example, if we wanted to check if a number is between 0 and 10, we could do the following.</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">number_between</span>(x)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> x <span class="op">&lt;</span> <span class="fl">10</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"x is between 0 and 10"</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"x is not between 0 and 10"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">number_between</span>(<span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x is between 0 and 10</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">number_between</span>(<span class="fl">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x is not between 0 and 10</code></pre>
+</div>
+</div>
+<p>In <code>number_between(3)</code>, x is greater than 0 and less than 10, so both conditions evaluate to <code>true</code>, and the code in the <code>if</code> statement is executed. In <code>number_between(11)</code>, x is greater than 0, but not less than 10, so while the first condition evaluates to <code>true</code>, the second condition evaluates to <code>false</code>, so the code in the <code>else</code> statement is executed. This is important to understand - all conditions must evaluate to <code>true</code> for the code in the <code>if</code> statement to be executed! Based on this, try to think about why the following code also works.</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">number_between2</span>(x)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> ((x <span class="op">&gt;</span> <span class="fl">10</span>) <span class="op">==</span> <span class="cn">false</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"x is between 0 and 10"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"x is not between 0 and 10"</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">number_between2</span>(<span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x is between 0 and 10</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="iteration" class="level3">
 <h3 class="anchored" data-anchor-id="iteration">Iteration</h3>
@@ -632,32 +704,61 @@ Danger
 <section id="for-loop" class="level4">
 <h4 class="anchored" data-anchor-id="for-loop">For Loop</h4>
 <p>The most common way to iterate in Julia is using a <code>for</code> loop. We have already seen a <code>for</code> loop in the <a href="#multiple-dispatch">multiple dispatch</a> section, but let’s look at a simpler example.</p>
-<p>Let’s say we want to calculate the sum of the numbers from 1 to 10 (cumulative sum) i.e.&nbsp;1 + 2 + 3 + … + 10. Julia has an in-built function to do this (<code>cumsum()</code>), but let’s write our own function to do it using a for loop.</p>
+<p>Let’s say we want to calculate the sum of the numbers from 1 to 10 (cumulative sum) i.e.&nbsp;1 + 2 + 3 + … + 10. Julia has an in-built function to do this (<code>cumsum()</code>), but let’s write our own function to do it using a <code>for</code> loop.</p>
 <p>There are multiple ways we could write this function, but the most intuitive way is to go through each of the numbers in 1 to 10, and add them to a running total.</p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mycumsum</span>(x)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0</span> <span class="co"># Initialize our running total to 0</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For each number in x, add it to our running total</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> x</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        y <span class="op">+=</span> x[i] <span class="co"># This is equivalent to y = y + x[i]</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>mycumsum (generic function with 1 method)</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mycumsum</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mycumsum</span>(x)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0</span> <span class="co"># Initialize our running total to 0</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For each number in x, add it to our running total</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> x</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        y <span class="op">+=</span> x[i] <span class="co"># This is equivalent to y = y + x[i]</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mycumsum</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>55</code></pre>
 </div>
 </div>
 </section>
 <section id="while-loop" class="level4">
 <h4 class="anchored" data-anchor-id="while-loop">While Loop</h4>
+<p>Another way to iterate is using a <code>while</code> loop. The difference between a <code>for</code> loop and a <code>while</code> loop is that a <code>for</code> loop iterates over a sequence of values, whereas a <code>while</code> loop iterates until a condition is met. For example, let’s say we want to keep adding numbers to our running total until the total is greater than 100 (and stop counting). We might not know how many numbers we need to add to get to 100, so we can’t use a <code>for</code> loop, but we can use a <code>while</code> loop.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mycumsum2</span>(x)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0</span> <span class="co"># Initialize our running total to 0</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">1</span> <span class="co"># Initialize our counter to 1</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># While our running total is less than 100, add the next number to our running total</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> y <span class="op">&lt;</span> <span class="fl">100</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        y <span class="op">+=</span> x[i] <span class="co"># This is equivalent to y = y + x[i]</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="fl">1</span> <span class="co"># Update our counter so we can add the next number</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">println</span>(<span class="st">"We added "</span>, i, <span class="st">" numbers to get to "</span>, y)</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mycumsum2</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>We added 15 numbers to get to 105</code></pre>
+</div>
+</div>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Danger
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>while</code> loops are very useful in many situations, but are more dangerous than <code>for</code> loops, because it’s easy to get stuck in an infinite loop. For example, if we accidentally started our cumulative sum between 0:100 and forgot to update our counter, we would never reach our condition of y &lt; 100, and the loop would never end. To avoid this, people often add <code>break</code> statements to their <code>while</code> loops, which will break out of the loop if a certain condition is met i.e.&nbsp;if we added 100 numbers and still haven’t reached 100, we can early exit out of the loop. Generally speaking, use a <code>for</code> loop if you can, and be careful when using <code>while</code> loops.</p>
+</div>
+</div>
 </section>
 </section>
 </section>

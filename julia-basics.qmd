@@ -230,7 +230,7 @@ In this case, `y` is defined within the function `add_one()` i.e. is a **local v
 global_x = 5
 
 function print_global_x()
-    println(global_x)
+    return println(global_x)
 end
 
 print_global_x()
@@ -303,7 +303,7 @@ And we can see that the original method that just takes a single number as an ar
 multiply_by_two_divide_by_three(3)
 ```
 
-::: {.callout-caution}
+::: {.callout-warning}
 
 It is important to note that **keyword arguments** are not considered in multiple dispatch i.e., trying to define a new method of a function that differs only by keyword arguments *will not* create a new method, but just overwrite the old one.
 So if you want/need a new method, use **positional arguments**.
@@ -314,7 +314,79 @@ So if you want/need a new method, use **positional arguments**.
 
 
 ## Control Flow
+
+Control flow refers to the order in which the statements in a program are executed.
+There are many different ways to control how a program is executed, but we will focus on the most common ones here.
+See the [Julia documentation](https://docs.julialang.org/en/v1/manual/control-flow/) for more information.
+
 ### If Statements
+
+If statements are a way to control whether or not a block of code is executed, and fall under the general category of **conditional evaluation** (but I think "if statements" gives you a more intuitive sense of what we're talking about in this section).
+There are many uses for conditional evaluation, so we'll just show you some examples of how to use it, and you can explore further if you need to.
+The following is an example from the [Julia documentation](https://docs.julialang.org/en/v1/manual/control-flow/#man-conditional-evaluation-1).
+
+```{julia}
+function number_relations(x, y)
+    if x < y
+        relation = "less than"
+    elseif x == y
+        relation = "equal to"
+    else
+        relation = "greater than"
+    end
+    return println("x is ", relation, " y.")
+end
+
+number_relations(2, 1)
+```
+
+In this example we are using an `if` statement to determine the relationship between two numbers.
+It's important to note that the **conditional statements** are evaluated in sequence, and the first one that evaluates to `true` is executed i.e. `if` then `elseif` then `else` in this example.
+
+::: {.callout-note}
+
+`elseif` and `else` statements are both optional (i.e. just an `if` statement is valid), and you can have as many `elseif` statements as you like (including 0 i.e. just `if` and `else` statements).
+
+:::
+
+#### Short-Circuit Evaluation
+
+If you want to check multiple conditions, you can use the `&&` (and) and `||` (or) operators.
+These is known as **short-circuit evaluation**.
+For example, if we wanted to check if a number is between 0 and 10, we could do the following.
+
+```{julia}
+function number_between(x)
+    if x > 0 && x < 10
+        println("x is between 0 and 10")
+    else
+        println("x is not between 0 and 10")
+    end
+end
+
+number_between(3)
+```
+
+```{julia}
+number_between(11)
+```
+
+In `number_between(3)`, x is greater than 0 and less than 10, so both conditions evaluate to `true`, and the code in the `if` statement is executed.
+In `number_between(11)`, x is greater than 0, but not less than 10, so while the first condition evaluates to `true`, the second condition evaluates to `false`, so the code in the `else` statement is executed.
+This is important to understand - all conditions must evaluate to `true` for the code in the `if` statement to be executed!
+Based on this, try to think about why the following code also works.
+
+```{julia}
+function number_between2(x)
+    if x > 0 && ((x > 10) == false)
+        println("x is between 0 and 10")
+    else
+        println("x is not between 0 and 10")
+    end
+end
+
+number_between2(3)
+```
 
 ### Iteration
 
@@ -327,7 +399,7 @@ The most common way to iterate in Julia is using a `for` loop.
 We have already seen a `for` loop in the [multiple dispatch](#multiple-dispatch) section, but let's look at a simpler example.
 
 Let's say we want to calculate the sum of the numbers from 1 to 10 (cumulative sum) i.e. 1 + 2 + 3 + ... + 10.
-Julia has an in-built function to do this (`cumsum()`), but let's write our own function to do it using a for loop.
+Julia has an in-built function to do this (`cumsum()`), but let's write our own function to do it using a `for` loop.
 
 There are multiple ways we could write this function, but the most intuitive way is to go through each of the numbers in 1 to 10, and add them to a running total.
 
@@ -343,16 +415,42 @@ function mycumsum(x)
 
     return y
 end
-```
 
-```{julia}
 mycumsum(1:10)
 ```
 
-
-
 #### While Loop
 
+Another way to iterate is using a `while` loop.
+The difference between a `for` loop and a `while` loop is that a `for` loop iterates over a sequence of values, whereas a `while` loop iterates until a condition is met.
+For example, let's say we want to keep adding numbers to our running total until the total is greater than 100 (and stop counting).
+We might not know how many numbers we need to add to get to 100, so we can't use a `for` loop, but we can use a `while` loop.
+
+```{julia}
+function mycumsum2(x)
+    y = 0 # Initialize our running total to 0
+    i = 1 # Initialize our counter to 1
+
+    # While our running total is less than 100, add the next number to our running total
+    while y < 100
+        y += x[i] # This is equivalent to y = y + x[i]
+        i += 1 # Update our counter so we can add the next number
+    end
+
+    return println("We added ", i, " numbers to get to ", y)
+end
+
+mycumsum2(1:100)
+```
+
+::: {.callout-caution}
+
+`while` loops are very useful in many situations, but are more dangerous than `for` loops, because it's easy to get stuck in an infinite loop.
+For example, if we accidentally started our cumulative sum between 0:100 and forgot to update our counter, we would never reach our condition of y < 100, and the loop would never end.
+To avoid this, people often add `break` statements to their `while` loops, which will break out of the loop if a certain condition is met i.e. if we added 100 numbers and still haven't reached 100, we can early exit out of the loop.
+Generally speaking, use a `for` loop if you can, and be careful when using `while` loops.
+
+:::
 
 
 ## Additional Resources
