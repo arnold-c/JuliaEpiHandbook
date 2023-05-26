@@ -12,6 +12,10 @@ date: "2023-05-25"
 - **REPL**: The Julia REPL is the Julia Read-Eval-Print-Loop.
     This is the interactive command line interface for Julia.
     When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.
+- **Package**: A package is a collection of code that can be used to extend the functionality of Julia and complete specific tasks.
+    Packages are installed using the `Pkg` package manager.
+- **Object**: An object is anything that you can create using code.
+    This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.
 
 ## Getting Set Up
 ### Installing Julia
@@ -140,6 +144,16 @@ This is a really useful feature of VSCode as it allows you to also have **Worksp
 To get started with a new **Workspace**, all you have to do is open a folder in VSCode, as typically it's a good rule of thumb to have one overarching folder per project.
 You can do this with `Cmd + O` on Mac or `Ctrl + O` on Windows or Linux, or by clicking "File" in the top left of the VSCode window and then clicking "Open Folder".
 After doing so, you will see the folder name appear in the top of the "Explorer" panel, with all contained files and folders displayed below.
+
+Further down in the sidebar, you will see there is a logo with three circles (which I click on in the video).
+This is the Julia extension, and will show you the *Julia Workspace* at the top, which contains every **object** that you have run and created.
+Below that is the *Documentation* section, which is where can search for and view the documentation for any Julia function or type (as long as the function is within one of the packages you have loaded).
+Finally, below that is the *Plot Navigator* section, which is where you can view the list of plots that you have created in Julia, and clicking on a plot number will update the plot viewer appropriately.
+
+At the bottom of the screen, you will see the *Integrated Terminal* panel, which is where you can run Julia code, as well as the *Problems* panel, which will show you any errors or warnings that VSCode has detected in your code.
+Some other tools can be seen here, but they are not particularly important for now.
+
+Finally, at the very bottom of the screen is the *Status Bar*, which shows you the current branch of your git repository (if you have one), the current Julia environment, and some other miscellaneous information.
 
 ## Bonus Set Up
 ### Fonts
