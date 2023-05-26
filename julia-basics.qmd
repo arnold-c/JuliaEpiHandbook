@@ -30,13 +30,37 @@ It'll likely take a couple of passes through this page to really get a good unde
 It's meant to act as a reference so you can come back to it later if you don't understand something in the later, more-applied, sections.
 At the bottom of this page are some additional resources that you can use to gain a deeper understanding of Julia.
 
-## Data Types
+## Data and Object Types
 
-- Integers
-- Floats
+There are a number of different data and object types in Julia.
+Here are the key ones for your to be aware of.
+
+- Integer
+  - Whole numbers
+- Float
+  - Numbers with decimals
 - Boolean
-- Strings
-- Arrays
+  - `true` or `false` (written in lowercase)
+    - `true` has equal value to `1` e.g. `1 == true`
+    - `false` has equal value to `0` e.g. `0 == false`
+
+::: {.callout-note}
+
+In Julia, the `==` operator is used to check if two values are equal.
+It returns a boolean value, `true` or `false`, depending on whether the values are equal or not i.e. `1 == true` returns `true` because `1` and `true` are equal!
+It is different to the `=` operator, which is used to assign a value to a variable (see [this section below](#assignment) for more details on variables).
+
+In Julia there is also the `===` operator, which is used to check if two values are identical.
+This is different to the `==` operator, which checks if two values are equal.
+For example, `1 == true` returns `true` because `1` and `true` are equal, but `1 === true` returns `false` because `1` and `true` are not identical (they are not stored in the same location in memory in the computer).
+
+:::
+
+- Char
+  - A single character e.g. `"H"`
+- String
+    - A sequence of characters e.g. `"Hello World!"`
+- Array
   - Vectors, Matrices, Arrays
   - Mutable
 - Tuple
@@ -92,13 +116,43 @@ multiply_by_two_divide_by_three(10)
 
 Note that in both of these examples, a floating point number is returned i.e., a number with decimals.
 
+::: {.callout-note}
+
+Without going into too much detail, it is good practice to give functions short, descriptive names.
+A good example would be `cumsum()` that is provided in Julia and calculates the cumulative sum of a vector.
+
+If a function name is too long to write without separating the words, use snake case (words separated by underscores) e.g. `multiply_by_two_divide_by_three()` rather than leaving as a single block of text (`multiplybytwodividebythree()`), or using camelCase (`multiplyByTwoDivideByThree()`).
+
+It is also good practice to add a docstring to your function.
+This is a short description of what the function does, and can be accessed by typing `?` followed by the function name in the REPL.
+This means that you can quickly understand exactly what a function does without having to work your way through the code, really helping others who may read your code, but also future you if you revisit a project.
+
+An example of adding a docstring to a function may be as simple as adapting our original code to look like the following.
+
+```julia
+"""
+    multiply_by_two_divide_by_three(x)
+
+Multiply `x` by 2 and divide by 3.
+"""
+function multiply_by_two_divide_by_three(x)
+    y = x * 2
+    z = y / 3
+    return z
+end
+```
+
+Read more about docstrings [here](https://docs.julialang.org/en/v1/manual/documentation/).
+
+:::
+
 ### Arguments & Keyword Arguments
 
 Unlike R, Julia makes a distinction between arguments and keyword arguments.
 Arguments are the values that are passed to a function.
 In the example function above, `x` is an argument.
 In Julia, arguments are **positional**, meaning that the order in which you pass them to a function matters.
-To see this, let's write a new function that takes two arguments, `x` and `y`, and multiplies them together after minusing one from argument `x` and adding one to argument `y`.
+To see this in practice, let's write a new function that takes two arguments, `x` and `y`, and multiplies them together after minusing one from argument `x` and adding one to argument `y`.
 
 ```{julia}
 function multiply_together_offsets(x, y)
@@ -147,6 +201,63 @@ multiply_together_offsets(5, 10; offset_x = 2, offset_y = 3)
 ```
 
 ### Scope
+
+Scope is a relatively complicated concept, but it is important to understand it in order to write functions that are easy to understand and debug.
+Scope refers to the visibility of variables within a function.
+In Julia, variables that are defined within a function are not visible outside of the function.
+The reverse is not true, however.
+Variables that are defined outside of a function are visible within the function, but cannot be modified.
+
+Let's look at some examples.
+
+```{julia}
+function add_one(x)
+    y = x + 1
+    return y
+end
+
+add_one(5)
+```
+
+```{julia}
+#| error: true
+y
+```
+
+In this case, `y` is defined within the function `add_one()` i.e. is a **local variable**, and is therefore not visible outside of the function, but it can be used within the function!
+
+```{julia}
+global_x = 5
+
+function print_global_x()
+    println(global_x)
+end
+
+print_global_x()
+```
+
+In this example, `global_x` is defined outside of the function `print_global_x()`, and is therefore visible within the function, but it cannot be modified.
+
+::: {.callout-warning}
+
+It's not good practice to access **global variables** in your functions.
+Instead, if you want to use a variable in your function, pass it as an argument.
+
+:::
+
+```{julia}
+function modify_global_x()
+    global_x = 10
+    return global_x
+end
+
+modify_global_x()
+
+global_x
+```
+
+Here, we have tried to modify `global_x` within the function `modify_global_x()`, but this has not worked.
+It looks like it worked when we called the function, but when we check the value of `global_x` outside of the function, it is still `5`.
 
 ### Multiple Dispatch
 
@@ -201,16 +312,46 @@ So if you want/need a new method, use **positional arguments**.
 
 ## Packages
 
-## Iteration
 
-Iteration is a useful concept in programming, is a pretty intuitive way to think about problems we come across in epidemiology (once you get used to it), and is very fast in Julia, so it's worth spending some time to understand it.
+## Control Flow
+### If Statements
+
+### Iteration
+
+Iteration is a useful concept in programming, is a pretty intuitive way to think about many problems we come across in epidemiology (once you get used to it), and is very fast in Julia, so it's worth spending some time to understand it.
 Do not expect to understand everything about iteration after reading this section, and you will likely need to come back to refer to it as you go through the book, but hopefully it will provide a good starting point for you to explore further.
 
-### For Loop
+#### For Loop
+
+The most common way to iterate in Julia is using a `for` loop.
+We have already seen a `for` loop in the [multiple dispatch](#multiple-dispatch) section, but let's look at a simpler example.
+
+Let's say we want to calculate the sum of the numbers from 1 to 10 (cumulative sum) i.e. 1 + 2 + 3 + ... + 10.
+Julia has an in-built function to do this (`cumsum()`), but let's write our own function to do it using a for loop.
+
+There are multiple ways we could write this function, but the most intuitive way is to go through each of the numbers in 1 to 10, and add them to a running total.
+
+
+```{julia}
+function mycumsum(x)
+    y = 0 # Initialize our running total to 0
+
+    # For each number in x, add it to our running total
+    for i in x
+        y += x[i] # This is equivalent to y = y + x[i]
+    end
+
+    return y
+end
+```
+
+```{julia}
+mycumsum(1:10)
+```
 
 
 
-### While Loop
+#### While Loop
 
 
 

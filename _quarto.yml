@@ -23,7 +23,7 @@ book:
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]
-  downloads: [pdf]
+  # downloads: [epub]
   sidebar:
     search: true
     border: true
