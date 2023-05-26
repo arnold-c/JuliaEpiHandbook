@@ -24,8 +24,9 @@ This will provide a warning that you may get an unexpected result if you're not 
 :::
 
 - `code` will be used to highlight code.
-- `{package.function()}` will be used to denote a specific package and function, e.g., `{DataFrames.subset()}` denotes the `subset()` function from the `{DataFrames}` package.
-Some languages use a different convention, such as `package::function()` in R, but so where relevant, I will do my best to provide the correct syntax.
+- `{package}` will be used to denote a specific package, e.g., `{DataFrames}` denotes the `{DataFrames}` package.
+- `package.function()` will be used to denote a function that is part of a specific package, e.g., `DataFrames.subset()` denotes the `subset()` function from the `{DataFrames}` package.
+Some languages use a different convention, such as `package::function()` in R, but I will use the `package.function()` syntax listed above as this is how you would use a function in Julia.
 - **keywords** will be used to highlight keywords and phrases, e.g., **Git** or **GitHub**.
     - **actions** will also be highlighted in this way, e.g., **commits** or **pushed** being the result of the code `git commit` or `git push` 
 - ***files*** will be used to highlight file names, e.g., ***README.md*** or ***LICENSE***.

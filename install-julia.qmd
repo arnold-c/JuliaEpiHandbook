@@ -1,5 +1,5 @@
 ---
-date: "2023-05-25"
+date: "2023-05-26"
 ---
 
 # Setting Up Julia {.unnumbered}
@@ -25,7 +25,7 @@ There are a couple of different methods you can use to do this.
 The easiest way to get started is to directly download the latest stable Julia release from <https://julialang.org/downloads/>.
 This will get you up and running, but will be a bit more difficult to manage in the long run when you want to update Julia to newer versions.
 
-If you are willing to put a tiny bit more effort in to save yourself time later, I would recommend installing Julia using the **Juliaup** tool.
+If you are willing to put a tiny bit more effort in to save yourself time later, I would strongly recommend installing Julia using the **Juliaup** tool.
 This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation.
 You can find the full instructions here: <https://github.com/JuliaLang/juliaup>, but in brief, install **Juliaup**, and then run the following command in your terminal (Mac/Linux) or command prompt (Windows):
 
@@ -155,6 +155,10 @@ Some other tools can be seen here, but they are not particularly important for n
 
 Finally, at the very bottom of the screen is the *Status Bar*, which shows you the current branch of your git repository (if you have one), the current Julia environment, and some other miscellaneous information.
 
+One thing you may have noticed in the video is that I used the keyboard shortcut `Cmd + P` to open different files within my **Workspace**.
+This is a really useful shortcut that allows you to quickly navigate to files, but you can also use it to navigate *within* a file.
+Typing `@` will allow you to navigate to different symbols e.g. functions, variables, headings etc., and typing `:` will allow you to navigate to a specific line number in the file.
+
 ## Bonus Set Up
 ### Fonts
 
@@ -163,6 +167,8 @@ Ligatures are special characters that are used to combine multiple characters in
 For example, `==>` is a ligature that with particular fonts will be rendered as a double arrow ⟹, which can look nicer and be easier to read.
 Examples of Unicode characters are Greek letters, such as `θ, β, γ, σ, δ` etc., which are often used in mathematical notation, and because Julia supports Unicode characters, you can use them in your code!
 This is very useful when coding up some mathematical formulae, as you can use the actual symbols rather than having to write out the name of the symbol (though this is not always recommended as it can make your code harder to read to those unfamiliar with the formulae).
+If you would like to use Unicode characters in your Julia code (this won't necessarily work in other non-Julia files), you can start typing with `\`, before typing the name of the symbol you want to use, and then pressing `Tab` to complete the symbol.
+For example, to add the `θ` symbol, you would type `\theta` and then press `Tab` to complete the symbol.
 
 All this being said, **JuliaMono** is a font designed specifically for Julia, and is a great choice for writing Julia code.
 You can more information at <https://juliamono.netlify.app/>, along with detailed installation instructions.

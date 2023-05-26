@@ -1,9 +1,9 @@
 ---
-date: "2023-05-25"
+date: "2023-05-26"
+jupyter: julia-1.9
 ---
 
 # Julia Basics {.unnumbered}
-
 ## Key Terms
 
 - **REPL**: The Julia REPL is the Julia Read-Eval-Print-Loop.
@@ -19,19 +19,212 @@ date: "2023-05-25"
 - **Method**: A method is a specific implementation of a function.
 - **Multiple Dispatch**: Multiple dispatch is a really exciting feature of Julia, but also one that is more difficult to understand for newer programmers.
     The basic premise is that in Julia, how functions behave depends on the types of the arguments that are passed to them.
-    For example, the `*` operator (function) will behave differently if you try to multiply two integers, two floats (numbers with decimals), two matrices, any combination of these etc.
-    Each of these different behaviors is a different method of the `*` function.
+    For example, the `*` operator (function) will behave differently if you try to multiply two integers (whole numbers), two floats (numbers with decimals), two matrices, any combination of these etc.
+    Each of these different behaviors is a different **method** of the `*` function.
+
+## What to Expect
+
+As mentioned previously, this book (and page) is not meant to provide a ground-up description of everything you need to know about Julia.
+Instead, we'll give an overview of some of the key concepts and features that should provide enough of an understanding that you can start using Julia with reasonable confidence.
+It'll likely take a couple of passes through this page to really get a good understanding of the concepts, and that's okay!
+It's meant to act as a reference so you can come back to it later if you don't understand something in the later, more-applied, sections.
+At the bottom of this page are some additional resources that you can use to gain a deeper understanding of Julia.
+
+## Data Types
+
+- Integers
+- Floats
+- Boolean
+- Strings
+- Arrays
+  - Vectors, Matrices, Arrays
+  - Mutable
+- Tuple
+  - Named Tuple
+  - Immutable
+- Dictionary
+  - Mutable
+- Structs
+
+## Variables
+### Assignment
+
+### Accessing Values
+
+## Functions
+### Overview
+
+Functions are a core part of programming in Julia, and programming in general.
+A function is a block of code that performs a specific task.
+As has been said before, a function is like a recipe you might use to bake a cake.
+The recipe tells you what ingredients you need, how to combine them, and how long to bake them for.
+And like a recipe, a function can be used over and over again to produce the same result (assuming you have identical inputs).
+This is a really powerful concept, and helps make your work and research reproducible by breaking up your code into small, reusable, and understandable chunks.
+And because it is meant to be reused, it will save you time in cases when you need to do the same thing multiple times (you don't want to have to write the same code over and over again)!
+
+So let's look at a simple example of a function in Julia, and use it to explore some of the key concepts of functions.
+
+Say we want to take a number, multiply it by 2, and then divide the result by 3.
+You could just write this out explicitly, but what if you want to do this for a bunch of different numbers?
+This is where a function comes in handy.
+
+```{julia}
+function multiply_by_two_divide_by_three(x)
+    y = x * 2
+    z = y / 3
+    return z # it's good practice to explicitly return a value (or nothing in special cases)
+end
+```
+
+This function takes a single **argument**, `x`, and then multiplies it by 2 and divides it by 3.
+The `return` keyword tells Julia what value to return from the function.
+It also tells Julia that the function is finished, and it will not execute any code after the `return` statement.
+
+Let's try using this function.
+
+```{julia}
+multiply_by_two_divide_by_three(3)
+```
+
+```{julia}
+multiply_by_two_divide_by_three(10)
+```
+
+Note that in both of these examples, a floating point number is returned i.e., a number with decimals.
+
+### Arguments & Keyword Arguments
+
+Unlike R, Julia makes a distinction between arguments and keyword arguments.
+Arguments are the values that are passed to a function.
+In the example function above, `x` is an argument.
+In Julia, arguments are **positional**, meaning that the order in which you pass them to a function matters.
+To see this, let's write a new function that takes two arguments, `x` and `y`, and multiplies them together after minusing one from argument `x` and adding one to argument `y`.
+
+```{julia}
+function multiply_together_offsets(x, y)
+    z = (x - 1) * (y + 1)
+    return z
+end
+```
+
+Because Julia uses positional arguments, the following two function calls will return different values, even though the numbers `5` and `10` are used in both.
+
+```{julia}
+multiply_together_offsets(5, 10)
+```
+
+```{julia}
+multiply_together_offsets(10, 5)
+```
+
+**Keyword arguments** are arguments that are passed to a function by name.
+Generally speaking, keyword arguments are used to set default values for arguments that can be changed by the user.
+Let's modify our `multiply_together_offsets` function to use keyword arguments.
+
+```{julia}
+function multiply_together_offsets(x, y; offset_x = 1, offset_y = 1)
+    z = (x - offset_x) * (y + offset_y)
+    return z
+end
+```
+
+We have added two new arguments to the function, `offset_x` and `offset_y`, and given them default values of `1`.
+
+::: {.callout-tip}
+
+It is not necessary, but it is generally good style to place keyword arguments after all positional arguments, as well as separating them from positional arguments using a semi-colon (`;`), rather than a comma.
+
+:::
+
+Now, when we call the function, we can specify the values of these arguments by name.
+
+```{julia}
+multiply_together_offsets(5, 10)
+```
+
+```{julia}
+multiply_together_offsets(5, 10; offset_x = 2, offset_y = 3)
+```
+
+### Scope
+
+### Multiple Dispatch
+
+Multiple dispatch is the idea that the behavior of a function depends on the types of the arguments that are passed to it (as well as the number of arguments).
+To illustrate this, let's go back to our original example function `multiply_by_two_divide_by_three()`.
+
+In the example above, we passed a single argument to the function, and it returned a floating point number.
+But what if we wanted to pass multiple numbers to the function, and have it return a vector of the results?
+We could do this by specifying another **method** of the function that accepts a tuple of numbers as an argument.
+
+```{julia}
+function multiply_by_two_divide_by_three(x::Tuple)
+    y = zeros(Float64, length(x))
+    z = similar(y)
+
+    for i in eachindex(x)
+        y[i] = x[i] * 2
+        z[i] = y[i] / 3
+    end
+
+    return z
+end
+```
+
+We have defined a new method of the function (i.e., a new way of using the function) by specifying the type of the argument `x` as a tuple (`::Tuple`), and this is illustrated in the printout `multiply_by_two_divide_by_three (generic function with 2 methods)`.
+
+::: {.callout-note}
+
+You don't have to understand exactly what the code is doing here (but have a look at the [for loop](#for-loop) section if you're interested).
+Neither is the code particularly efficient, but it's a relatively readable way to illustrate the concept of multiple dispatch.
+
+:::
+
+Now let's test out our new function method
+
+```{julia}
+multiply_by_two_divide_by_three((1, 2, 3))
+```
+
+And we can see that the original method that just takes a single number as an argument still works.
+
+```{julia}
+multiply_by_two_divide_by_three(3)
+```
+
+::: {.callout-caution}
+
+It is important to note that **keyword arguments** are not considered in multiple dispatch i.e., trying to define a new method of a function that differs only by keyword arguments *will not* create a new method, but just overwrite the old one.
+So if you want/need a new method, use **positional arguments**.
+
+:::
+
+## Packages
+
+## Iteration
+
+Iteration is a useful concept in programming, is a pretty intuitive way to think about problems we come across in epidemiology (once you get used to it), and is very fast in Julia, so it's worth spending some time to understand it.
+Do not expect to understand everything about iteration after reading this section, and you will likely need to come back to refer to it as you go through the book, but hopefully it will provide a good starting point for you to explore further.
+
+### For Loop
+
+
+
+### While Loop
+
 
 
 ## Additional Resources
 
+I'd recommend checking out the following resources to learn more about Julia (roughly in descending order of preference due to complexity and target audience)
+
 - [Scientific Computing for the Rest of Us](https://sciencecomputing.io)
 - [Julia Academy](https://juliaacademy.com)
-- [PumasAI Tutorials](https://tutorials.pumas.ai)
 - [Julia Data Science](https://juliadatascience.io)
-- [Think Julia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
 - [Doggo JL](https://www.youtube.com/@doggodotjl)
 - [Julia Documentation](https://docs.julialang.org/en/v1/)
+- [Quantitative Economics with Julia](https://julia.quantecon.org/intro.html)
+- [Think Julia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
+- [PumasAI Tutorials](https://tutorials.pumas.ai)
 - [Julia For Economists Video Series](https://www.youtube.com/playlist?list=PLbuwVVKCI3sRW0Y5ehBFwdFVuyuy87ram)
 - [Advanced Scientific Computing: Producing Better Code](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA)
-- [Quantitative Economics with Julia](https://julia.quantecon.org/intro.html)

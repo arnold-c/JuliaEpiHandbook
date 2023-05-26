@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Callum Arnold-Leps">
-<meta name="dcterms.date" content="2023-05-25">
+<meta name="dcterms.date" content="2023-05-26">
 
 <title>JuliaEpiHandbook - Setting Up Julia</title>
 <style>
@@ -262,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 25, 2023</p>
+      <p class="date">May 26, 2023</p>
     </div>
   </div>
   
@@ -286,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="installing-julia" class="level3">
 <h3 class="anchored" data-anchor-id="installing-julia">Installing Julia</h3>
 <p>The first step to using Julia is to install it on your computer. There are a couple of different methods you can use to do this. The easiest way to get started is to directly download the latest stable Julia release from <a href="https://julialang.org/downloads/" class="uri">https://julialang.org/downloads/</a>. This will get you up and running, but will be a bit more difficult to manage in the long run when you want to update Julia to newer versions.</p>
-<p>If you are willing to put a tiny bit more effort in to save yourself time later, I would recommend installing Julia using the <strong>Juliaup</strong> tool. This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation. You can find the full instructions here: <a href="https://github.com/JuliaLang/juliaup" class="uri">https://github.com/JuliaLang/juliaup</a>, but in brief, install <strong>Juliaup</strong>, and then run the following command in your terminal (Mac/Linux) or command prompt (Windows):</p>
+<p>If you are willing to put a tiny bit more effort in to save yourself time later, I would strongly recommend installing Julia using the <strong>Juliaup</strong> tool. This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation. You can find the full instructions here: <a href="https://github.com/JuliaLang/juliaup" class="uri">https://github.com/JuliaLang/juliaup</a>, but in brief, install <strong>Juliaup</strong>, and then run the following command in your terminal (Mac/Linux) or command prompt (Windows):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">juliaup</span> add release <span class="co"># Installs the latest stable release</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">juliaup</span> default release <span class="co"># Not necessary with only one installed version, but sets the latest stable release as the default Julia version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To test that Julia has been installed correctly, open a terminal (Mac/Linux) or command prompt (Windows) and <span id="test-julia">type <code>julia</code></span>. If Julia has been installed correctly, you should see something like the following:</p>
@@ -384,6 +384,7 @@ Note
 <p>Further down in the sidebar, you will see there is a logo with three circles (which I click on in the video). This is the Julia extension, and will show you the <em>Julia Workspace</em> at the top, which contains every <strong>object</strong> that you have run and created. Below that is the <em>Documentation</em> section, which is where can search for and view the documentation for any Julia function or type (as long as the function is within one of the packages you have loaded). Finally, below that is the <em>Plot Navigator</em> section, which is where you can view the list of plots that you have created in Julia, and clicking on a plot number will update the plot viewer appropriately.</p>
 <p>At the bottom of the screen, you will see the <em>Integrated Terminal</em> panel, which is where you can run Julia code, as well as the <em>Problems</em> panel, which will show you any errors or warnings that VSCode has detected in your code. Some other tools can be seen here, but they are not particularly important for now.</p>
 <p>Finally, at the very bottom of the screen is the <em>Status Bar</em>, which shows you the current branch of your git repository (if you have one), the current Julia environment, and some other miscellaneous information.</p>
+<p>One thing you may have noticed in the video is that I used the keyboard shortcut <code>Cmd + P</code> to open different files within my <strong>Workspace</strong>. This is a really useful shortcut that allows you to quickly navigate to files, but you can also use it to navigate <em>within</em> a file. Typing <code>@</code> will allow you to navigate to different symbols e.g.&nbsp;functions, variables, headings etc., and typing <code>:</code> will allow you to navigate to a specific line number in the file.</p>
 </section>
 </section>
 </section>
@@ -391,7 +392,7 @@ Note
 <h2 class="anchored" data-anchor-id="bonus-set-up">Bonus Set Up</h2>
 <section id="fonts" class="level3">
 <h3 class="anchored" data-anchor-id="fonts">Fonts</h3>
-<p>If you want to make your code look as good as possible, you should install a font that supports rendering of ligatures and Unicode characters, as Julia often uses them. Ligatures are special characters that are used to combine multiple characters into one. For example, <code>==&gt;</code> is a ligature that with particular fonts will be rendered as a double arrow ⟹, which can look nicer and be easier to read. Examples of Unicode characters are Greek letters, such as <code>θ, β, γ, σ, δ</code> etc., which are often used in mathematical notation, and because Julia supports Unicode characters, you can use them in your code! This is very useful when coding up some mathematical formulae, as you can use the actual symbols rather than having to write out the name of the symbol (though this is not always recommended as it can make your code harder to read to those unfamiliar with the formulae).</p>
+<p>If you want to make your code look as good as possible, you should install a font that supports rendering of ligatures and Unicode characters, as Julia often uses them. Ligatures are special characters that are used to combine multiple characters into one. For example, <code>==&gt;</code> is a ligature that with particular fonts will be rendered as a double arrow ⟹, which can look nicer and be easier to read. Examples of Unicode characters are Greek letters, such as <code>θ, β, γ, σ, δ</code> etc., which are often used in mathematical notation, and because Julia supports Unicode characters, you can use them in your code! This is very useful when coding up some mathematical formulae, as you can use the actual symbols rather than having to write out the name of the symbol (though this is not always recommended as it can make your code harder to read to those unfamiliar with the formulae). If you would like to use Unicode characters in your Julia code (this won’t necessarily work in other non-Julia files), you can start typing with <code>\</code>, before typing the name of the symbol you want to use, and then pressing <code>Tab</code> to complete the symbol. For example, to add the <code>θ</code> symbol, you would type <code>\theta</code> and then press <code>Tab</code> to complete the symbol.</p>
 <p>All this being said, <strong>JuliaMono</strong> is a font designed specifically for Julia, and is a great choice for writing Julia code. You can more information at <a href="https://juliamono.netlify.app/" class="uri">https://juliamono.netlify.app/</a>, along with detailed installation instructions.</p>
 
 
