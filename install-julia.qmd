@@ -1,0 +1,154 @@
+---
+date: "2023-05-25"
+---
+
+# Setting Up Julia {.unnumbered}
+
+## Key Terms
+
+- **VSCode**: Visual Studio Code is a very popular open source code editor.
+    It is free and available for Windows, Mac, and Linux.
+    It is also the recommended editor for Julia and is well supported by the Julia community, with a number of extensions available to make the experience even better.
+- **REPL**: The Julia REPL is the Julia Read-Eval-Print-Loop.
+    This is the interactive command line interface for Julia.
+    When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.
+
+## Getting Set Up
+### Installing Julia
+
+The first step to using Julia is to install it on your computer.
+There are a couple of different methods you can use to do this.
+The easiest way to get started is to directly download the latest stable Julia release from <https://julialang.org/downloads/>.
+This will get you up and running, but will be a bit more difficult to manage in the long run when you want to update Julia to newer versions.
+
+If you are willing to put a tiny bit more effort in to save yourself time later, I would recommend installing Julia using the **Juliaup** tool.
+This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation.
+You can find the full instructions here: <https://github.com/JuliaLang/juliaup>, but in brief, install **Juliaup**, and then run the following command in your terminal (Mac/Linux) or command prompt (Windows):
+
+```bash
+juliaup add release # Installs the latest stable release
+juliaup default release # Not necessary with only one installed version, but sets the latest stable release as the default Julia version
+```
+
+To test that Julia has been installed correctly, open a terminal (Mac/Linux) or command prompt (Windows) and <span id="test-julia">type `julia`</span>.
+If Julia has been installed correctly, you should see something like the following:
+
+![The Julia **REPL**](./figs/install-julia/Install-Julia-REPL.png)
+
+If so, congratulations, you have successfully installed Julia, and you are now in the **REPL**.
+You could start working on Julia from here, but we'll take a quick detour to install VSCode, which will make your life a lot easier.
+To quit the **REPL**, type `exit()` and press enter.
+You can also type `Ctrl + D` to exit the **REPL**.
+
+#### Trouble Shooting
+
+If your Julia installation could not be found, it is likely an issue with your **PATH** variable.
+This is a variable that tells your computer where to look for programs when you type them into the command line.
+If you used **Juliaup** to install Julia and you are using a Mac or Linux, you might need to add the following line to your `.bashrc` or `.zshrc` file, depending of whether your computer uses **bash** or **zsh**.
+
+```bash
+export PATH="$HOME/.juliaup/bin/:$PATH"
+```
+
+::: {.callout-tip}
+
+If you don't know if your computer is using **bash** or **zsh**, you can check by typing `echo $SHELL` into the command line.
+This will print the shell that your computer is using; in my case `/bin/zsh`.
+You should also type `ls -a ~` into the command line to see if you have an existing `.bashrc` or `.zshrc` file.
+If you do not have either, you can create the one relevant to your computer by typing `touch ~/.bashrc` or `touch ~/.zshrc`.
+
+:::
+
+If you are using **Juliaup** on Windows, and installed using the recommended pathways (Windows store or `winget` command), you will need to edit your **PATH** variable using the following the steps detailed [here](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/), and make sure you have the following path:
+
+```bash
+%USERPROFILE%\AppData\Local\Microsoft\WindowsApps
+```
+
+### Installing VSCode
+
+Now you have Julia installed, you need a code editor to write your Julia code in.
+There are a number of different options available, but the most popular is VSCode.
+You can download VSCode from <https://code.visualstudio.com/download>.
+Once you have VSCode installed, you will need to install the Julia extension.
+You can do this by opening [this link](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia) and clicking *"Install"*, which will redirect you to VSCode to finish the install process.
+Alternatively, you can open VSCode, click the extensions icon in the left sidebar of VSCode (the one that looks like 4 blocks), and search for *"Julia"*.
+
+![VSCode Julia Extension](./figs/install-julia/VSCode-Julia-extension.png)
+
+Once you have installed the Julia extension, you're ready to start writing Julia code!
+
+The first thing you should do is open a Julia REPL *within* VSCode.
+To do this, open the VSCode command palette and type *"Julia: Start REPL"*.
+
+::: {.callout-note}
+
+The command palette is a really useful feature of VSCode that allows you to search for and run any command available in VSCode.
+You can open the command palette by pressing `Ctrl + Shift + P` on Windows or Linux, or `Cmd + Shift + P` on Mac.
+For more tips on how to navigate and use VSCode, see [the VSCode documentation](https://code.visualstudio.com/docs/getstarted/tips-and-tricks).
+
+:::
+
+![Starting a Julia REPL in VSCode](./figs/install-julia/VSCode-cmd-palette-start-repl.png)
+
+This will open up a new section in VSCode that contains a Julia REPL within the "Integrated Terminal" of VSCode.
+
+![Integrated VSCode Julia Terminal](./figs/install-julia/VSCode-Julia-terminal.png)
+
+You can give Julia a quick spin by typing `1 + 1` into the REPL and pressing enter.
+
+#### Trouble Shooting
+
+If your Julia installation could not be found by VSCode, but it [works in the terminal](#test-julia), the VSCode Julia extension is having trouble find where Julia is installed.
+
+To fix this, first, find your Julia installation.
+On Mac or Linux, you can do this by typing `which julia` into the terminal.
+On Windows, you can do this by typing `where julia` into the command prompt.
+
+If you installed Julia using **Juliaup**, you should see something like the following:
+
+```bash
+$ which julia
+
+/Users/username/.juliaup/bin/julia
+```
+
+Take the output of this command and paste it into the VSCode settings.
+To do this, open the VSCode settings by clicking on the cog icon in the bottom left of the VSCode window, and then clicking "Settings", or by using the command palette to navigate to "Preferences: Open Settings (UI)".
+Here, search for *"Julia Executable Path"* and paste the output of the `which/where julia` command into the text box.
+this is a 
+![VSCode Julia Executable Path](./figs/install-julia/VSCode-Julia-executable-path.png)
+
+### VSCode Basics
+
+Hopefully at this point you have VSCode installed and the Julia extension working.
+Now's let's get familiar with VSCode itself, that way we can focus on learning Julia in the rest of the book, rather than getting stuck on the editor.
+
+#### The VSCode User Interface
+
+A detailed description of the VSCode user interface is beyond the scope of this book (more details can be found [here](https://code.visualstudio.com/docs/getstarted/userinterface)), but there are a few key features that you should be aware of.
+
+![VSCode User Interface](./figs/install-julia/VSCode-UI-desc.mov)
+
+As you can see in the clip above, it is possible to move the main editing blocks around so you can have multiple files open at once (or even multiple views of the same file at different lines of code).
+Typically, I like to have my code open in one editing block and have the plots display to the right side of the screen.
+
+To the left of the editing blocks is the primary sidebar, which contains a number of different panels.
+The first one, which I have open, is the "Explorer" panel, which shows the files and folders in the current **Workspace**.
+A **Workspace** in VSCode is a collection of folders and files that you want to group together into one project.
+This is a really useful feature of VSCode as it allows you to also have **Workspace**-specific settings, which can be useful when working on different projects.
+To get started with a new **Workspace**, all you have to do is open a folder in VSCode, as typically it's a good rule of thumb to have one overarching folder per project.
+You can do this with `Cmd + O` on Mac or `Ctrl + O` on Windows or Linux, or by clicking "File" in the top left of the VSCode window and then clicking "Open Folder".
+After doing so, you will see the folder name appear in the top of the "Explorer" panel, with all contained files and folders displayed below.
+
+## Bonus Set Up
+### Fonts
+
+If you want to make your code look as good as possible, you should install a font that supports rendering of ligatures and Unicode characters, as Julia often uses them.
+Ligatures are special characters that are used to combine multiple characters into one.
+For example, `==>` is a ligature that with particular fonts will be rendered as a double arrow ⟹, which can look nicer and be easier to read.
+Examples of Unicode characters are Greek letters, such as `θ, β, γ, σ, δ` etc., which are often used in mathematical notation, and because Julia supports Unicode characters, you can use them in your code!
+This is very useful when coding up some mathematical formulae, as you can use the actual symbols rather than having to write out the name of the symbol (though this is not always recommended as it can make your code harder to read to those unfamiliar with the formulae).
+
+All this being said, **JuliaMono** is a font designed specifically for Julia, and is a great choice for writing Julia code.
+You can more information at <https://juliamono.netlify.app/>, along with detailed installation instructions.

@@ -18,6 +18,7 @@ book:
       - technical-background.qmd
     - part: "Getting Started With Julia"
       chapters: 
+        - install-julia.qmd
         - julia-basics.qmd
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook

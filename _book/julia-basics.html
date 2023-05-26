@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Callum Arnold-Leps">
-<meta name="dcterms.date" content="2023-05-21">
+<meta name="dcterms.date" content="2023-05-25">
 
 <title>JuliaEpiHandbook - Julia Basics</title>
 <style>
@@ -22,69 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -95,7 +32,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./technical-background.html" rel="prev">
+<link href="./install-julia.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -199,6 +136,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./install-julia.html" class="sidebar-item-text sidebar-link">Setting Up Julia</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./julia-basics.html" class="sidebar-item-text sidebar-link active">Julia Basics</a>
   </div>
 </li>
@@ -214,11 +156,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#key-terms" id="toc-key-terms" class="nav-link active" data-scroll-target="#key-terms">Key Terms</a></li>
-  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link" data-scroll-target="#getting-set-up">Getting Set Up</a>
-  <ul class="collapse">
-  <li><a href="#installing-julia" id="toc-installing-julia" class="nav-link" data-scroll-target="#installing-julia">Installing Julia</a></li>
-  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VSCode</a></li>
-  </ul></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/julia-basics.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -252,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 21, 2023</p>
+      <p class="date">May 25, 2023</p>
     </div>
   </div>
   
@@ -265,7 +202,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="key-terms" class="level2">
 <h2 class="anchored" data-anchor-id="key-terms">Key Terms</h2>
 <ul>
-<li><strong>VSCode</strong>: Visual Studio Code is a very popular open source code editor. It is free and available for Windows, Mac, and Linux. It is also the recommended editor for Julia and is well supported by the Julia community, with a number of extensions available to make the experience even better.</li>
 <li><strong>REPL</strong>: The Julia REPL is the Julia Read-Eval-Print-Loop. This is the interactive command line interface for Julia. When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.</li>
 <li><strong>Package</strong>: A package is a collection of code that can be used to extend the functionality of Julia and complete specific tasks. Packages are installed using the <code>Pkg</code> package manager.</li>
 <li><strong>Object</strong>: An object is anything that you can create using code. This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.</li>
@@ -273,50 +209,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Method</strong>: A method is a specific implementation of a function.</li>
 <li><strong>Multiple Dispatch</strong>: Multiple dispatch is a really exciting feature of Julia, but also one that is more difficult to understand for newer programmers. The basic premise is that in Julia, how functions behave depends on the types of the arguments that are passed to them. For example, the <code>*</code> operator (function) will behave differently if you try to multiply two integers, two floats (numbers with decimals), two matrices, any combination of these etc. Each of these different behaviors is a different method of the <code>*</code> function.</li>
 </ul>
-</section>
-<section id="getting-set-up" class="level2">
-<h2 class="anchored" data-anchor-id="getting-set-up">Getting Set Up</h2>
-<section id="installing-julia" class="level3">
-<h3 class="anchored" data-anchor-id="installing-julia">Installing Julia</h3>
-<p>The first step to using Julia is to install it on your computer. There are a couple of different methods you can use to do this. The easiest way to get started is to directly download the latest stable Julia release from <a href="https://julialang.org/downloads/" class="uri">https://julialang.org/downloads/</a>. This will get you up and running, but will be a bit more difficult to manage in the long run when you want to update Julia to newer versions.</p>
-<p>If you are willing to put a tiny bit more effort in to save yourself time later, I would recommend installing Julia using the <strong>Juliaup</strong> tool. This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation. You can find the full instructions here: <a href="https://github.com/JuliaLang/juliaup" class="uri">https://github.com/JuliaLang/juliaup</a>.</p>
-<p>To test that Julia has been installed correctly, open a terminal (Mac/Linux) or command prompt (Windows) and type <code>julia</code>. If Julia has been installed correctly, you should see something like the following:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./figs/julia-basics/Install-Julia-REPL.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The Julia <strong>REPL</strong></figcaption><p></p>
-</figure>
-</div>
-<p>If so, congratulations, you have successfully installed Julia, and you are now in the <strong>REPL</strong>. You could start working on Julia from here, but we’ll take a quick detour to install VSCode, which will make your life a lot easier. To quit the REPL, type <code>exit()</code> and press enter. You can also type <code>Ctrl + D</code> to exit the REPL.</p>
-<p>If your Julia installation could not be found, it is likely an issue with your <strong>PATH</strong> variable. This is a variable that tells your computer where to look for programs when you type them into the command line. If you used <strong>Juliaup</strong> to install Julia and you are using a Mac or Linux, you might need to add the following line to your <code>.bashrc</code> or <code>.zshrc</code> file, depending of whether your computer uses <strong>bash</strong> or <strong>zsh</strong>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.juliaup/bin/:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you don’t know if your computer is using <strong>bash</strong> or <strong>zsh</strong>, you can check by typing <code>echo $SHELL</code> into the command line. This will print the shell that your computer is using; in my case <code>/bin/zsh</code>. You should also type <code>ls -a ~</code> into the command line to see if you have an existing <code>.bashrc</code> or <code>.zshrc</code> file. If you do not have either, you can create the one relevant to your computer by typing <code>touch ~/.bashrc</code> or <code>touch ~/.zshrc</code>.</p>
-</div>
-</div>
-<p>If you are using <strong>Juliaup</strong> on Windows, you will need to edit your <strong>PATH</strong> variable using the following the steps detailed <a href="https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/">here</a>, and make sure you have the following path:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%USERPROFILE%\AppData\Local\Microsoft\WindowsApps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="installing-vscode" class="level3">
-<h3 class="anchored" data-anchor-id="installing-vscode">Installing VSCode</h3>
-<p>Now you have Julia installed, you need a code editor to write your Julia code in. There are a number of different options available, but the most popular is VSCode. You can download VSCode from <a href="https://code.visualstudio.com/download" class="uri">https://code.visualstudio.com/download</a>. Once you have VSCode installed, you will need to install the Julia extension. You can do this by opening <a href="https://marketplace.visualstudio.com/items?itemName=julialang.language-julia">this link</a> and clicking <em>“Install”</em>, which will redirect you to VSCode to finish the install process. Alternatively, you can open VSCode, click the extensions icon in the left sidebar of VSCode (the one that looks like 4 blocks), and search for <em>“Julia”</em>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./figs/julia-basics/VSCode-Julia-extension.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">VSCode Julia Extension</figcaption><p></p>
-</figure>
-</div>
-<p>Once you have</p>
-</section>
 </section>
 <section id="additional-resources" class="level2">
 <h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
@@ -587,8 +479,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./technical-background.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Keywords, Code, and Other Formatting</span>
+      <a href="./install-julia.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Setting Up Julia</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
