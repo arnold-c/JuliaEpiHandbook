@@ -4,6 +4,87 @@ date: "2023-05-21"
 
 # Julia Basics {.unnumbered}
 
+## Key Terms
+
+- **VSCode**: Visual Studio Code is a very popular open source code editor.
+    It is free and available for Windows, Mac, and Linux.
+    It is also the recommended editor for Julia and is well supported by the Julia community, with a number of extensions available to make the experience even better.
+- **REPL**: The Julia REPL is the Julia Read-Eval-Print-Loop.
+    This is the interactive command line interface for Julia.
+    When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.
+- **Package**: A package is a collection of code that can be used to extend the functionality of Julia and complete specific tasks.
+    Packages are installed using the `Pkg` package manager.
+- **Object**: An object is anything that you can create using code.
+    This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.
+- **Function**: A function is a block of code that performs a specific task.
+    Functions are called by name and can take arguments, before completing some computation and returning a value or object.
+    Sometimes functions are written and called for their side effects, i.e. they do not directly return an object, but instead perform some action.
+- **Method**: A method is a specific implementation of a function.
+- **Multiple Dispatch**: Multiple dispatch is a really exciting feature of Julia, but also one that is more difficult to understand for newer programmers.
+    The basic premise is that in Julia, how functions behave depends on the types of the arguments that are passed to them.
+    For example, the `*` operator (function) will behave differently if you try to multiply two integers, two floats (numbers with decimals), two matrices, any combination of these etc.
+    Each of these different behaviors is a different method of the `*` function.
+
+## Getting Set Up
+### Installing Julia
+
+The first step to using Julia is to install it on your computer.
+There are a couple of different methods you can use to do this.
+The easiest way to get started is to directly download the latest stable Julia release from <https://julialang.org/downloads/>.
+This will get you up and running, but will be a bit more difficult to manage in the long run when you want to update Julia to newer versions.
+
+If you are willing to put a tiny bit more effort in to save yourself time later, I would recommend installing Julia using the **Juliaup** tool.
+This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation.
+You can find the full instructions here: <https://github.com/JuliaLang/juliaup>.
+
+To test that Julia has been installed correctly, open a terminal (Mac/Linux) or command prompt (Windows) and type `julia`.
+If Julia has been installed correctly, you should see something like the following:
+
+![The Julia **REPL**](./figs/julia-basics/Install-Julia-REPL.png)
+
+If so, congratulations, you have successfully installed Julia, and you are now in the **REPL**.
+You could start working on Julia from here, but we'll take a quick detour to install VSCode, which will make your life a lot easier.
+To quit the REPL, type `exit()` and press enter.
+You can also type `Ctrl + D` to exit the REPL.
+
+If your Julia installation could not be found, it is likely an issue with your **PATH** variable.
+This is a variable that tells your computer where to look for programs when you type them into the command line.
+If you used **Juliaup** to install Julia and you are using a Mac or Linux, you might need to add the following line to your `.bashrc` or `.zshrc` file, depending of whether your computer uses **bash** or **zsh**.
+
+```bash
+export PATH="$HOME/.juliaup/bin/:$PATH"
+```
+
+::: {.callout-tip}
+
+If you don't know if your computer is using **bash** or **zsh**, you can check by typing `echo $SHELL` into the command line.
+This will print the shell that your computer is using; in my case `/bin/zsh`.
+You should also type `ls -a ~` into the command line to see if you have an existing `.bashrc` or `.zshrc` file.
+If you do not have either, you can create the one relevant to your computer by typing `touch ~/.bashrc` or `touch ~/.zshrc`.
+
+:::
+
+If you are using **Juliaup** on Windows, you will need to edit your **PATH** variable using the following the steps detailed [here](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/), and make sure you have the following path:
+
+```bash
+%USERPROFILE%\AppData\Local\Microsoft\WindowsApps
+```
+
+
+### Installing VSCode
+
+Now you have Julia installed, you need a code editor to write your Julia code in.
+There are a number of different options available, but the most popular is VSCode.
+You can download VSCode from <https://code.visualstudio.com/download>.
+Once you have VSCode installed, you will need to install the Julia extension.
+You can do this by opening [this link](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia) and clicking *"Install"*, which will redirect you to VSCode to finish the install process.
+Alternatively, you can open VSCode, click the extensions icon in the left sidebar of VSCode (the one that looks like 4 blocks), and search for *"Julia"*.
+
+![VSCode Julia Extension](./figs/julia-basics/VSCode-Julia-extension.png)
+
+Once you have 
+
+
 ## Additional Resources
 
 - [Scientific Computing for the Rest of Us](https://sciencecomputing.io)
