@@ -35,11 +35,11 @@ At the bottom of this page are some additional resources that you can use to gai
 There are a number of different data and object types in Julia.
 Here are the key ones for your to be aware of.
 
-- Integer
+- **Integer**
   - Whole numbers
-- Float
+- **Float**
   - Numbers with decimals
-- Boolean
+- **Boolean**
   - `true` or `false` (written in lowercase)
     - `true` has equal value to `1` e.g. `1 == true`
     - `false` has equal value to `0` e.g. `0 == false`
@@ -56,19 +56,36 @@ For example, `1 == true` returns `true` because `1` and `true` are equal, but `1
 
 :::
 
-- Char
+- **Char**
   - A single character e.g. `"H"`
-- String
+- **String**
     - A sequence of characters e.g. `"Hello World!"`
-- Array
-  - Vectors, Matrices, Arrays
-  - Mutable
-- Tuple
-  - Named Tuple
-  - Immutable
-- Dictionary
-  - Mutable
-- Structs
+- **Array**
+  - An **array** is a collection of values that are all the same type.
+  Arrays can be one-dimensional (**vectors**), two-dimensional (**matrices**), or multi-dimensional.
+  Arrays are **mutable**, meaning that they can be changed after they are created.
+- **Tuple**
+  - A **tuple** is a collection of values that do not all have to be the same type.
+  **Tuples** are very useful because they require very little memory, so are fast to create and access.
+  They are also **immutable**, meaning that they cannot be changed after they are created, but because they are so fast to create, you can just create a new tuple with the values you want.
+  An example of a **tuple** is `("John", 25, 1.8)`
+- **Dictionary**
+  - A dictionary is a collection of key-value pairs that do not need to be of the same type.
+    **Dictionaries** are **mutable**, and are very useful for storing data that you want to access by a key (i.e. name), rather than an index.
+    For example, you might want to store a person's name, age, and height e.g. `Dict("name" => "John", "age" => 25, "height" => 1.8)`
+- **Named Tuple**
+  - A variant of the **tuple** is the **named tuple**.
+  It is a cross between a **tuple** and a **dictionary**, and therefore has the benefits of being able to access values with keys instead of indices (though you use indices), but it is **immutable** and much smaller and faster than a **dictionary**.
+  For our person example, a **named tuple** would look like `(name = "John", age = 25, height = 1.8)`
+- **Structs**
+  - A **struct** is a custom data type that you can create to store data.
+  It is similar to a **named tuple** in that it is **immutable** and you can access values with keys instead of indices.
+  One reason you may prefer to use a **struct** over a **named tuple** is that you can define methods for a **struct** (see [the multiple dispatch section](#multiple-dispatch) for more details).
+  Creating **structs** are out of the scope of this book, but it is important to know that they exist and are a useful tool for organizing your data.
+  If you want to learn more about **structs**, check out the [documentation](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) and [this tutorial](https://www.youtube.com/watch?v=pHQe3PiYY1w).
+
+If you have an object and want to tell what type it is, you can use the `typeof()` function.
+If you have an array and want to tell what type the elements of the array are, you can use the `eltype()` function.
 
 ## Variables
 ### Assignment
