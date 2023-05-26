@@ -1,0 +1,37 @@
+---
+date: "2023-05-25"
+---
+
+# Julia Basics {.unnumbered}
+
+## Key Terms
+
+- **REPL**: The Julia REPL is the Julia Read-Eval-Print-Loop.
+    This is the interactive command line interface for Julia.
+    When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.
+- **Package**: A package is a collection of code that can be used to extend the functionality of Julia and complete specific tasks.
+    Packages are installed using the `Pkg` package manager.
+- **Object**: An object is anything that you can create using code.
+    This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.
+- **Function**: A function is a block of code that performs a specific task.
+    Functions are called by name and can take arguments, before completing some computation and returning a value or object.
+    Sometimes functions are written and called for their side effects, i.e. they do not directly return an object, but instead perform some action.
+- **Method**: A method is a specific implementation of a function.
+- **Multiple Dispatch**: Multiple dispatch is a really exciting feature of Julia, but also one that is more difficult to understand for newer programmers.
+    The basic premise is that in Julia, how functions behave depends on the types of the arguments that are passed to them.
+    For example, the `*` operator (function) will behave differently if you try to multiply two integers, two floats (numbers with decimals), two matrices, any combination of these etc.
+    Each of these different behaviors is a different method of the `*` function.
+
+
+## Additional Resources
+
+- [Scientific Computing for the Rest of Us](https://sciencecomputing.io)
+- [Julia Academy](https://juliaacademy.com)
+- [PumasAI Tutorials](https://tutorials.pumas.ai)
+- [Julia Data Science](https://juliadatascience.io)
+- [Think Julia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
+- [Doggo JL](https://www.youtube.com/@doggodotjl)
+- [Julia Documentation](https://docs.julialang.org/en/v1/)
+- [Julia For Economists Video Series](https://www.youtube.com/playlist?list=PLbuwVVKCI3sRW0Y5ehBFwdFVuyuy87ram)
+- [Advanced Scientific Computing: Producing Better Code](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA)
+- [Quantitative Economics with Julia](https://julia.quantecon.org/intro.html)
