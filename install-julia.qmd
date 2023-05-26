@@ -132,7 +132,7 @@ Now's let's get familiar with VSCode itself, that way we can focus on learning J
 
 A detailed description of the VSCode user interface is beyond the scope of this book (more details can be found [here](https://code.visualstudio.com/docs/getstarted/userinterface)), but there are a few key features that you should be aware of.
 
-![VSCode User Interface](./figs/install-julia/VSCode-UI-desc.mov)
+![VSCode User Interface](./figs/install-julia/VSCode-UI-desc.mp4)
 
 As you can see in the clip above, it is possible to move the main editing blocks around so you can have multiple files open at once (or even multiple views of the same file at different lines of code).
 Typically, I like to have my code open in one editing block and have the plots display to the right side of the screen.
