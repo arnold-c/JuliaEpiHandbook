@@ -1,0 +1,55 @@
+---
+date: "2023-05-26"
+---
+
+# TODO List {.unnumbered}
+
+## Data Management
+
+- [ ] Importing data
+  - [ ] CSV
+  - [ ] Excel
+  - [ ] R data
+- [ ] Cleaning data
+
+## Analyses
+
+- [ ] Descriptive statistics
+- [ ] Univariate analysis
+- [ ] Multivariate analysis & regression
+- [ ] Missing data
+- [ ] Standardized rates
+- [ ] Time series and outbreak detection
+- [ ] Epidemic modeling
+- [ ] Spatial analysis
+- [ ] Contact tracing
+- [ ] Survival analysis
+- [ ] Mixed effects models
+
+## Data Visualization
+
+- [ ] `{CairoMakie}` basics
+- [ ] `{CairoMakie}` tips
+- [ ] Interactive plots with `{GLMakie}`
+- [ ] `{AlgebraOfGraphics}`
+
+## Reporting & Reproducibility
+
+- [ ] Version control
+- [ ] Quarto
+
+## Miscellaneous
+
+- [ ] Simulations with `{DrWatson}`
+- [ ] Writing functions
+  - [ ] Testing
+  - [ ] Documentation
+  - [ ] Multiple dispatch
+- [ ] Performance
+  - [ ] Memory access (column-major vs row-major, `@views()`)
+  - [ ] Profiling
+  - [ ] Multi-threading
+  - [ ] Multi-processing
+- [ ] R interoperability
+  - [ ] `{RCall}`
+  - [ ] `{JuliaCall}`

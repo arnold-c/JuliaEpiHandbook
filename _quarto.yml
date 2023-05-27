@@ -21,6 +21,9 @@ book:
         - install-julia.qmd
         - julia-basics.qmd
         - new-project.qmd
+    - part: "TODO"
+      chapters: 
+        - todo.qmd
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]

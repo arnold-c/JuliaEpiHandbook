@@ -165,7 +165,7 @@
     "href": "julia-basics.html#packages",
     "title": "Julia Basics",
     "section": "Packages",
-    "text": "Packages\nPackages are an essential part of the Julia ecosystem. You’ve already seen an example of a package in action: {DataFrames}. At their core, a package is a way for someone to share code, data, and documentation with other people. By design, Julia can’t do everything for everyone straight out of the box. Not only would it be an impossible task for the Julia developers to create a language that can do everything, but it would also be incredibly slow to load and run. Instead, packages extend the abilities of Julia by providing additional features (through functions) that are not included in the base language.\nThe {DataFrames} package, for example, creates a special data structure that is very easy to read, as well as providing a number of functions that make it easy to manipulate and analyze data.\nTo add a package to your Julia environment (project), you can use the add command in the package manager (accessed by pressing ] in the REPL). Then, you can use the using command to load the package into your current Julia session. See this page for more information in the context of setting up a new project."
+    "text": "Packages\nPackages are an essential part of the Julia ecosystem. You’ve already seen an example of a package in action: {DataFrames}. At their core, a package is a way for someone to share code, data, and documentation with other people. By design, Julia can’t do everything for everyone straight out of the box. Not only would it be an impossible task for the Julia developers to create a language that can do everything, but it would also be incredibly slow to load and run. Instead, packages extend the abilities of Julia by providing additional features (through functions) that are not included in the base language.\nThe {DataFrames} package, for example, creates a special data structure that is very easy to read, as well as providing a number of functions that make it easy to manipulate and analyze data.\nTo add a package to your Julia environment (project), you can use the add command in the package manager (accessed by pressing ] in the REPL). Then, you can use the using command to load the package into your current Julia session. See new-project.qmd for more information in the context of setting up a new project."
   },
   {
     "objectID": "julia-basics.html#control-flow",
@@ -222,5 +222,47 @@
     "title": "New Julia Project",
     "section": "Miscellaneous",
     "text": "Miscellaneous\n\nDrWatson Project Structure\nIt may not be immediately obvious why we need to use DrWatson to create our Julia projects. In fact, we don’t need to use DrWatson to create our Julia projects, but it does make our lives a lot easier as it provides a consistent project structure that is easy to navigate.\nFirstly, it creates the following folders in your project folder (copied from the DrWatson documentation):\n│projectdir          <- Project's main folder. It is initialized as a Git\n│                       repository with a reasonable .gitignore file.\n│\n├── _research        <- WIP scripts, code, notes, comments,\n│   |                   to-dos and anything in an alpha state.\n│   └── tmp          <- Temporary data folder.\n│\n├── data             <- **Immutable and add-only!**\n│   ├── sims         <- Data resulting directly from simulations.\n│   ├── exp_pro      <- Data from processing experiments.\n│   └── exp_raw      <- Raw experimental data.\n│\n├── plots            <- Self-explanatory.\n├── notebooks        <- Jupyter, Weave or any other mixed media notebooks.\n│\n├── papers           <- Scientific papers resulting from the project.\n│\n├── scripts          <- Various scripts, e.g. simulations, plotting, analysis,\n│   │                   The scripts use the `src` folder for their base code.\n│   └── intro.jl     <- Simple file that uses DrWatson and uses its greeting.\n│\n├── src              <- Source code for use in this project. Contains functions,\n│                       structures and modules that are used throughout\n│                       the project and in multiple scripts.\n│\n├── README.md        <- Optional top-level README for anyone using this project.\n├── .gitignore       <- by default ignores _research, data, plots, videos,\n│                       notebooks and latex-compilation related files.\n│\n├── Manifest.toml    <- Contains full list of exact package versions used currently.\n└── Project.toml     <- Main project file, allows activation and installation.\n                        Includes DrWatson by default.\nAbove providing us with a useful project structure, DrWatson also provides us with a number of very helpful functions.\nFor one, it provides us with the quickactivate() function that allows us to activate our project and environment when we’re working in a script, so we can easily import all the packages we need, regardless of where the script is saved. This means that we don’t need to worry about activating our project in the REPL before we start working in a script. This may not sound meaningful, but it’s very easy to forget to activate your project in the REPL before you start working in a script, and then you end up with a bunch of errors because you haven’t actually imported the packages you need. To use this, make sure your first two lines of your script are always:\nusing DrWatson\nquickactivate(\"MyFirstProject\")\nAnd secondly, it provides us with convenient directory paths to the folders in our project. For example, if we want to access the data folder in our project, we can use the datadir() function, which will return the path to the data folder. Similarly, if we wanted to save a plot to the plots folder, we could use save(plotsdir(\"plot_object.png\"), plot_object) function to save the plot in plot_object to the plots folder.\nMore details about the DrWatson project structure and associated functions can be found here.\n\n\nNaming Files\nWhen naming files and folders, it is important to be consistent and descriptive. Ideally the name will contain no spaces, and you can use dashes to separate words. See this presentation by Jenny Bryan for more information on naming files and folders, but in short:\n\nKISS (Keep It Simple Stupid): use simple and consistent file names\n\nIt needs to be machine readable\nIt needs to be human readable\nIt needs to order well in a directory\nNo special characters and no spaces!\n\nUse YYYY-MM-DD date format\nUse - to delimit words and _ to delimit sections\n\ni.e. 2019-01-19_my-data.csv\n\nLeft-pad numbers\n\ni.e. 01_my-data.csv vs 1_my-data.csv\nIf you don’t, file orders get messed up when you get to double-digits"
+  },
+  {
+    "objectID": "todo.html#getting-started",
+    "href": "todo.html#getting-started",
+    "title": "TODO List",
+    "section": "Getting Started",
+    "text": "Getting Started"
+  },
+  {
+    "objectID": "todo.html#data-management",
+    "href": "todo.html#data-management",
+    "title": "TODO List",
+    "section": "Data Management",
+    "text": "Data Management\n\nImporting data\nCSV\nExcel\nR data\n\nCleaning data"
+  },
+  {
+    "objectID": "todo.html#analyses",
+    "href": "todo.html#analyses",
+    "title": "TODO List",
+    "section": "Analyses",
+    "text": "Analyses\n\nDescriptive statistics\nUnivariate analysis\nMultivariate analysis & regression\nMissing data\nStandardized rates\nTime series and outbreak detection\nEpidemic modeling\nSpatial analysis\nContact tracing\nSurvival analysis\nMixed effects models"
+  },
+  {
+    "objectID": "todo.html#data-visualization",
+    "href": "todo.html#data-visualization",
+    "title": "TODO List",
+    "section": "Data Visualization",
+    "text": "Data Visualization\n\n{CairoMakie} basics\n{CairoMakie} tips\nInteractive plots with {GLMakie}\n{AlgebraOfGraphics}"
+  },
+  {
+    "objectID": "todo.html#reporting-reproducibility",
+    "href": "todo.html#reporting-reproducibility",
+    "title": "TODO List",
+    "section": "Reporting & Reproducibility",
+    "text": "Reporting & Reproducibility\n\nVersion control\nQuarto"
+  },
+  {
+    "objectID": "todo.html#miscellaneous",
+    "href": "todo.html#miscellaneous",
+    "title": "TODO List",
+    "section": "Miscellaneous",
+    "text": "Miscellaneous\n\nSimulations with {DrWatson}\nWriting functions\nTesting\nDocumentation\nMultiple dispatch\n\nPerformance\nMemory access (column-major vs row-major, @views())\nProfiling\nMulti-threading\nMulti-processing\n\nR interoperability\n{RCall}\n{JuliaCall}"
   }
 ]
