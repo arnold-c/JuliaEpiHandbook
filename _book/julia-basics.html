@@ -410,7 +410,7 @@ Note
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>people_vec <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Jane"</span>, <span class="st">"Joe"</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test_arr <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>; <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span> <span class="fl">9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="69">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>3×3 Matrix{Int64}:
  1  2  3
  4  5  6
@@ -443,7 +443,7 @@ Note
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>john_tuple[<span class="fl">1</span>] <span class="co"># "John"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>john_ntuple[<span class="fl">1</span>] <span class="co"># "John"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>people_vec[<span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="70">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>"John"</code></pre>
 </div>
 </div>
@@ -451,14 +451,14 @@ Note
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>test_arr[<span class="fl">1</span>, <span class="fl">1</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>john_df[<span class="fl">1</span>, <span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="71">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>"John"</code></pre>
 </div>
 </div>
 <p>If we want to access an entire row or column, we can use the <code>:</code> operator. For example, if we want to access the first column of the array, we can use the following code.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>test_arr[<span class="op">:</span>, <span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>3-element Vector{Int64}:
  1
  4
@@ -467,7 +467,7 @@ Note
 </div>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>john_df[<span class="op">:</span>, <span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="73">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>1-element Vector{String}:
  "John"</code></pre>
 </div>
@@ -475,7 +475,7 @@ Note
 <p>If we want to access the first row of the array, we can use the following code.</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>test_arr[<span class="fl">1</span>, <span class="op">:</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="74">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>3-element Vector{Int64}:
  1
  2
@@ -498,7 +498,7 @@ Note
 <p>However, none of these methods work for <strong>dictionaries</strong>. For dictionaries, you need to specify the key of the value you want to access.</p>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>john_dict[<span class="st">"name"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="75">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>"John"</code></pre>
 </div>
 </div>
@@ -508,7 +508,7 @@ Note
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>john_df[<span class="fl">1</span>, <span class="st">"name"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>john_ntuple.name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="76">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>"John"</code></pre>
 </div>
 </div>
@@ -527,21 +527,21 @@ Note
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> y <span class="op">/</span> <span class="fl">3</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z <span class="co"># it's good practice to explicitly return a value (or nothing in special cases)</span></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="77">
-<pre><code>multiply_by_two_divide_by_three (generic function with 2 methods)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>multiply_by_two_divide_by_three (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>This function takes a single <strong>argument</strong>, <code>x</code>, and then multiplies it by 2 and divides it by 3. The <code>return</code> keyword tells Julia what value to return from the function. It also tells Julia that the function is finished, and it will not execute any code after the <code>return</code> statement.</p>
 <p>Let’s try using this function.</p>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>(<span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="78">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>2.0</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>(<span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="79">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>6.666666666666667</code></pre>
 </div>
 </div>
@@ -582,20 +582,20 @@ Note
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (x <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> (y <span class="op">+</span> <span class="fl">1</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="80">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>multiply_together_offsets (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Because Julia uses positional arguments, the following two function calls will return different values, even though the numbers <code>5</code> and <code>10</code> are used in both.</p>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">5</span>, <span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="81">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>44</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">10</span>, <span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="82">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>54</code></pre>
 </div>
 </div>
@@ -605,7 +605,7 @@ Note
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (x <span class="op">-</span> offset_x) <span class="op">*</span> (y <span class="op">+</span> offset_y)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="83">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>multiply_together_offsets (generic function with 1 method)</code></pre>
 </div>
 </div>
@@ -626,13 +626,13 @@ Tip
 <p>Now, when we call the function, we can specify the values of these arguments by name.</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">5</span>, <span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="84">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>44</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">5</span>, <span class="fl">10</span>; offset_x <span class="op">=</span> <span class="fl">2</span>, offset_y <span class="op">=</span> <span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>39</code></pre>
 </div>
 </div>
@@ -648,7 +648,7 @@ Tip
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">add_one</span>(<span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="86">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>6</code></pre>
 </div>
 </div>
@@ -694,7 +694,7 @@ Warning
 <span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">modify_global_x</span>()</span>
 <span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>global_x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="89">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>5</code></pre>
 </div>
 </div>
@@ -716,7 +716,7 @@ Warning
 <span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span>
 <span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="90">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>multiply_by_two_divide_by_three (generic function with 2 methods)</code></pre>
 </div>
 </div>
@@ -737,7 +737,7 @@ Note
 <p>Now let’s test out our new function method</p>
 <div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>((<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="91">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>3-element Vector{Float64}:
  0.6666666666666666
  1.3333333333333333
@@ -747,7 +747,7 @@ Note
 <p>And we can see that the original method that just takes a single number as an argument still works.</p>
 <div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>(<span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="92">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>2.0</code></pre>
 </div>
 </div>
@@ -770,7 +770,7 @@ Warning
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <p>Packages are an essential part of the Julia ecosystem. You’ve already seen an example of a package in action: <code>{DataFrames}</code>. At their core, a package is a way for someone to share code, data, and documentation with other people. By design, Julia can’t do everything for everyone straight out of the box. Not only would it be an impossible task for the Julia developers to create a language that can do everything, but it would also be incredibly slow to load and run. Instead, packages extend the abilities of Julia by providing additional features (through functions) that are not included in the base language.</p>
 <p>The <code>{DataFrames}</code> package, for example, creates a special data structure that is very easy to read, as well as providing a number of functions that make it easy to manipulate and analyze data.</p>
-<p>To add a package to your Julia environment (project), you can use the <code>add</code> command in the package manager (accessed by pressing <code>]</code> in the REPL). Then, you can use the <code>using</code> command to load the package into your current Julia session. See <a href="./new-project.html">new-project.qmd</a> for more information in the context of setting up a new project.</p>
+<p>To add a package to your Julia environment (project), you can use the <code>add</code> command in the package manager (accessed by pressing <code>]</code> in the REPL). Then, you can use the <code>using</code> command to load the package into your current Julia session. See <a href="./new-project.html">this page</a> for more information in the context of setting up a new project.</p>
 </section>
 <section id="control-flow" class="level2">
 <h2 class="anchored" data-anchor-id="control-flow">Control Flow</h2>
@@ -870,7 +870,7 @@ Note
 <span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mycumsum</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="97">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>55</code></pre>
 </div>
 </div>
