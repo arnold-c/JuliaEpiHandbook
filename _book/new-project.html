@@ -9,7 +9,7 @@
 <meta name="author" content="Callum Arnold-Leps">
 <meta name="dcterms.date" content="2023-05-26">
 
-<title>JuliaEpiHandbook - Setting Up Julia</title>
+<title>JuliaEpiHandbook - New Julia Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,8 +95,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./julia-basics.html" rel="next">
-<link href="./technical-background.html" rel="prev">
+<link href="./julia-basics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -137,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Setting Up Julia</h1>
+      <h1 class="quarto-secondary-nav-title">New Julia Project</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -199,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install-julia.html" class="sidebar-item-text sidebar-link active">Setting Up Julia</a>
+  <a href="./install-julia.html" class="sidebar-item-text sidebar-link">Setting Up Julia</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -209,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./new-project.html" class="sidebar-item-text sidebar-link">New Julia Project</a>
+  <a href="./new-project.html" class="sidebar-item-text sidebar-link active">New Julia Project</a>
   </div>
 </li>
       </ul>
@@ -223,29 +222,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link active" data-scroll-target="#key-terms">Key Terms</a></li>
-  <li><a href="#installing-julia" id="toc-installing-julia" class="nav-link" data-scroll-target="#installing-julia">Installing Julia</a>
+  <li><a href="#first-time-julia-setup" id="toc-first-time-julia-setup" class="nav-link active" data-scroll-target="#first-time-julia-setup">First Time Julia Setup</a></li>
+  <li><a href="#creating-a-folder-for-your-projects" id="toc-creating-a-folder-for-your-projects" class="nav-link" data-scroll-target="#creating-a-folder-for-your-projects">Creating a Folder for Your Projects</a></li>
+  <li><a href="#creating-a-julia-project" id="toc-creating-a-julia-project" class="nav-link" data-scroll-target="#creating-a-julia-project">Creating a Julia Project</a></li>
+  <li><a href="#project-files" id="toc-project-files" class="nav-link" data-scroll-target="#project-files">Project Files</a></li>
+  <li><a href="#creating-running-a-julia-script" id="toc-creating-running-a-julia-script" class="nav-link" data-scroll-target="#creating-running-a-julia-script">Creating &amp; Running a Julia Script</a></li>
+  <li><a href="#miscellaneous" id="toc-miscellaneous" class="nav-link" data-scroll-target="#miscellaneous">Miscellaneous</a>
   <ul class="collapse">
-  <li><a href="#trouble-shooting" id="toc-trouble-shooting" class="nav-link" data-scroll-target="#trouble-shooting">Trouble Shooting</a></li>
-  </ul></li>
-  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VSCode</a>
-  <ul class="collapse">
-  <li><a href="#trouble-shooting-1" id="toc-trouble-shooting-1" class="nav-link" data-scroll-target="#trouble-shooting-1">Trouble Shooting</a></li>
-  </ul></li>
-  <li><a href="#the-vscode-user-interface" id="toc-the-vscode-user-interface" class="nav-link" data-scroll-target="#the-vscode-user-interface">The VSCode User Interface</a></li>
-  <li><a href="#bonus-set-up" id="toc-bonus-set-up" class="nav-link" data-scroll-target="#bonus-set-up">Bonus Set Up</a>
-  <ul class="collapse">
-  <li><a href="#fonts" id="toc-fonts" class="nav-link" data-scroll-target="#fonts">Fonts</a></li>
+  <li><a href="#drwatson-project-structure" id="toc-drwatson-project-structure" class="nav-link" data-scroll-target="#drwatson-project-structure"><code>DrWatson</code> Project Structure</a></li>
+  <li><a href="#naming-files" id="toc-naming-files" class="nav-link" data-scroll-target="#naming-files">Naming Files</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/install-julia.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/new-project.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Setting Up Julia</h1>
+<h1 class="title d-none d-lg-block">New Julia Project</h1>
 </div>
 
 
@@ -279,61 +274,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="key-terms" class="level2">
-<h2 class="anchored" data-anchor-id="key-terms">Key Terms</h2>
-<ul>
-<li><strong>VSCode</strong>: Visual Studio Code is a very popular open source code editor. It is free and available for Windows, Mac, and Linux. It is also the recommended editor for Julia and is well supported by the Julia community, with a number of extensions available to make the experience even better.</li>
-<li><strong>REPL</strong>: The Julia REPL is the Julia Read-Eval-Print-Loop. This is the interactive command line interface for Julia. When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.</li>
-<li><strong>Package</strong>: A package is a collection of code that can be used to extend the functionality of Julia and complete specific tasks. Packages are installed using the <code>Pkg</code> package manager.</li>
-<li><strong>Object</strong>: An object is anything that you can create using code. This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.</li>
-</ul>
-</section>
-<section id="installing-julia" class="level2">
-<h2 class="anchored" data-anchor-id="installing-julia">Installing Julia</h2>
-<p>The first step to using Julia is to install it on your computer. There are a couple of different methods you can use to do this. The easiest way to get started is to directly download the latest stable Julia release from <a href="https://julialang.org/downloads/" class="uri">https://julialang.org/downloads/</a>. This will get you up and running, but will be a bit more difficult to manage in the long run when you want to update Julia to newer versions.</p>
-<p>If you are willing to put a tiny bit more effort in to save yourself time later, I would strongly recommend installing Julia using the <strong>Juliaup</strong> tool. This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation. You can find the full instructions here: <a href="https://github.com/JuliaLang/juliaup" class="uri">https://github.com/JuliaLang/juliaup</a>, but in brief, install <strong>Juliaup</strong>, and then run the following command in your terminal (Mac/Linux) or command prompt (Windows):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">juliaup</span> add release <span class="co"># Installs the latest stable release</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">juliaup</span> default release <span class="co"># Not necessary with only one installed version, but sets the latest stable release as the default Julia version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To test that Julia has been installed correctly, open a terminal (Mac/Linux) or command prompt (Windows) and <span id="test-julia">type <code>julia</code></span>. If Julia has been installed correctly, you should see something like the following:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./figs/install-julia/Install-Julia-REPL.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The Julia <strong>REPL</strong></figcaption><p></p>
-</figure>
-</div>
-<p>If so, congratulations, you have successfully installed Julia, and you are now in the <strong>REPL</strong>. You could start working on Julia from here, but we’ll take a quick detour to install VSCode, which will make your life a lot easier. To quit the <strong>REPL</strong>, type <code>exit()</code> and press enter. You can also type <code>Ctrl + D</code> to exit the <strong>REPL</strong>.</p>
-<section id="trouble-shooting" class="level3">
-<h3 class="anchored" data-anchor-id="trouble-shooting">Trouble Shooting</h3>
-<p>If your Julia installation could not be found, it is likely an issue with your <strong>PATH</strong> variable. This is a variable that tells your computer where to look for programs when you type them into the command line. If you used <strong>Juliaup</strong> to install Julia and you are using a Mac or Linux, you might need to add the following line to your <code>.bashrc</code> or <code>.zshrc</code> file, depending of whether your computer uses <strong>bash</strong> or <strong>zsh</strong>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.juliaup/bin/:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you don’t know if your computer is using <strong>bash</strong> or <strong>zsh</strong>, you can check by typing <code>echo $SHELL</code> into the command line. This will print the shell that your computer is using; in my case <code>/bin/zsh</code>. You should also type <code>ls -a ~</code> into the command line to see if you have an existing <code>.bashrc</code> or <code>.zshrc</code> file. If you do not have either, you can create the one relevant to your computer by typing <code>touch ~/.bashrc</code> or <code>touch ~/.zshrc</code>.</p>
-</div>
-</div>
-<p>If you are using <strong>Juliaup</strong> on Windows, and installed using the recommended pathways (Windows store or <code>winget</code> command), you will need to edit your <strong>PATH</strong> variable using the following the steps detailed <a href="https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/">here</a>, and make sure you have the following path:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%USERPROFILE%\AppData\Local\Microsoft\WindowsApps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="installing-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="installing-vscode">Installing VSCode</h2>
-<p>Now you have Julia installed, you need a code editor to write your Julia code in. There are a number of different options available, but the most popular is VSCode. You can download VSCode from <a href="https://code.visualstudio.com/download" class="uri">https://code.visualstudio.com/download</a>. Once you have VSCode installed, you will need to install the Julia extension. You can do this by opening <a href="https://marketplace.visualstudio.com/items?itemName=julialang.language-julia">this link</a> and clicking <em>“Install”</em>, which will redirect you to VSCode to finish the install process. Alternatively, you can open VSCode, click the extensions icon in the left sidebar of VSCode (the one that looks like 4 blocks), and search for <em>“Julia”</em>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./figs/install-julia/VSCode-Julia-extension.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">VSCode Julia Extension</figcaption><p></p>
-</figure>
-</div>
-<p>Once you have installed the Julia extension, you’re ready to start writing Julia code!</p>
-<p>The first thing you should do is open a Julia REPL <em>within</em> VSCode. To do this, open the VSCode command palette and type <em>“Julia: Start REPL”</em>.</p>
+<section id="first-time-julia-setup" class="level2">
+<h2 class="anchored" data-anchor-id="first-time-julia-setup">First Time Julia Setup</h2>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -344,57 +286,147 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The command palette is a really useful feature of VSCode that allows you to search for and run any command available in VSCode. You can open the command palette by pressing <code>Ctrl + Shift + P</code> on Windows or Linux, or <code>Cmd + Shift + P</code> on Mac. For more tips on how to navigate and use VSCode, see <a href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks">the VSCode documentation</a>.</p>
+<p>You only have to follow these steps the first time after you download a new version of Julia and set it as your working version.</p>
 </div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./figs/install-julia/VSCode-cmd-palette-start-repl.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Starting a Julia REPL in VSCode</figcaption><p></p>
-</figure>
+<p>Now that we have a better understanding of both Julia and the VSCode user interface, let’s create a new Julia project.</p>
+<p>First, open a fresh VSCode window. If you already happen to be in a <strong>workspace</strong> (check in the “Explorer” panel), you can click on the “File” menu in the top left of the VSCode window, and then click “New Window”. Now, open the <em>Command Palette</em> (keyboard shortcut <code>Cmd + Shift + P</code> on Mac or <code>Ctrl + Shift + P</code> on Windows or Linux) and type “Julia: Start REPL”. Doing this should open up the integrated terminal with the Julia REPL running. Type <code>pwd()</code> in the REPL and hit enter. It should return your home directory (i.e.&nbsp;<code>/Users/&lt;your-username&gt;</code> on Mac or <code>C:\Users\&lt;your-username&gt;</code> on Windows). From here we want to add a package called <code>DrWatson</code> to our Julia installation. To do this, type <code>]</code> in the REPL and hit enter. This enters the <code>Pkg</code> REPL, which is a special REPL for managing Julia packages. Here you should see something like:</p>
+<pre class="julia-repl"><code>(@v1.9) pkg&gt;</code></pre>
+<p>Next, type <code>add DrWatson</code> and hit enter. This will add the <code>DrWatson</code> package to your Julia installation, and will allow us to easily create new Julia projects in a consistent way that works well for epidemiology projects (among others).</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>This will open up a new section in VSCode that contains a Julia REPL within the “Integrated Terminal” of VSCode.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./figs/install-julia/VSCode-Julia-terminal.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Integrated VSCode Julia Terminal</figcaption><p></p>
-</figure>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
-<p>You can give Julia a quick spin by typing <code>1 + 1</code> into the REPL and pressing enter.</p>
-<section id="trouble-shooting-1" class="level3">
-<h3 class="anchored" data-anchor-id="trouble-shooting-1">Trouble Shooting</h3>
-<p>If your Julia installation could not be found by VSCode, but it <a href="#test-julia">works in the terminal</a>, the VSCode Julia extension is having trouble find where Julia is installed.</p>
-<p>To fix this, first, find your Julia installation. On Mac or Linux, you can do this by typing <code>which julia</code> into the terminal. On Windows, you can do this by typing <code>where julia</code> into the command prompt.</p>
-<p>If you installed Julia using <strong>Juliaup</strong>, you should see something like the following:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> which julia</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/username/.juliaup/bin/julia</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Take the output of this command and paste it into the VSCode settings. To do this, open the VSCode settings by clicking on the cog icon in the bottom left of the VSCode window, and then clicking “Settings”, or by using the command palette to navigate to “Preferences: Open Settings (UI)”. Here, search for <em>“Julia Executable Path”</em> and paste the output of the <code>which/where julia</code> command into the text box. this is a <img src="./figs/install-julia/VSCode-Julia-executable-path.png" class="img-fluid" alt="VSCode Julia Executable Path"></p>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re still wondering why we’re bothering with the <code>DrWatson</code> package, you can read more about it <a href="#drwatson-project-structure">below</a>.</p>
+</div>
+</div>
 </section>
+<section id="creating-a-folder-for-your-projects" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-folder-for-your-projects">Creating a Folder for Your Projects</h2>
+<p>The first thing we need to do is create a folder that will house all our individual project folders. To try and make your life easy, I would recommend you create this folder in your home directory, and call it <strong><em>Repos/</em></strong> (or something similar). You can do this with Finder on Mac or File Explorer on Windows.</p>
 </section>
-<section id="the-vscode-user-interface" class="level2">
-<h2 class="anchored" data-anchor-id="the-vscode-user-interface">The VSCode User Interface</h2>
-<p>Hopefully at this point you have VSCode installed and the Julia extension working. Now’s let’s get familiar with VSCode itself, that way we can focus on learning Julia in the rest of the book, rather than getting stuck on the editor.</p>
-<p>A detailed description of the VSCode user interface is beyond the scope of this book (more details can be found <a href="https://code.visualstudio.com/docs/getstarted/userinterface">here</a>), but there are a few key features that you should be aware of.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><video src="./figs/install-julia/VSCode-UI-desc.mp4" class="img-fluid" controls=""><a href="./figs/install-julia/VSCode-UI-desc.mp4">Video</a></video></p>
-<p></p><figcaption class="figure-caption">VSCode User Interface</figcaption><p></p>
-</figure>
-</div>
-<p>As you can see in the clip above, it is possible to move the main editing blocks around so you can have multiple files open at once (or even multiple views of the same file at different lines of code). Typically, I like to have my code open in one editing block and have the plots display to the right side of the screen.</p>
-<p>To the left of the editing blocks is the primary sidebar, which contains a number of different panels. The first one, which I have open, is the “Explorer” panel, which shows the files and folders in the current <strong>Workspace</strong>. A <strong>Workspace</strong> in VSCode is a collection of folders and files that you want to group together into one project. This is a really useful feature of VSCode as it allows you to also have <strong>Workspace</strong>-specific settings, which can be useful when working on different projects. To get started with a new <strong>Workspace</strong>, all you have to do is open a folder in VSCode, as typically it’s a good rule of thumb to have one overarching folder per project. You can do this with <code>Cmd + O</code> on Mac or <code>Ctrl + O</code> on Windows or Linux, or by clicking “File” in the top left of the VSCode window and then clicking “Open Folder”. After doing so, you will see the folder name appear in the top of the “Explorer” panel, with all contained files and folders displayed below.</p>
-<p>Further down in the sidebar, you will see there is a logo with three circles (which I click on in the video). This is the Julia extension, and will show you the <em>Julia Workspace</em> at the top, which contains every <strong>object</strong> that you have run and created. Below that is the <em>Documentation</em> section, which is where can search for and view the documentation for any Julia function or type (as long as the function is within one of the packages you have loaded). Finally, below that is the <em>Plot Navigator</em> section, which is where you can view the list of plots that you have created in Julia, and clicking on a plot number will update the plot viewer appropriately.</p>
-<p>At the bottom of the screen, you will see the <em>Integrated Terminal</em> panel, which is where you can run Julia code, as well as the <em>Problems</em> panel, which will show you any errors or warnings that VSCode has detected in your code. Some other tools can be seen here, but they are not particularly important for now.</p>
-<p>Finally, at the very bottom of the screen is the <em>Status Bar</em>, which shows you the current branch of your git repository (if you have one), the current Julia environment, and some other miscellaneous information.</p>
-<p>One thing you may have noticed in the video is that I used the keyboard shortcut <code>Cmd + P</code> to open different files within my <strong>Workspace</strong>. This is a really useful shortcut that allows you to quickly navigate to files, but you can also use it to navigate <em>within</em> a file. Typing <code>@</code> will allow you to navigate to different symbols e.g.&nbsp;functions, variables, headings etc., and typing <code>:</code> will allow you to navigate to a specific line number in the file.</p>
+<section id="creating-a-julia-project" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-julia-project">Creating a Julia Project</h2>
+<p>Now let’s create our first Julia project folder. To do this, go back to the Julia <code>Pkg</code> REPL and hit backspace. This will return you to the normal Julia REPL. Now we need to navigate to the folder you just created. To do this, type <code>cd("path/to/your/project/folder")</code> and hit enter.</p>
+<p>From here, type <code>using DrWatson</code> and hit enter. This will load the <code>DrWatson</code> package into your Julia session so you can use its functions.</p>
+<p>To create the project folder, type <code>initialize_project("MyFirstProject")</code> and hit enter. This will create a new project folder <strong><em>MyFirstProject/</em></strong> in the folder you navigated to earlier e.g., <strong><em>/Users/username/Documents/Repos/MyFirstProject/</em></strong>.</p>
+<p>Now you have a project folder, let’s open it in VSCode. In VSCode, click on the “File” menu in the top left of the VSCode window, and then click “Open Folder…”. From here, navigate to the project folder you just created and click “Open”. You VSCode window should refresh and you should now see the name of your project folder in the top center of the VSCode window (as well as in the top left of the “Explorer” panel).</p>
+<p>Now, if you try to open the <code>Pkg</code> REPL again, you will see something different. Instead it’ll say:</p>
+<pre class="julia-repl"><code>(MyFirstProject) pkg&gt;</code></pre>
+<p>You’re ready to start adding packages to your project! I would recommend starting with following packages:</p>
+<ul>
+<li><code>Revise</code></li>
+<li><code>DrWatson</code></li>
+<li><code>DataFrames</code></li>
+<li><code>DataFramesMeta</code></li>
+<li><code>CSV</code></li>
+<li><code>IJulia</code></li>
+<li><code>JuliaFormatter</code></li>
+<li><code>CairoMakie</code></li>
+</ul>
+<p>As before, to add a package, type <code>add &lt;package-name&gt;</code> and hit enter (you can add multiple packages at once by separating them with spaces e.g.&nbsp;<code>add &lt;package-1&gt; &lt;package-2&gt;</code>).</p>
 </section>
-<section id="bonus-set-up" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-set-up">Bonus Set Up</h2>
-<section id="fonts" class="level3">
-<h3 class="anchored" data-anchor-id="fonts">Fonts</h3>
-<p>If you want to make your code look as good as possible, you should install a font that supports rendering of ligatures and Unicode characters, as Julia often uses them. Ligatures are special characters that are used to combine multiple characters into one. For example, <code>==&gt;</code> is a ligature that with particular fonts will be rendered as a double arrow ⟹, which can look nicer and be easier to read. Examples of Unicode characters are Greek letters, such as <code>θ, β, γ, σ, δ</code> etc., which are often used in mathematical notation, and because Julia supports Unicode characters, you can use them in your code! This is very useful when coding up some mathematical formulae, as you can use the actual symbols rather than having to write out the name of the symbol (though this is not always recommended as it can make your code harder to read to those unfamiliar with the formulae). If you would like to use Unicode characters in your Julia code (this won’t necessarily work in other non-Julia files), you can start typing with <code>\</code>, before typing the name of the symbol you want to use, and then pressing <code>Tab</code> to complete the symbol. For example, to add the <code>θ</code> symbol, you would type <code>\theta</code> and then press <code>Tab</code> to complete the symbol.</p>
-<p>All this being said, <strong>JuliaMono</strong> is a font designed specifically for Julia, and is a great choice for writing Julia code. You can more information at <a href="https://juliamono.netlify.app/" class="uri">https://juliamono.netlify.app/</a>, along with detailed installation instructions.</p>
+<section id="project-files" class="level2">
+<h2 class="anchored" data-anchor-id="project-files">Project Files</h2>
+<p>When you create a new Julia project, it creates two files in the project folder:</p>
+<ul>
+<li><strong><em>Project.toml</em></strong>: this is a TOML file that contains the names and versions of all the packages you have added to your project</li>
+<li><strong><em>Manifest.toml</em></strong>: this is a TOML file that contains the names and versions of all the packages you have added to your project, as well as the names and versions of all the packages that those packages depend on. It is automatically generated by Julia, and you should not edit it manually.</li>
+</ul>
+<p>Edit the <strong><em>Project.toml</em></strong> file to add your name in the authors field at the top of the file (you will need to create this), so it looks something like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"MyFirstProject"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span><span class="st">"My Name"</span><span class="op">]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">deps</span><span class="kw">]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">CSV</span> <span class="op">=</span> <span class="st">"336ed68f-0bac-5ca0-87d4-7b16caf5d00b"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">CairoMakie</span> <span class="op">=</span> <span class="st">"13f3f980-e62b-5c42-98c6-ff1f3baf88f0"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">DataFrames</span> <span class="op">=</span> <span class="st">"a93c6f00-e57d-5684-b7b6-d8193f3e46c0"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">DataFramesMeta</span> <span class="op">=</span> <span class="st">"1313f7d8-7da2-5740-9ea0-a2ca25f37964"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">DrWatson</span> <span class="op">=</span> <span class="st">"634d3b9d-ee7a-5ddf-bec9-22491ea816e1"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">IJulia</span> <span class="op">=</span> <span class="st">"7073ff75-c697-5162-941a-fcdaad2a7d2a"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">JuliaFormatter</span> <span class="op">=</span> <span class="st">"98e50ef6-434e-11e9-1051-2b60c6c9e899"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">Revise</span> <span class="op">=</span> <span class="st">"295af30f-e4ad-537b-8983-00126c2a3abe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="creating-running-a-julia-script" class="level2">
+<h2 class="anchored" data-anchor-id="creating-running-a-julia-script">Creating &amp; Running a Julia Script</h2>
+<p>To create a Julia script in your project, click on the “File” menu in the top left of the VSCode window, and then click “New File”. Alternatively, you could use the keyboard shortcut <code>Cmd + N</code> on Mac or <code>Ctrl + N</code> on Windows or Linux. This will open a new file in the VSCode editor, which you can then save. Given we are using <code>DrWatson</code>, it is also good practice to save it in the <strong><em>scripts/</em></strong> folder. You can save it with any file name you like, but it is good practice to save it with the <code>.jl</code> extension e.g., <strong><em>scripts/myscript.jl</em></strong>.</p>
+<p>At this point, you can start writing your Julia code. Just make sure that the first two lines of the script are:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DrWatson</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quickactivate</span>(<span class="st">"MyFirstProject"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="miscellaneous" class="level2">
+<h2 class="anchored" data-anchor-id="miscellaneous">Miscellaneous</h2>
+<section id="drwatson-project-structure" class="level3">
+<h3 class="anchored" data-anchor-id="drwatson-project-structure"><code>DrWatson</code> Project Structure</h3>
+<p>It may not be immediately obvious why we need to use <code>DrWatson</code> to create our Julia projects. In fact, we don’t need to use <code>DrWatson</code> to create our Julia projects, but it does make our lives a lot easier as it provides a consistent project structure that is easy to navigate.</p>
+<p>Firstly, it creates the following folders in your project folder (copied from the <code>DrWatson</code> documentation):</p>
+<pre><code>│projectdir          &lt;- Project's main folder. It is initialized as a Git
+│                       repository with a reasonable .gitignore file.
+│
+├── _research        &lt;- WIP scripts, code, notes, comments,
+│   |                   to-dos and anything in an alpha state.
+│   └── tmp          &lt;- Temporary data folder.
+│
+├── data             &lt;- **Immutable and add-only!**
+│   ├── sims         &lt;- Data resulting directly from simulations.
+│   ├── exp_pro      &lt;- Data from processing experiments.
+│   └── exp_raw      &lt;- Raw experimental data.
+│
+├── plots            &lt;- Self-explanatory.
+├── notebooks        &lt;- Jupyter, Weave or any other mixed media notebooks.
+│
+├── papers           &lt;- Scientific papers resulting from the project.
+│
+├── scripts          &lt;- Various scripts, e.g. simulations, plotting, analysis,
+│   │                   The scripts use the `src` folder for their base code.
+│   └── intro.jl     &lt;- Simple file that uses DrWatson and uses its greeting.
+│
+├── src              &lt;- Source code for use in this project. Contains functions,
+│                       structures and modules that are used throughout
+│                       the project and in multiple scripts.
+│
+├── README.md        &lt;- Optional top-level README for anyone using this project.
+├── .gitignore       &lt;- by default ignores _research, data, plots, videos,
+│                       notebooks and latex-compilation related files.
+│
+├── Manifest.toml    &lt;- Contains full list of exact package versions used currently.
+└── Project.toml     &lt;- Main project file, allows activation and installation.
+                        Includes DrWatson by default.</code></pre>
+<p>Above providing us with a useful project structure, <code>DrWatson</code> also provides us with a number of very helpful functions.</p>
+<p>For one, it provides us with the <code>quickactivate()</code> function that allows us to activate our project and environment when we’re working in a script, so we can easily import all the packages we need, regardless of where the script is saved. This means that we don’t need to worry about activating our project in the REPL before we start working in a script. This may not sound meaningful, but it’s very easy to forget to activate your project in the REPL before you start working in a script, and then you end up with a bunch of errors because you haven’t actually imported the packages you need. To use this, make sure your first two lines of your script are always:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DrWatson</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quickactivate</span>(<span class="st">"MyFirstProject"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And secondly, it provides us with convenient directory paths to the folders in our project. For example, if we want to access the <code>data</code> folder in our project, we can use the <code>datadir()</code> function, which will return the path to the <code>data</code> folder. Similarly, if we wanted to save a plot to the <code>plots</code> folder, we could use <code>save(plotsdir("plot_object.png"), plot_object)</code> function to save the plot in <code>plot_object</code> to the <code>plots</code> folder.</p>
+<p>More details about the <code>DrWatson</code> project structure and associated functions can be found <a href="https://juliadynamics.github.io/DrWatson.jl/stable/project/">here</a>.</p>
+</section>
+<section id="naming-files" class="level3">
+<h3 class="anchored" data-anchor-id="naming-files">Naming Files</h3>
+<p>When naming files and folders, it is important to be consistent and descriptive. Ideally the name will contain no spaces, and you can use dashes to separate words. See <a href="https://speakerdeck.com/jennybc/how-to-name-files">this presentation</a> by Jenny Bryan for more information on naming files and folders, but in short:</p>
+<ul>
+<li>KISS (Keep It Simple Stupid): use simple and consistent file names
+<ul>
+<li>It needs to be machine readable</li>
+<li>It needs to be human readable</li>
+<li>It needs to order well in a directory</li>
+<li>No special characters and no spaces!</li>
+</ul></li>
+<li>Use YYYY-MM-DD date format</li>
+<li>Use <code>-</code> to delimit words and <code>_</code> to delimit sections
+<ul>
+<li>i.e.&nbsp;<strong><em>2019-01-19_my-data.csv</em></strong></li>
+</ul></li>
+<li>Left-pad numbers
+<ul>
+<li>i.e.&nbsp;<strong><em>01_my-data.csv</em></strong> vs <strong><em>1_my-data.csv</em></strong></li>
+<li>If you don’t, file orders get messed up when you get to double-digits</li>
+</ul></li>
+</ul>
 
 
 </section>
@@ -651,14 +683,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./technical-background.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Keywords, Code, and Other Formatting</span>
+      <a href="./julia-basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Julia Basics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./julia-basics.html" class="pagination-link">
-        <span class="nav-page-text">Julia Basics</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

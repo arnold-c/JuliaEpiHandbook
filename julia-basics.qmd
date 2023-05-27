@@ -466,7 +466,7 @@ The `{DataFrames}` package, for example, creates a special data structure that i
 
 To add a package to your Julia environment (project), you can use the `add` command in the package manager (accessed by pressing `]` in the REPL).
 Then, you can use the `using` command to load the package into your current Julia session.
-See [new-project.qmd](new-project.qmd) for more information in the context of setting up a new project.
+See [this page](new-project.qmd) for more information in the context of setting up a new project.
 
 ## Control Flow
 
