@@ -11,8 +11,8 @@ jupyter: julia-1.9
     When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.
 - **Package**: A package is a collection of code that can be used to extend the functionality of Julia and complete specific tasks.
     Packages are installed using the `Pkg` package manager.
-- **Object**: An object is anything that you can create using code.
-    This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.
+- **Variable**: A variable is a value or object that you have assigned a name.
+    This may be as simple as a number or a sentence (a string variable), or as complex as a model or a plot.
 - **Function**: A function is a block of code that performs a specific task.
     Functions are called by name and can take arguments, before completing some computation and returning a value or object.
     Sometimes functions are written and called for their side effects, i.e. they do not directly return an object, but instead perform some action.
@@ -30,10 +30,12 @@ It'll likely take a couple of passes through this page to really get a good unde
 It's meant to act as a reference so you can come back to it later if you don't understand something in the later, more-applied, sections.
 At the bottom of this page are some additional resources that you can use to gain a deeper understanding of Julia.
 
-## Data and Object Types
+## Data Types and Structures
 
-There are a number of different data and object types in Julia.
+There are a number of different data types and structures in Julia.
 Here are the key ones for your to be aware of.
+
+**Data Types**:
 
 - **Integer**
   - Whole numbers
@@ -60,10 +62,17 @@ For example, `1 == true` returns `true` because `1` and `true` are equal, but `1
   - A single character e.g. `"H"`
 - **String**
     - A sequence of characters e.g. `"Hello World!"`
+
+**Data Structures**:
+
 - **Array**
   - An **array** is a collection of values that are all the same type.
   Arrays can be one-dimensional (**vectors**), two-dimensional (**matrices**), or multi-dimensional.
   Arrays are **mutable**, meaning that they can be changed after they are created.
+  An example of an array is `[1, 2, 3]`
+- **DataFrame**
+  - A **DataFrame** is a special type of **array** created by the `{DataFrames}` package that is used to store tabular data.
+  It is a collection of columns, where each column is an **array** of the same type.**DataFrames** are **mutable**, meaning that they can be changed after they are created.
 - **Tuple**
   - A **tuple** is a collection of values that do not all have to be the same type.
   **Tuples** are very useful because they require very little memory, so are fast to create and access.
@@ -88,9 +97,126 @@ If you have an object and want to tell what type it is, you can use the `typeof(
 If you have an array and want to tell what type the elements of the array are, you can use the `eltype()` function.
 
 ## Variables
+
+Variables really just stored pieces of information that you've given a name to.
+This is useful because it allows you to run a calculation, for example, and then save it for use later on.
+That way you don't need to run the calculation again, you can just pull the value out of storage!
+A slightly different example is if you have a constant value that you use multiple times in your code, e.g. the size of a population.
+Rather than typing out the value every time you need it, you can just store it in a variable and use the variable name instead.
+This not only saves you time and makes your code more readable, but also can reduce the chance of making a mistake (e.g. if you accidentally type the wrong value when copying it to a new calculation).
+
 ### Assignment
 
+Now we know what **variables** are, let's look at how to create them.
+As mentioned earlier, we use the `=` operator to assign a value to a **variable**.
+For example, if we wanted to create a variable called `x` and assign it the value `1`, we would write `x = 1`.
+But we aren't just restricted to numbers, we can assign any type of value to a variable.
+This includes **strings**, **arrays**, **tuples**, **dictionaries**, and **structs**.
+
+Earlier, when talking about data structures, we used the example of a person's name, age, and height.
+Let's see how we can create **tuples**, **dictionaries**, and **dataframes** to store this information.
+
+```{julia}
+using DataFrames # We need to load the DataFrames package to create a DataFrame
+
+john_tuple = ("John", 25, 1.8)
+john_ntuple = (name = "John", age = 25, height = 1.8)
+john_dict = Dict("name" => "John", "age" => 25, "height" => 1.8)
+john_df = DataFrame(name = "John", age = 25, height = 1.8);
+```
+
+::: {.callout-note}
+
+When creating a dictionary, you can use the `=>` operator to assign a value to a key.
+The key is always on the left, and the value is always on the right.
+
+At the end of the test array assignment, we have a semicolon (`;`).
+This has nothing to do with the array, but is used to suppress the output of the assignment, so when we run the code, we don't see the array printed to the screen.
+
+:::
+
+Because a person's name is a string, their age is an integer, and their height is a float, we cannot create an array to store this information, because arrays can only store values of the same type.
+To show how we can create and access **arrays**, let's create a **vector** (1-D array) of multiple people's names, as well as a random **matrix** (2-D array).
+
+```{julia}
+people_vec = ["John", "Jane", "Joe"]
+test_arr = [1 2 3; 4 5 6; 7 8 9]
+```
+
+::: {.callout-note}
+
+When creating a matrix, you can use a semi-colon to separate rows in the matrix.
+One alternative is to specify the exact positions of each value e.g.
+
+```julia
+test_arr = [
+    1 2 3
+    4 5 6
+    7 8 9
+]
+```
+
+:::
+
 ### Accessing Values
+
+To access the value stored in a variable, we can often use indices.
+Julia, like R, is a 1-indexed language, meaning that the first element in an array has an index of 1, not 0 (like Python).
+In our examples, the first element of the objects we created is the person's name, so we can access it with an index of 1.
+
+```{julia}
+john_tuple[1] # "John"
+john_ntuple[1] # "John"
+people_vec[1]
+```
+
+For **dataframes** and multi-dimensional **arrays**, we have to make a slight modification to use a comma that separates the indices for each dimension.
+In an array/dataframe, the first index is the row number, and the second index is the column number.
+To access the element in the first row and the first column of the array, we would use the following code.
+
+```{julia}
+test_arr[1, 1]
+john_df[1, 1]
+```
+
+If we want to access an entire row or column, we can use the `:` operator.
+For example, if we want to access the first column of the array, we can use the following code.
+
+```{julia}
+test_arr[:, 1]
+```
+
+```{julia}
+john_df[:, 1]
+```
+
+If we want to access the first row of the array, we can use the following code.
+
+```{julia}
+test_arr[1, :]
+```
+
+::: {.callout-note}
+
+In all cases where we used the `:` operator, we get a **column vector** as the output, not a single value, regardless of whether we are extracting a row or a column from the original array!
+
+:::
+
+However, none of these methods work for **dictionaries**.
+For dictionaries, you need to specify the key of the value you want to access.
+
+```{julia}
+john_dict["name"]
+```
+
+You can also use the key (or column name) to access the value in **dataframes** and **named tuples**.
+
+```{julia}
+john_df[1, :name] # The : operator before the column name turns it into a symbol that can be used to index the dataframe
+john_df[1, "name"]
+
+john_ntuple.name
+```
 
 ## Functions
 ### Overview
@@ -329,6 +455,18 @@ So if you want/need a new method, use **positional arguments**.
 
 ## Packages
 
+Packages are an essential part of the Julia ecosystem.
+You've already seen an example of a package in action: `{DataFrames}`.
+At their core, a package is a way for someone to share code, data, and documentation with other people.
+By design, Julia can't do everything for everyone straight out of the box.
+Not only would it be an impossible task for the Julia developers to create a language that can do everything, but it would also be incredibly slow to load and run.
+Instead, packages extend the abilities of Julia by providing additional features (through functions) that are not included in the base language.
+
+The `{DataFrames}` package, for example, creates a special data structure that is very easy to read, as well as providing a number of functions that make it easy to manipulate and analyze data.
+
+To add a package to your Julia environment (project), you can use the `add` command in the package manager (accessed by pressing `]` in the REPL).
+Then, you can use the `using` command to load the package into your current Julia session.
+See [new-project.qmd](new-project.qmd) for more information in the context of setting up a new project.
 
 ## Control Flow
 

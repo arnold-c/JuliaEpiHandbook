@@ -17,8 +17,7 @@ date: "2023-05-26"
 - **Object**: An object is anything that you can create using code.
     This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.
 
-## Getting Set Up
-### Installing Julia
+## Installing Julia
 
 The first step to using Julia is to install it on your computer.
 There are a couple of different methods you can use to do this.
@@ -44,7 +43,7 @@ You could start working on Julia from here, but we'll take a quick detour to ins
 To quit the **REPL**, type `exit()` and press enter.
 You can also type `Ctrl + D` to exit the **REPL**.
 
-#### Trouble Shooting
+### Trouble Shooting
 
 If your Julia installation could not be found, it is likely an issue with your **PATH** variable.
 This is a variable that tells your computer where to look for programs when you type them into the command line.
@@ -69,7 +68,7 @@ If you are using **Juliaup** on Windows, and installed using the recommended pat
 %USERPROFILE%\AppData\Local\Microsoft\WindowsApps
 ```
 
-### Installing VSCode
+## Installing VSCode
 
 Now you have Julia installed, you need a code editor to write your Julia code in.
 There are a number of different options available, but the most popular is VSCode.
@@ -101,7 +100,7 @@ This will open up a new section in VSCode that contains a Julia REPL within the 
 
 You can give Julia a quick spin by typing `1 + 1` into the REPL and pressing enter.
 
-#### Trouble Shooting
+### Trouble Shooting
 
 If your Julia installation could not be found by VSCode, but it [works in the terminal](#test-julia), the VSCode Julia extension is having trouble find where Julia is installed.
 
@@ -123,12 +122,10 @@ Here, search for *"Julia Executable Path"* and paste the output of the `which/wh
 this is a 
 ![VSCode Julia Executable Path](./figs/install-julia/VSCode-Julia-executable-path.png)
 
-### VSCode Basics
+## The VSCode User Interface
 
 Hopefully at this point you have VSCode installed and the Julia extension working.
 Now's let's get familiar with VSCode itself, that way we can focus on learning Julia in the rest of the book, rather than getting stuck on the editor.
-
-#### The VSCode User Interface
 
 A detailed description of the VSCode user interface is beyond the scope of this book (more details can be found [here](https://code.visualstudio.com/docs/getstarted/userinterface)), but there are a few key features that you should be aware of.
 

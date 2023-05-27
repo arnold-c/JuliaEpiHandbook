@@ -219,12 +219,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#key-terms" id="toc-key-terms" class="nav-link active" data-scroll-target="#key-terms">Key Terms</a></li>
-  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link" data-scroll-target="#getting-set-up">Getting Set Up</a>
+  <li><a href="#installing-julia" id="toc-installing-julia" class="nav-link" data-scroll-target="#installing-julia">Installing Julia</a>
   <ul class="collapse">
-  <li><a href="#installing-julia" id="toc-installing-julia" class="nav-link" data-scroll-target="#installing-julia">Installing Julia</a></li>
-  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VSCode</a></li>
-  <li><a href="#vscode-basics" id="toc-vscode-basics" class="nav-link" data-scroll-target="#vscode-basics">VSCode Basics</a></li>
+  <li><a href="#trouble-shooting" id="toc-trouble-shooting" class="nav-link" data-scroll-target="#trouble-shooting">Trouble Shooting</a></li>
   </ul></li>
+  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VSCode</a>
+  <ul class="collapse">
+  <li><a href="#trouble-shooting-1" id="toc-trouble-shooting-1" class="nav-link" data-scroll-target="#trouble-shooting-1">Trouble Shooting</a></li>
+  </ul></li>
+  <li><a href="#the-vscode-user-interface" id="toc-the-vscode-user-interface" class="nav-link" data-scroll-target="#the-vscode-user-interface">The VSCode User Interface</a></li>
   <li><a href="#bonus-set-up" id="toc-bonus-set-up" class="nav-link" data-scroll-target="#bonus-set-up">Bonus Set Up</a>
   <ul class="collapse">
   <li><a href="#fonts" id="toc-fonts" class="nav-link" data-scroll-target="#fonts">Fonts</a></li>
@@ -280,10 +283,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Object</strong>: An object is anything that you can create using code. This may be as simple as a number or a sentence (a string object), or as complex as a model or a plot.</li>
 </ul>
 </section>
-<section id="getting-set-up" class="level2">
-<h2 class="anchored" data-anchor-id="getting-set-up">Getting Set Up</h2>
-<section id="installing-julia" class="level3">
-<h3 class="anchored" data-anchor-id="installing-julia">Installing Julia</h3>
+<section id="installing-julia" class="level2">
+<h2 class="anchored" data-anchor-id="installing-julia">Installing Julia</h2>
 <p>The first step to using Julia is to install it on your computer. There are a couple of different methods you can use to do this. The easiest way to get started is to directly download the latest stable Julia release from <a href="https://julialang.org/downloads/" class="uri">https://julialang.org/downloads/</a>. This will get you up and running, but will be a bit more difficult to manage in the long run when you want to update Julia to newer versions.</p>
 <p>If you are willing to put a tiny bit more effort in to save yourself time later, I would strongly recommend installing Julia using the <strong>Juliaup</strong> tool. This is a small cross-platform installer that can install Julia, as well as manage multiple versions on your computer, which is incredibly helpful when you want to update to a newer Julia version, or test out a new release candidate without breaking your existing Julia installation. You can find the full instructions here: <a href="https://github.com/JuliaLang/juliaup" class="uri">https://github.com/JuliaLang/juliaup</a>, but in brief, install <strong>Juliaup</strong>, and then run the following command in your terminal (Mac/Linux) or command prompt (Windows):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">juliaup</span> add release <span class="co"># Installs the latest stable release</span></span>
@@ -296,8 +297,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 <p>If so, congratulations, you have successfully installed Julia, and you are now in the <strong>REPL</strong>. You could start working on Julia from here, but we’ll take a quick detour to install VSCode, which will make your life a lot easier. To quit the <strong>REPL</strong>, type <code>exit()</code> and press enter. You can also type <code>Ctrl + D</code> to exit the <strong>REPL</strong>.</p>
-<section id="trouble-shooting" class="level4">
-<h4 class="anchored" data-anchor-id="trouble-shooting">Trouble Shooting</h4>
+<section id="trouble-shooting" class="level3">
+<h3 class="anchored" data-anchor-id="trouble-shooting">Trouble Shooting</h3>
 <p>If your Julia installation could not be found, it is likely an issue with your <strong>PATH</strong> variable. This is a variable that tells your computer where to look for programs when you type them into the command line. If you used <strong>Juliaup</strong> to install Julia and you are using a Mac or Linux, you might need to add the following line to your <code>.bashrc</code> or <code>.zshrc</code> file, depending of whether your computer uses <strong>bash</strong> or <strong>zsh</strong>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.juliaup/bin/:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -317,8 +318,8 @@ Tip
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%USERPROFILE%\AppData\Local\Microsoft\WindowsApps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="installing-vscode" class="level3">
-<h3 class="anchored" data-anchor-id="installing-vscode">Installing VSCode</h3>
+<section id="installing-vscode" class="level2">
+<h2 class="anchored" data-anchor-id="installing-vscode">Installing VSCode</h2>
 <p>Now you have Julia installed, you need a code editor to write your Julia code in. There are a number of different options available, but the most popular is VSCode. You can download VSCode from <a href="https://code.visualstudio.com/download" class="uri">https://code.visualstudio.com/download</a>. Once you have VSCode installed, you will need to install the Julia extension. You can do this by opening <a href="https://marketplace.visualstudio.com/items?itemName=julialang.language-julia">this link</a> and clicking <em>“Install”</em>, which will redirect you to VSCode to finish the install process. Alternatively, you can open VSCode, click the extensions icon in the left sidebar of VSCode (the one that looks like 4 blocks), and search for <em>“Julia”</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -355,8 +356,8 @@ Note
 </figure>
 </div>
 <p>You can give Julia a quick spin by typing <code>1 + 1</code> into the REPL and pressing enter.</p>
-<section id="trouble-shooting-1" class="level4">
-<h4 class="anchored" data-anchor-id="trouble-shooting-1">Trouble Shooting</h4>
+<section id="trouble-shooting-1" class="level3">
+<h3 class="anchored" data-anchor-id="trouble-shooting-1">Trouble Shooting</h3>
 <p>If your Julia installation could not be found by VSCode, but it <a href="#test-julia">works in the terminal</a>, the VSCode Julia extension is having trouble find where Julia is installed.</p>
 <p>To fix this, first, find your Julia installation. On Mac or Linux, you can do this by typing <code>which julia</code> into the terminal. On Windows, you can do this by typing <code>where julia</code> into the command prompt.</p>
 <p>If you installed Julia using <strong>Juliaup</strong>, you should see something like the following:</p>
@@ -366,11 +367,9 @@ Note
 <p>Take the output of this command and paste it into the VSCode settings. To do this, open the VSCode settings by clicking on the cog icon in the bottom left of the VSCode window, and then clicking “Settings”, or by using the command palette to navigate to “Preferences: Open Settings (UI)”. Here, search for <em>“Julia Executable Path”</em> and paste the output of the <code>which/where julia</code> command into the text box. this is a <img src="./figs/install-julia/VSCode-Julia-executable-path.png" class="img-fluid" alt="VSCode Julia Executable Path"></p>
 </section>
 </section>
-<section id="vscode-basics" class="level3">
-<h3 class="anchored" data-anchor-id="vscode-basics">VSCode Basics</h3>
+<section id="the-vscode-user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="the-vscode-user-interface">The VSCode User Interface</h2>
 <p>Hopefully at this point you have VSCode installed and the Julia extension working. Now’s let’s get familiar with VSCode itself, that way we can focus on learning Julia in the rest of the book, rather than getting stuck on the editor.</p>
-<section id="the-vscode-user-interface" class="level4">
-<h4 class="anchored" data-anchor-id="the-vscode-user-interface">The VSCode User Interface</h4>
 <p>A detailed description of the VSCode user interface is beyond the scope of this book (more details can be found <a href="https://code.visualstudio.com/docs/getstarted/userinterface">here</a>), but there are a few key features that you should be aware of.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -384,8 +383,6 @@ Note
 <p>At the bottom of the screen, you will see the <em>Integrated Terminal</em> panel, which is where you can run Julia code, as well as the <em>Problems</em> panel, which will show you any errors or warnings that VSCode has detected in your code. Some other tools can be seen here, but they are not particularly important for now.</p>
 <p>Finally, at the very bottom of the screen is the <em>Status Bar</em>, which shows you the current branch of your git repository (if you have one), the current Julia environment, and some other miscellaneous information.</p>
 <p>One thing you may have noticed in the video is that I used the keyboard shortcut <code>Cmd + P</code> to open different files within my <strong>Workspace</strong>. This is a really useful shortcut that allows you to quickly navigate to files, but you can also use it to navigate <em>within</em> a file. Typing <code>@</code> will allow you to navigate to different symbols e.g.&nbsp;functions, variables, headings etc., and typing <code>:</code> will allow you to navigate to a specific line number in the file.</p>
-</section>
-</section>
 </section>
 <section id="bonus-set-up" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-set-up">Bonus Set Up</h2>
