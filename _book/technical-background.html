@@ -151,9 +151,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">JuliaEpiHandbook</a> 
-        <div class="sidebar-tools-main tools-wide">
+        <div class="sidebar-tools-main">
     <a href="https://github.com/arnold-c/JuliaEpiHandbook" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
-    <a href="./JuliaEpiHandbook.pdf" title="Download PDF" class="sidebar-tool px-1"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -308,7 +307,8 @@ Warning
 </div>
 <ul>
 <li><code>code</code> will be used to highlight code.</li>
-<li><code>{package.function()}</code> will be used to denote a specific package and function, e.g., <code>{DataFrames.subset()}</code> denotes the <code>subset()</code> function from the <code>{DataFrames}</code> package. Some languages use a different convention, such as <code>package::function()</code> in R, but so where relevant, I will do my best to provide the correct syntax.</li>
+<li><code>{package}</code> will be used to denote a specific package, e.g., <code>{DataFrames}</code> denotes the <code>{DataFrames}</code> package.</li>
+<li><code>package.function()</code> will be used to denote a function that is part of a specific package, e.g., <code>DataFrames.subset()</code> denotes the <code>subset()</code> function from the <code>{DataFrames}</code> package. Some languages use a different convention, such as <code>package::function()</code> in R, but I will use the <code>package.function()</code> syntax listed above as this is how you would use a function in Julia.</li>
 <li><strong>keywords</strong> will be used to highlight keywords and phrases, e.g., <strong>Git</strong> or <strong>GitHub</strong>.
 <ul>
 <li><strong>actions</strong> will also be highlighted in this way, e.g., <strong>commits</strong> or <strong>pushed</strong> being the result of the code <code>git commit</code> or <code>git push</code></li>

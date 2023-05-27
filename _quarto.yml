@@ -9,7 +9,7 @@ book:
       url: https://callumarnold.com
       affiliation: Pennsylvania State University
       orcid: 0000-0002-3245-6956
-  date: "5/20/2023"
+  date: "5/26/2023"
   chapters:
     - index.qmd
     - part: "Background"
@@ -23,7 +23,7 @@ book:
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]
-  downloads: [pdf]
+  # downloads: [epub]
   sidebar:
     search: true
     border: true
