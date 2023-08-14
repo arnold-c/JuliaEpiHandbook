@@ -4,8 +4,8 @@
 $body-bg: #181825 !default;
 $body-color: #cdd6f4 !default;
 $link-color: #eba0ac !default;
+$hover-color: #22c59cff !default;
 $headings-color: #a6adc8 !default;
-// $title-color:#74c7ec !default; 
 $code-color: #a6e3a1 !default;
 $code-bg: #11111b !default;
 $code-block-bg: $code-bg !default;
@@ -15,4 +15,34 @@ $btn-code-copy-color: $code-bg !default;
 $navbar-color: $code-bg !default;
 $navbar-padding-y: 1.5rem !default;
 
+
+
+
+
+
+
 /*-- scss:rules --*/
+
+// Set TOC active left border thicker
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
+    border-left: 5px solid $link-color !important;
+    color: $link-color !important;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $hover-color;
+}
+
+.sidebar nav[role=doc-toc] ul>li>a:hover, .sidebar nav[role=doc-toc] ul>li>ul>li>a:hover {
+    color: $hover-color !important;
+}
+
+.nav-page a:hover {
+    color: $hover-color;
+}
+
