@@ -31,6 +31,8 @@ book:
   sidebar:
     search: true
     border: true
+  bread-crumbs: true
+  google-analytics: "G-EVYBCCRZHE"
 
 bibliography: references.bib
 
@@ -66,3 +68,8 @@ format:
     code-copy: true
     code-fold: false
     code-overflow: wrap
+    grid:
+      sidebar-width: 270px
+      body-width: 1000px
+      margin-width: 200px
+      gutter-width: 1rem
