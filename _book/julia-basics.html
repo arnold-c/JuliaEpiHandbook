@@ -402,7 +402,7 @@ Note
 <h3 class="anchored" data-anchor-id="assignment">Assignment</h3>
 <p>Now we know what <strong>variables</strong> are, let’s look at how to create them. As mentioned earlier, we use the <code>=</code> operator to assign a value to a <strong>variable</strong>. For example, if we wanted to create a variable called <code>x</code> and assign it the value <code>1</code>, we would write <code>x = 1</code>. But we aren’t just restricted to numbers, we can assign any type of value to a variable. This includes <strong>strings</strong>, <strong>arrays</strong>, <strong>tuples</strong>, <strong>dictionaries</strong>, and <strong>structs</strong>.</p>
 <p>Earlier, when talking about data structures, we used the example of a person’s name, age, and height. Let’s see how we can create <strong>tuples</strong>, <strong>dictionaries</strong>, and <strong>dataframes</strong> to store this information.</p>
-<div id="83602d33" class="cell" data-execution_count="1">
+<div id="d2aa1f21" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames </span><span class="co"># We need to load the DataFrames package to create a DataFrame</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>john_tuple <span class="op">=</span> (<span class="st">"John"</span>, <span class="fl">25</span>, <span class="fl">1.8</span>)</span>
@@ -425,7 +425,7 @@ Note
 </div>
 </div>
 <p>Because a person’s name is a string, their age is an integer, and their height is a float, we cannot create an array to store this information, because arrays can only store values of the same type. To show how we can create and access <strong>arrays</strong>, let’s create a <strong>vector</strong> (1-D array) of multiple people’s names, as well as a random <strong>matrix</strong> (2-D array).</p>
-<div id="a2018017" class="cell" data-execution_count="2">
+<div id="975b5f50" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>people_vec <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Jane"</span>, <span class="st">"Joe"</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test_arr <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>; <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span> <span class="fl">9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -457,7 +457,7 @@ Note
 <section id="accessing-values" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-values">Accessing Values</h3>
 <p>To access the value stored in a variable, we can often use indices. Julia, like R, is a 1-indexed language, meaning that the first element in an array has an index of 1, not 0 (like Python). In our examples, the first element of the objects we created is the person’s name, so we can access it with an index of 1.</p>
-<div id="40455a0f" class="cell" data-execution_count="3">
+<div id="3911fb4e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>john_tuple[<span class="fl">1</span>] <span class="co"># "John"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>john_ntuple[<span class="fl">1</span>] <span class="co"># "John"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>people_vec[<span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -466,7 +466,7 @@ Note
 </div>
 </div>
 <p>For <strong>dataframes</strong> and multi-dimensional <strong>arrays</strong>, we have to make a slight modification to use a comma that separates the indices for each dimension. In an array/dataframe, the first index is the row number, and the second index is the column number. To access the element in the first row and the first column of the array, we would use the following code.</p>
-<div id="0cdde22a" class="cell" data-execution_count="4">
+<div id="5ac2196a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>test_arr[<span class="fl">1</span>, <span class="fl">1</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>john_df[<span class="fl">1</span>, <span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -474,7 +474,7 @@ Note
 </div>
 </div>
 <p>If we want to access an entire row or column, we can use the <code>:</code> operator. For example, if we want to access the first column of the array, we can use the following code.</p>
-<div id="1d46c60e" class="cell" data-execution_count="5">
+<div id="ab280d8d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>test_arr[<span class="op">:</span>, <span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>3-element Vector{Int64}:
@@ -483,7 +483,7 @@ Note
  7</code></pre>
 </div>
 </div>
-<div id="fa3465ce" class="cell" data-execution_count="6">
+<div id="53e7dc0c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>john_df[<span class="op">:</span>, <span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>1-element Vector{String}:
@@ -491,7 +491,7 @@ Note
 </div>
 </div>
 <p>If we want to access the first row of the array, we can use the following code.</p>
-<div id="64da31fc" class="cell" data-execution_count="7">
+<div id="f069f25e" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>test_arr[<span class="fl">1</span>, <span class="op">:</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>3-element Vector{Int64}:
@@ -514,14 +514,14 @@ Note
 </div>
 </div>
 <p>However, none of these methods work for <strong>dictionaries</strong>. For dictionaries, you need to specify the key of the value you want to access.</p>
-<div id="95a0ce81" class="cell" data-execution_count="8">
+<div id="117430b7" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>john_dict[<span class="st">"name"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>"John"</code></pre>
 </div>
 </div>
 <p>You can also use the key (or column name) to access the value in <strong>dataframes</strong> and <strong>named tuples</strong>.</p>
-<div id="67461df2" class="cell" data-execution_count="9">
+<div id="b8ccee98" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>john_df[<span class="fl">1</span>, <span class="op">:</span>name] <span class="co"># The : operator before the column name turns it into a symbol that can be used to index the dataframe</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>john_df[<span class="fl">1</span>, <span class="st">"name"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -539,7 +539,7 @@ Note
 <p>Functions are a core part of programming in Julia, and programming in general. A function is a block of code that performs a specific task. As has been said before, a function is like a recipe you might use to bake a cake. The recipe tells you what ingredients you need, how to combine them, and how long to bake them for. And like a recipe, a function can be used over and over again to produce the same result (assuming you have identical inputs). This is a really powerful concept, and helps make your work and research reproducible by breaking up your code into small, reusable, and understandable chunks. And because it is meant to be reused, it will save you time in cases when you need to do the same thing multiple times (you don’t want to have to write the same code over and over again)!</p>
 <p>So let’s look at a simple example of a function in Julia, and use it to explore some of the key concepts of functions.</p>
 <p>Say we want to take a number, multiply it by 2, and then divide the result by 3. You could just write this out explicitly, but what if you want to do this for a bunch of different numbers? This is where a function comes in handy.</p>
-<div id="a4cf225b" class="cell" data-execution_count="10">
+<div id="604d85cb" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">multiply_by_two_divide_by_three</span>(x)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> x <span class="op">*</span> <span class="fl">2</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> y <span class="op">/</span> <span class="fl">3</span></span>
@@ -551,13 +551,13 @@ Note
 </div>
 <p>This function takes a single <strong>argument</strong>, <code>x</code>, and then multiplies it by 2 and divides it by 3. The <code>return</code> keyword tells Julia what value to return from the function. It also tells Julia that the function is finished, and it will not execute any code after the <code>return</code> statement.</p>
 <p>Let’s try using this function.</p>
-<div id="20e69427" class="cell" data-execution_count="11">
+<div id="fb21c2e8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>(<span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<div id="fa010f42" class="cell" data-execution_count="12">
+<div id="78803365" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>(<span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>6.666666666666667</code></pre>
@@ -595,7 +595,7 @@ Note
 <section id="arguments-keyword-arguments" class="level3">
 <h3 class="anchored" data-anchor-id="arguments-keyword-arguments">Arguments &amp; Keyword Arguments</h3>
 <p>Unlike R, Julia makes a distinction between arguments and keyword arguments. Arguments are the values that are passed to a function. In the example function above, <code>x</code> is an argument. In Julia, arguments are <strong>positional</strong>, meaning that the order in which you pass them to a function matters. To see this in practice, let’s write a new function that takes two arguments, <code>x</code> and <code>y</code>, and multiplies them together after minusing one from argument <code>x</code> and adding one to argument <code>y</code>.</p>
-<div id="cdc6c3de" class="cell" data-execution_count="13">
+<div id="2a117bb7" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">multiply_together_offsets</span>(x, y)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (x <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> (y <span class="op">+</span> <span class="fl">1</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span>
@@ -605,20 +605,20 @@ Note
 </div>
 </div>
 <p>Because Julia uses positional arguments, the following two function calls will return different values, even though the numbers <code>5</code> and <code>10</code> are used in both.</p>
-<div id="caff963f" class="cell" data-execution_count="14">
+<div id="6ee76a1d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">5</span>, <span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>44</code></pre>
 </div>
 </div>
-<div id="2f0445ae" class="cell" data-execution_count="15">
+<div id="a3683176" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">10</span>, <span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>54</code></pre>
 </div>
 </div>
 <p><strong>Keyword arguments</strong> are arguments that are passed to a function by name. Generally speaking, keyword arguments are used to set default values for arguments that can be changed by the user. Let’s modify our <code>multiply_together_offsets</code> function to use keyword arguments.</p>
-<div id="6348245f" class="cell" data-execution_count="16">
+<div id="7307b59f" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">multiply_together_offsets</span>(x, y; offset_x <span class="op">=</span> <span class="fl">1</span>, offset_y <span class="op">=</span> <span class="fl">1</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (x <span class="op">-</span> offset_x) <span class="op">*</span> (y <span class="op">+</span> offset_y)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span>
@@ -642,13 +642,13 @@ Tip
 </div>
 </div>
 <p>Now, when we call the function, we can specify the values of these arguments by name.</p>
-<div id="c175db1e" class="cell" data-execution_count="17">
+<div id="a2289bc5" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">5</span>, <span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>44</code></pre>
 </div>
 </div>
-<div id="f841fc4d" class="cell" data-execution_count="18">
+<div id="599e5a95" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_together_offsets</span>(<span class="fl">5</span>, <span class="fl">10</span>; offset_x <span class="op">=</span> <span class="fl">2</span>, offset_y <span class="op">=</span> <span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>39</code></pre>
@@ -659,7 +659,7 @@ Tip
 <h3 class="anchored" data-anchor-id="scope">Scope</h3>
 <p>Scope is a relatively complicated concept, but it is important to understand it in order to write functions that are easy to understand and debug. Scope refers to the visibility of variables within a function. In Julia, variables that are defined within a function are not visible outside of the function. The reverse is not true, however. Variables that are defined outside of a function are visible within the function, but cannot be modified.</p>
 <p>Let’s look at some examples.</p>
-<div id="59b6fd52" class="cell" data-execution_count="19">
+<div id="9cc0d6de" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">add_one</span>(x)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> x <span class="op">+</span> <span class="fl">1</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
@@ -670,14 +670,14 @@ Tip
 <pre><code>6</code></pre>
 </div>
 </div>
-<div id="469f3f81" class="cell" data-execution_count="20">
+<div id="32412ecc" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>LoadError: UndefVarError: `y` not defined</code></pre>
 </div>
 </div>
 <p>In this case, <code>y</code> is defined within the function <code>add_one()</code> i.e.&nbsp;is a <strong>local variable</strong>, and is therefore not visible outside of the function, but it can be used within the function!</p>
-<div id="e3e85b92" class="cell" data-execution_count="21">
+<div id="d5226b0a" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>global_x <span class="op">=</span> <span class="fl">5</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">print_global_x</span>()</span>
@@ -703,7 +703,7 @@ Warning
 <p>It’s not good practice to access <strong>global variables</strong> in your functions. Instead, if you want to use a variable in your function, pass it as an argument.</p>
 </div>
 </div>
-<div id="0c58eb79" class="cell" data-execution_count="22">
+<div id="9831ea4a" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">modify_global_x</span>()</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    global_x <span class="op">=</span> <span class="fl">10</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> global_x</span>
@@ -722,7 +722,7 @@ Warning
 <h3 class="anchored" data-anchor-id="multiple-dispatch">Multiple Dispatch</h3>
 <p>Multiple dispatch is the idea that the behavior of a function depends on the types of the arguments that are passed to it (as well as the number of arguments). To illustrate this, let’s go back to our original example function <code>multiply_by_two_divide_by_three()</code>.</p>
 <p>In the example above, we passed a single argument to the function, and it returned a floating point number. But what if we wanted to pass multiple numbers to the function, and have it return a vector of the results? We could do this by specifying another <strong>method</strong> of the function that accepts a tuple of numbers as an argument.</p>
-<div id="708a9479" class="cell" data-execution_count="23">
+<div id="1ddb641e" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">multiply_by_two_divide_by_three</span>(x<span class="op">::</span><span class="dt">Tuple</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Float64</span>, <span class="fu">length</span>(x))</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="fu">similar</span>(y)</span>
@@ -753,7 +753,7 @@ Note
 </div>
 </div>
 <p>Now let’s test out our new function method</p>
-<div id="bf811527" class="cell" data-execution_count="24">
+<div id="69036309" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>((<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>3-element Vector{Float64}:
@@ -763,7 +763,7 @@ Note
 </div>
 </div>
 <p>And we can see that the original method that just takes a single number as an argument still works.</p>
-<div id="eda439b1" class="cell" data-execution_count="25">
+<div id="5a9d8ba6" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply_by_two_divide_by_three</span>(<span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>2.0</code></pre>
@@ -796,7 +796,7 @@ Warning
 <section id="if-statements" class="level3">
 <h3 class="anchored" data-anchor-id="if-statements">If Statements</h3>
 <p>If statements are a way to control whether or not a block of code is executed, and fall under the general category of <strong>conditional evaluation</strong> (but I think “if statements” gives you a more intuitive sense of what we’re talking about in this section). There are many uses for conditional evaluation, so we’ll just show you some examples of how to use it, and you can explore further if you need to. The following is an example from the <a href="https://docs.julialang.org/en/v1/manual/control-flow/#man-conditional-evaluation-1">Julia documentation</a>.</p>
-<div id="95052fe0" class="cell" data-execution_count="26">
+<div id="09497b3b" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">number_relations</span>(x, y)</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;</span> y</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>        relation <span class="op">=</span> <span class="st">"less than"</span></span>
@@ -830,7 +830,7 @@ Note
 <section id="short-circuit-evaluation" class="level4">
 <h4 class="anchored" data-anchor-id="short-circuit-evaluation">Short-Circuit Evaluation</h4>
 <p>If you want to check multiple conditions, you can use the <code>&amp;&amp;</code> (and) and <code>||</code> (or) operators. These is known as <strong>short-circuit evaluation</strong>. For example, if we wanted to check if a number is between 0 and 10, we could do the following.</p>
-<div id="7f99ed9c" class="cell" data-execution_count="27">
+<div id="a36d3821" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">number_between</span>(x)</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> x <span class="op">&lt;</span> <span class="fl">10</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"x is between 0 and 10"</span>)</span>
@@ -844,14 +844,14 @@ Note
 <pre><code>x is between 0 and 10</code></pre>
 </div>
 </div>
-<div id="493553cf" class="cell" data-execution_count="28">
+<div id="f5635c42" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">number_between</span>(<span class="fl">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x is not between 0 and 10</code></pre>
 </div>
 </div>
 <p>In <code>number_between(3)</code>, x is greater than 0 and less than 10, so both conditions evaluate to <code>true</code>, and the code in the <code>if</code> statement is executed. In <code>number_between(11)</code>, x is greater than 0, but not less than 10, so while the first condition evaluates to <code>true</code>, the second condition evaluates to <code>false</code>, so the code in the <code>else</code> statement is executed. This is important to understand - all conditions must evaluate to <code>true</code> for the code in the <code>if</code> statement to be executed! Based on this, try to think about why the following code also works.</p>
-<div id="c160c528" class="cell" data-execution_count="29">
+<div id="10904775" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">number_between2</span>(x)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> ((x <span class="op">&gt;</span> <span class="fl">10</span>) <span class="op">==</span> <span class="cn">false</span>)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"x is between 0 and 10"</span>)</span>
@@ -875,7 +875,7 @@ Note
 <p>The most common way to iterate in Julia is using a <code>for</code> loop. We have already seen a <code>for</code> loop in the <a href="#multiple-dispatch">multiple dispatch</a> section, but let’s look at a simpler example.</p>
 <p>Let’s say we want to calculate the sum of the numbers from 1 to 10 (cumulative sum) i.e.&nbsp;1 + 2 + 3 + … + 10. Julia has an in-built function to do this (<code>cumsum()</code>), but let’s write our own function to do it using a <code>for</code> loop.</p>
 <p>There are multiple ways we could write this function, but the most intuitive way is to go through each of the numbers in 1 to 10, and add them to a running total.</p>
-<div id="9696187f" class="cell" data-execution_count="30">
+<div id="4e68fe12" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mycumsum</span>(x)</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0</span> <span class="co"># Initialize our running total to 0</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -896,7 +896,7 @@ Note
 <section id="while-loop" class="level4">
 <h4 class="anchored" data-anchor-id="while-loop">While Loop</h4>
 <p>Another way to iterate is using a <code>while</code> loop. The difference between a <code>for</code> loop and a <code>while</code> loop is that a <code>for</code> loop iterates over a sequence of values, whereas a <code>while</code> loop iterates until a condition is met. For example, let’s say we want to keep adding numbers to our running total until the total is greater than 100 (and stop counting). We might not know how many numbers we need to add to get to 100, so we can’t use a <code>for</code> loop, but we can use a <code>while</code> loop.</p>
-<div id="5f34dab4" class="cell" data-execution_count="31">
+<div id="e0096a6c" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mycumsum2</span>(x)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0</span> <span class="co"># Initialize our running total to 0</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">1</span> <span class="co"># Initialize our counter to 1</span></span>

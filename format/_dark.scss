@@ -35,14 +35,14 @@ a {
 }
 
 a:hover {
-  color: $hover-color;
+  color: $hover-color !important;
 }
 
-.sidebar nav[role=doc-toc] ul>li>a:hover, .sidebar nav[role=doc-toc] ul>li>ul>li>a:hover {
+.sidebar nav[role=doc-toc] ul:hover a:hover {
     color: $hover-color !important;
 }
 
 .nav-page a:hover {
-    color: $hover-color;
+    color: $hover-color !important;
 }
 
