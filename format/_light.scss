@@ -19,6 +19,11 @@ $post-cat-bg-color: #cdd6f4 !default;
 
 /*-- scss:rules: --*/
 
+// Sidebar search shortcut
+.aa-Autocomplete .aa-Form .aa-InputWrapperPrefix .aa-SubmitButton::after {
+  content: " [s|?]";
+  color: #343a40 !important;
+}
 
 // Set TOC active left border thicker
 .sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {

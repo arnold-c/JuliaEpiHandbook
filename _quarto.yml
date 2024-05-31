@@ -9,7 +9,7 @@ book:
       url: https://callumarnold.com
       affiliation: Pennsylvania State University
       orcid: 0000-0002-3245-6956
-  date: "5/26/2023"
+  date: "2024-05-31"
   chapters:
     - index.qmd
     - part: "Background"
@@ -17,20 +17,21 @@ book:
       - motivations-background.qmd
       - technical-background.qmd
     - part: "Getting Started With Julia"
-      chapters: 
+      chapters:
         - install-julia.qmd
         - julia-basics.qmd
         - new-project.qmd
     - part: "TODO"
-      chapters: 
+      chapters:
         - todo.qmd
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]
-  # downloads: [epub]
   sidebar:
     search: true
     border: true
+  search:
+    keyboard-shortcut: ["?", "s"]
   bread-crumbs: true
   google-analytics: "G-EVYBCCRZHE"
 
