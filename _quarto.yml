@@ -21,6 +21,7 @@ book:
         - install-julia.qmd
         - julia-basics.qmd
         - new-project.qmd
+        - import-export.qmd
     - part: "TODO"
       chapters:
         - todo.qmd

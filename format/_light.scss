@@ -10,7 +10,10 @@ $hover-color: #c73d3dff !default;
 $post-cat-color: #181825 !default;
 $post-cat-bg-color: #cdd6f4 !default;
 
-
+// Code blocks
+$code-color: #c1032e !default;
+$code-bg: #e2dbda !default;
+$code-block-bg: $code-bg !default;
 
 
 
@@ -18,6 +21,10 @@ $post-cat-bg-color: #cdd6f4 !default;
 
 
 /*-- scss:rules: --*/
+
+// div.sourceCode {
+//   background-color : #e2decc !important;
+// }
 
 // Set TOC active left border thicker
 .sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {

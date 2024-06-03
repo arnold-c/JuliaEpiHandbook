@@ -1,6 +1,6 @@
 ---
 date: "2023-05-26"
-jupyter: julia-1.9
+engine: julia
 ---
 
 # New Julia Project {.unnumbered}
@@ -25,8 +25,9 @@ To do this, type `]` in the REPL and hit enter.
 This enters the `Pkg` REPL, which is a special REPL for managing Julia packages.
 Here you should see something like:
 
-```julia-repl
-(@v1.9) pkg>
+```{julia}
+#| eval: false
+(@v1.10) pkg>
 ```
 
 Next, type `add DrWatson` and hit enter.
@@ -66,7 +67,8 @@ You VSCode window should refresh and you should now see the name of your project
 Now, if you try to open the `Pkg` REPL again, you will see something different.
 Instead it'll say:
 
-```julia-repl
+```{julia}
+#| eval: false
 (MyFirstProject) pkg>
 ```
 
@@ -126,7 +128,7 @@ quickactivate("MyFirstProject")
 ```
 
 ## Miscellaneous
-### `DrWatson` Project Structure
+### `DrWatson` Project Structure {#drwatson-project-structure}
 
 It may not be immediately obvious why we need to use `DrWatson` to create our Julia projects.
 In fact, we don't need to use `DrWatson` to create our Julia projects, but it does make our lives a lot easier as it provides a consistent project structure that is easy to navigate.
@@ -180,7 +182,7 @@ using DrWatson
 quickactivate("MyFirstProject")
 ```
 
-And secondly, it provides us with convenient directory paths to the folders in our project.
+<a name="drwatson-helpers">And secondly, it provides us with convenient directory paths to the folders in our project.</a>
 For example, if we want to access the `data` folder in our project, we can use the `datadir()` function, which will return the path to the `data` folder.
 Similarly, if we wanted to save a plot to the `plots` folder, we could use `save(plotsdir("plot_object.png"), plot_object)` function to save the plot in `plot_object` to the `plots` folder.
 

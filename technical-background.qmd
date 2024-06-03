@@ -1,6 +1,6 @@
 ---
 date: "2023-05-20"
-jupyter: julia-1.9
+engine: julia
 ---
 
 # Keywords, Code, and Other Formatting {.unnumbered}
@@ -28,7 +28,7 @@ This will provide a warning that you may get an unexpected result if you're not 
 - `package.function()` will be used to denote a function that is part of a specific package, e.g., `DataFrames.subset()` denotes the `subset()` function from the `{DataFrames}` package.
 Some languages use a different convention, such as `package::function()` in R, but I will use the `package.function()` syntax listed above as this is how you would use a function in Julia.
 - **keywords** will be used to highlight keywords and phrases, e.g., **Git** or **GitHub**.
-    - **actions** will also be highlighted in this way, e.g., **commits** or **pushed** being the result of the code `git commit` or `git push` 
+    - **actions** will also be highlighted in this way, e.g., **commits** or **pushed** being the result of the code `git commit` or `git push`
 - ***files*** will be used to highlight file names, e.g., ***README.md*** or ***LICENSE***.
 - *italics* will be used for emphasis in certain circumstances, e.g., signifying a question from an interactive terminal command.
 
@@ -40,7 +40,7 @@ The Julia language has an excellent package manager that makes it easy to instal
 In the next section, I will walk through the process of getting started with Julia, and therefore, the process of installing packages, but below you can see the full list of packages and the installed version of Julia used in this book.
 
 ```{julia}
-versioninfo()
+# versioninfo()
 ```
 
 ```{julia}

@@ -1,0 +1,30 @@
+---
+date: "2024-06-02"
+engine: julia
+---
+
+# Importing Files {.unnumbered}
+
+## Overview
+
+Unfortunately, unlike R, Julia doesn't have a single package to import the majority of file types.
+That being said, each package works well at the file type it is built around.
+
+## File Paths
+
+If you've set up your project using `{DrWatson}`, you should have a number of [useful helpful functions](./new-project.qmd#drwatson-helpers) for you to use in your project (after loading and activating the project with `using DrWatson; quickactivate(Project)`).
+Because you creating a new folder for each project, and activating it as such with `{DrWatson}` (or using `]activate .`), Julia will create a ***Project.toml*** and a ***Manifest.toml*** file in your project folder.
+This does all the hard work of setting up relative paths, and making sure each project has it's own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages.
+
+To load a file from the ***src/*** folder, we can simply using `include(DrWatson.srcdir("filename.jl"))`
+
+::: {.callout-note}
+In case you're wondering what `{DrWatson}` is doing when it sets up these helper scripts, we can just have a look at the source code as most Julia packages are written in Julia!
+
+Looking at [these lines](https://github.com/JuliaDynamics/DrWatson.jl/blob/3f2a6cf4b1c66bbfdeaab9527c436b1d275dba7d/src/project_setup.jl#L28-L33) in the source code, we can see that the `projectdir()` function is effectively a wrapper around the below code, with a check to make sure you have activated the project.
+
+```{julia}
+#| eval: false
+dirname(Base.active_project())
+```
+:::

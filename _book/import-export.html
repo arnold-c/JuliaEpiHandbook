@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Callum Arnold-Leps">
-<meta name="dcterms.date" content="2023-05-26">
+<meta name="dcterms.date" content="2024-06-02">
 
-<title>JuliaEpiHandbook – New Julia Project</title>
+<title>JuliaEpiHandbook – Importing Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./import-export.html" rel="next">
-<link href="./julia-basics.html" rel="prev">
+<link href="./todo.html" rel="next">
+<link href="./new-project.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -126,7 +126,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./new-project.html">New Julia Project</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./import-export.html">Importing Files</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -207,13 +207,13 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./new-project.html" class="sidebar-item-text sidebar-link active">
+  <a href="./new-project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">New Julia Project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import-export.html" class="sidebar-item-text sidebar-link">
+  <a href="./import-export.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Importing Files</span></a>
   </div>
 </li>
@@ -246,25 +246,17 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#first-time-julia-setup" id="toc-first-time-julia-setup" class="nav-link active" data-scroll-target="#first-time-julia-setup">First Time Julia Setup</a></li>
-  <li><a href="#creating-a-folder-for-your-projects" id="toc-creating-a-folder-for-your-projects" class="nav-link" data-scroll-target="#creating-a-folder-for-your-projects">Creating a Folder for Your Projects</a></li>
-  <li><a href="#creating-a-julia-project" id="toc-creating-a-julia-project" class="nav-link" data-scroll-target="#creating-a-julia-project">Creating a Julia Project</a></li>
-  <li><a href="#project-files" id="toc-project-files" class="nav-link" data-scroll-target="#project-files">Project Files</a></li>
-  <li><a href="#creating-running-a-julia-script" id="toc-creating-running-a-julia-script" class="nav-link" data-scroll-target="#creating-running-a-julia-script">Creating &amp; Running a Julia Script</a></li>
-  <li><a href="#miscellaneous" id="toc-miscellaneous" class="nav-link" data-scroll-target="#miscellaneous">Miscellaneous</a>
-  <ul class="collapse">
-  <li><a href="#drwatson-project-structure" id="toc-drwatson-project-structure" class="nav-link" data-scroll-target="#drwatson-project-structure"><code>DrWatson</code> Project Structure</a></li>
-  <li><a href="#naming-files" id="toc-naming-files" class="nav-link" data-scroll-target="#naming-files">Naming Files</a></li>
-  </ul></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#file-paths" id="toc-file-paths" class="nav-link" data-scroll-target="#file-paths">File Paths</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/new-project.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/import-export.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./new-project.html">New Julia Project</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./import-export.html">Importing Files</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">New Julia Project</h1>
+<h1 class="title">Importing Files</h1>
 </div>
 
 
@@ -288,7 +280,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 26, 2023</p>
+      <p class="date">June 2, 2024</p>
     </div>
   </div>
   
@@ -300,8 +292,14 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 </header>
 
 
-<section id="first-time-julia-setup" class="level2">
-<h2 class="anchored" data-anchor-id="first-time-julia-setup">First Time Julia Setup</h2>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Unfortunately, unlike R, Julia doesn’t have a single package to import the majority of file types. That being said, each package works well at the file type it is built around.</p>
+</section>
+<section id="file-paths" class="level2">
+<h2 class="anchored" data-anchor-id="file-paths">File Paths</h2>
+<p>If you’ve set up your project using <code>{DrWatson}</code>, you should have a number of <a href="./new-project.html#drwatson-helpers">useful helpful functions</a> for you to use in your project (after loading and activating the project with <code>using DrWatson; quickactivate(Project)</code>). Because you creating a new folder for each project, and activating it as such with <code>{DrWatson}</code> (or using <code>]activate .</code>), Julia will create a <strong><em>Project.toml</em></strong> and a <strong><em>Manifest.toml</em></strong> file in your project folder. This does all the hard work of setting up relative paths, and making sure each project has it’s own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages.</p>
+<p>To load a file from the <strong><em>src/</em></strong> folder, we can simply using <code>include(DrWatson.srcdir("filename.jl"))</code></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -312,154 +310,15 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You only have to follow these steps the first time after you download a new version of Julia and set it as your working version.</p>
-</div>
-</div>
-<p>Now that we have a better understanding of both Julia and the VSCode user interface, let’s create a new Julia project.</p>
-<p>First, open a fresh VSCode window. If you already happen to be in a <strong>workspace</strong> (check in the “Explorer” panel), you can click on the “File” menu in the top left of the VSCode window, and then click “New Window”. Now, open the <em>Command Palette</em> (keyboard shortcut <code>Cmd + Shift + P</code> on Mac or <code>Ctrl + Shift + P</code> on Windows or Linux) and type “Julia: Start REPL”. Doing this should open up the integrated terminal with the Julia REPL running. Type <code>pwd()</code> in the REPL and hit enter. It should return your home directory (i.e.&nbsp;<code>/Users/&lt;your-username&gt;</code> on Mac or <code>C:\Users\&lt;your-username&gt;</code> on Windows). From here we want to add a package called <code>DrWatson</code> to our Julia installation. To do this, type <code>]</code> in the REPL and hit enter. This enters the <code>Pkg</code> REPL, which is a special REPL for managing Julia packages. Here you should see something like:</p>
+<p>In case you’re wondering what <code>{DrWatson}</code> is doing when it sets up these helper scripts, we can just have a look at the source code as most Julia packages are written in Julia!</p>
+<p>Looking at <a href="https://github.com/JuliaDynamics/DrWatson.jl/blob/3f2a6cf4b1c66bbfdeaab9527c436b1d275dba7d/src/project_setup.jl#L28-L33">these lines</a> in the source code, we can see that the <code>projectdir()</code> function is effectively a wrapper around the below code, with a check to make sure you have activated the project.</p>
 <div id="2" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="pp">@v1</span><span class="fl">.10</span>) pkg<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Next, type <code>add DrWatson</code> and hit enter. This will add the <code>DrWatson</code> package to your Julia installation, and will allow us to easily create new Julia projects in a consistent way that works well for epidemiology projects (among others).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dirname</span>(<span class="bu">Base</span>.<span class="fu">active_project</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>If you’re still wondering why we’re bothering with the <code>DrWatson</code> package, you can read more about it <a href="#drwatson-project-structure">below</a>.</p>
 </div>
-</div>
-</section>
-<section id="creating-a-folder-for-your-projects" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-folder-for-your-projects">Creating a Folder for Your Projects</h2>
-<p>The first thing we need to do is create a folder that will house all our individual project folders. To try and make your life easy, I would recommend you create this folder in your home directory, and call it <strong><em>Repos/</em></strong> (or something similar). You can do this with Finder on Mac or File Explorer on Windows.</p>
-</section>
-<section id="creating-a-julia-project" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-julia-project">Creating a Julia Project</h2>
-<p>Now let’s create our first Julia project folder. To do this, go back to the Julia <code>Pkg</code> REPL and hit backspace. This will return you to the normal Julia REPL. Now we need to navigate to the folder you just created. To do this, type <code>cd("path/to/your/project/folder")</code> and hit enter.</p>
-<p>From here, type <code>using DrWatson</code> and hit enter. This will load the <code>DrWatson</code> package into your Julia session so you can use its functions.</p>
-<p>To create the project folder, type <code>initialize_project("MyFirstProject")</code> and hit enter. This will create a new project folder <strong><em>MyFirstProject/</em></strong> in the folder you navigated to earlier e.g., <strong><em>/Users/username/Documents/Repos/MyFirstProject/</em></strong>.</p>
-<p>Now you have a project folder, let’s open it in VSCode. In VSCode, click on the “File” menu in the top left of the VSCode window, and then click “Open Folder…”. From here, navigate to the project folder you just created and click “Open”. You VSCode window should refresh and you should now see the name of your project folder in the top center of the VSCode window (as well as in the top left of the “Explorer” panel).</p>
-<p>Now, if you try to open the <code>Pkg</code> REPL again, you will see something different. Instead it’ll say:</p>
-<div id="4" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(MyFirstProject) pkg<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You’re ready to start adding packages to your project! I would recommend starting with following packages:</p>
-<ul>
-<li><code>Revise</code></li>
-<li><code>DrWatson</code></li>
-<li><code>DataFrames</code></li>
-<li><code>DataFramesMeta</code></li>
-<li><code>CSV</code></li>
-<li><code>IJulia</code></li>
-<li><code>JuliaFormatter</code></li>
-<li><code>CairoMakie</code></li>
-</ul>
-<p>As before, to add a package, type <code>add &lt;package-name&gt;</code> and hit enter (you can add multiple packages at once by separating them with spaces e.g.&nbsp;<code>add &lt;package-1&gt; &lt;package-2&gt;</code>).</p>
-</section>
-<section id="project-files" class="level2">
-<h2 class="anchored" data-anchor-id="project-files">Project Files</h2>
-<p>When you create a new Julia project, it creates two files in the project folder:</p>
-<ul>
-<li><strong><em>Project.toml</em></strong>: this is a TOML file that contains the names and versions of all the packages you have added to your project</li>
-<li><strong><em>Manifest.toml</em></strong>: this is a TOML file that contains the names and versions of all the packages you have added to your project, as well as the names and versions of all the packages that those packages depend on. It is automatically generated by Julia, and you should not edit it manually.</li>
-</ul>
-<p>Edit the <strong><em>Project.toml</em></strong> file to add your name in the authors field at the top of the file (you will need to create this), so it looks something like this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"MyFirstProject"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span><span class="st">"My Name"</span><span class="op">]</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[deps]</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">CSV</span> <span class="op">=</span> <span class="st">"336ed68f-0bac-5ca0-87d4-7b16caf5d00b"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">CairoMakie</span> <span class="op">=</span> <span class="st">"13f3f980-e62b-5c42-98c6-ff1f3baf88f0"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">DataFrames</span> <span class="op">=</span> <span class="st">"a93c6f00-e57d-5684-b7b6-d8193f3e46c0"</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">DataFramesMeta</span> <span class="op">=</span> <span class="st">"1313f7d8-7da2-5740-9ea0-a2ca25f37964"</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">DrWatson</span> <span class="op">=</span> <span class="st">"634d3b9d-ee7a-5ddf-bec9-22491ea816e1"</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">IJulia</span> <span class="op">=</span> <span class="st">"7073ff75-c697-5162-941a-fcdaad2a7d2a"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">JuliaFormatter</span> <span class="op">=</span> <span class="st">"98e50ef6-434e-11e9-1051-2b60c6c9e899"</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">Revise</span> <span class="op">=</span> <span class="st">"295af30f-e4ad-537b-8983-00126c2a3abe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="creating-running-a-julia-script" class="level2">
-<h2 class="anchored" data-anchor-id="creating-running-a-julia-script">Creating &amp; Running a Julia Script</h2>
-<p>To create a Julia script in your project, click on the “File” menu in the top left of the VSCode window, and then click “New File”. Alternatively, you could use the keyboard shortcut <code>Cmd + N</code> on Mac or <code>Ctrl + N</code> on Windows or Linux. This will open a new file in the VSCode editor, which you can then save. Given we are using <code>DrWatson</code>, it is also good practice to save it in the <strong><em>scripts/</em></strong> folder. You can save it with any file name you like, but it is good practice to save it with the <code>.jl</code> extension e.g., <strong><em>scripts/myscript.jl</em></strong>.</p>
-<p>At this point, you can start writing your Julia code. Just make sure that the first two lines of the script are:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DrWatson</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quickactivate</span>(<span class="st">"MyFirstProject"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="miscellaneous" class="level2">
-<h2 class="anchored" data-anchor-id="miscellaneous">Miscellaneous</h2>
-<section id="drwatson-project-structure" class="level3">
-<h3 class="anchored" data-anchor-id="drwatson-project-structure"><code>DrWatson</code> Project Structure</h3>
-<p>It may not be immediately obvious why we need to use <code>DrWatson</code> to create our Julia projects. In fact, we don’t need to use <code>DrWatson</code> to create our Julia projects, but it does make our lives a lot easier as it provides a consistent project structure that is easy to navigate.</p>
-<p>Firstly, it creates the following folders in your project folder (copied from the <code>DrWatson</code> documentation):</p>
-<pre><code>│projectdir          &lt;- Project's main folder. It is initialized as a Git
-│                       repository with a reasonable .gitignore file.
-│
-├── _research        &lt;- WIP scripts, code, notes, comments,
-│   |                   to-dos and anything in an alpha state.
-│   └── tmp          &lt;- Temporary data folder.
-│
-├── data             &lt;- **Immutable and add-only!**
-��   ├── sims         &lt;- Data resulting directly from simulations.
-│   ├── exp_pro      &lt;- Data from processing experiments.
-│   └── exp_raw      &lt;- Raw experimental data.
-│
-├── plots            &lt;- Self-explanatory.
-├── notebooks        &lt;- Jupyter, Weave or any other mixed media notebooks.
-│
-├── papers           &lt;- Scientific papers resulting from the project.
-│
-├── scripts          &lt;- Various scripts, e.g. simulations, plotting, analysis,
-│   │                   The scripts use the `src` folder for their base code.
-│   └── intro.jl     &lt;- Simple file that uses DrWatson and uses its greeting.
-│
-├── src              &lt;- Source code for use in this project. Contains functions,
-│                       structures and modules that are used throughout
-│                       the project and in multiple scripts.
-│
-├── README.md        &lt;- Optional top-level README for anyone using this project.
-├── .gitignore       &lt;- by default ignores _research, data, plots, videos,
-│                       notebooks and latex-compilation related files.
-│
-├── Manifest.toml    &lt;- Contains full list of exact package versions used currently.
-└── Project.toml     &lt;- Main project file, allows activation and installation.
-                        Includes DrWatson by default.</code></pre>
-<p>Above providing us with a useful project structure, <code>DrWatson</code> also provides us with a number of very helpful functions.</p>
-<p>For one, it provides us with the <code>quickactivate()</code> function that allows us to activate our project and environment when we’re working in a script, so we can easily import all the packages we need, regardless of where the script is saved. This means that we don’t need to worry about activating our project in the REPL before we start working in a script. This may not sound meaningful, but it’s very easy to forget to activate your project in the REPL before you start working in a script, and then you end up with a bunch of errors because you haven’t actually imported the packages you need. To use this, make sure your first two lines of your script are always:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DrWatson</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quickactivate</span>(<span class="st">"MyFirstProject"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a name="drwatson-helpers">And secondly, it provides us with convenient directory paths to the folders in our project.</a> For example, if we want to access the <code>data</code> folder in our project, we can use the <code>datadir()</code> function, which will return the path to the <code>data</code> folder. Similarly, if we wanted to save a plot to the <code>plots</code> folder, we could use <code>save(plotsdir("plot_object.png"), plot_object)</code> function to save the plot in <code>plot_object</code> to the <code>plots</code> folder.</p>
-<p>More details about the <code>DrWatson</code> project structure and associated functions can be found <a href="https://juliadynamics.github.io/DrWatson.jl/stable/project/">here</a>.</p>
-</section>
-<section id="naming-files" class="level3">
-<h3 class="anchored" data-anchor-id="naming-files">Naming Files</h3>
-<p>When naming files and folders, it is important to be consistent and descriptive. Ideally the name will contain no spaces, and you can use dashes to separate words. See <a href="https://speakerdeck.com/jennybc/how-to-name-files">this presentation</a> by Jenny Bryan for more information on naming files and folders, but in short:</p>
-<ul>
-<li>KISS (Keep It Simple Stupid): use simple and consistent file names
-<ul>
-<li>It needs to be machine readable</li>
-<li>It needs to be human readable</li>
-<li>It needs to order well in a directory</li>
-<li>No special characters and no spaces!</li>
-</ul></li>
-<li>Use YYYY-MM-DD date format</li>
-<li>Use <code>-</code> to delimit words and <code>_</code> to delimit sections
-<ul>
-<li>i.e.&nbsp;<strong><em>2019-01-19_my-data.csv</em></strong></li>
-</ul></li>
-<li>Left-pad numbers
-<ul>
-<li>i.e.&nbsp;<strong><em>01_my-data.csv</em></strong> vs <strong><em>1_my-data.csv</em></strong></li>
-<li>If you don’t, file orders get messed up when you get to double-digits</li>
-</ul></li>
-</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1029,13 +888,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./julia-basics.html" class="pagination-link" aria-label="Julia Basics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Julia Basics</span>
+      <a href="./new-project.html" class="pagination-link" aria-label="New Julia Project">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">New Julia Project</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./import-export.html" class="pagination-link" aria-label="Importing Files">
-        <span class="nav-page-text">Importing Files</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./todo.html" class="pagination-link" aria-label="TODO List">
+        <span class="nav-page-text">TODO List</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1044,4 +903,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/new-project.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/import-export.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

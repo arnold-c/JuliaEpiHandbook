@@ -1,6 +1,6 @@
 ---
 date: "2023-05-26"
-jupyter: julia-1.9
+engine: julia
 ---
 
 # Julia Basics {.unnumbered}
