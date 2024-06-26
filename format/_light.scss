@@ -44,3 +44,8 @@ a:hover {
 .sidebar nav[role=doc-toc] ul:hover a:hover {
     color: $hover-color !important;
 }
+
+code:not(.sourceCode) {
+    background: $code-bg !important;
+    color: $code-color !important;
+}
