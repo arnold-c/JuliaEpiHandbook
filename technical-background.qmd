@@ -40,7 +40,8 @@ The Julia language has an excellent package manager that makes it easy to instal
 In the next section, I will walk through the process of getting started with Julia, and therefore, the process of installing packages, but below you can see the full list of packages and the installed version of Julia used in this book.
 
 ```{julia}
-# versioninfo()
+using InteractiveUtils # Only required for notebook rendering
+versioninfo()
 ```
 
 ```{julia}
