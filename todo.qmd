@@ -10,6 +10,7 @@ date: "2023-05-26"
   - [ ] CSV
   - [ ] Excel
   - [ ] R data
+  - [ ] [`{TidierFiles.jl}`](https://tidierorg.github.io/TidierFiles.jl/latest/)
 - [ ] Cleaning data
 
 ## Analyses
