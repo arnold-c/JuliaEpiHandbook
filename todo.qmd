@@ -57,6 +57,7 @@ date: "2023-05-26"
   - [ ] Modules
   - [ ] Dev local packages
   - [ ] Package registry with `{LocalRegistry}`
+  - [ ] `{PkgTemplates}`
 - [ ] Performance
   - [ ] Memory access (column-major vs row-major, `@views()`)
   - [ ] Profiling
