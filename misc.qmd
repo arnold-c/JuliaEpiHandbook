@@ -1,0 +1,52 @@
+---
+date: "2024-06-27"
+engine: julia
+---
+
+# Misc {.unnumbered}
+
+::: {.callout-warning}
+
+This section contains content that needs to be moved to appropriate sections and has just been drafted to help get some ideas out of my head and get over the inertia of writing.
+Everything that links here will likely be broken at some point and need updating.
+
+:::
+
+## Namespaces
+### About Namespaces
+
+A **namespace** is the term used to describe how functions belong to different environments.
+Each module (and therefore package) has its own namespace.
+When we open up the REPL, we are operating in the `Main` namespace, and hitting **tab** on the keyboard populates the autocomplete with all the functions and constants that have been exported by Julia packages into the `Main` namespace.
+For example, one suggestion is the `√` operator.
+Examining the methods of the square root operator, we can see that it has been defined in multiple locations of `Base` (which you can think of as a package that wraps around a number of core packages required to provide necessary minimum functionality for the language, such as `Math` and `JuliaSyntax`) and other packages (such as `LinearAlgebra`).
+
+```{julia}
+methods(√)
+```
+
+Each of these method definitions has been exported into the `Main` namespace so they can be used without requiring **qualification** (i.e., `Math.√` and `LinearAlgebra.√`).
+
+### Namespace Management
+
+In the above examples, the square root function was available from when we first opened up Julia.
+When we are writing code, this may not be the case, and in fact, we may not want it to be the case.
+Let's imagine we want to load a data file from the ***data/*** directory.
+As seen before, we can do this using the `datadir()` function from the `{DrWatson}` package.
+We may not want to load all the functions `{DrWatson}` exports into our `Main` namespace (one reason being that we may be concerned about a conflict with another package using the same name and argument types, and we want to be explicit about where our function comes from).
+In this situation, there are two possible solutions:
+
+1. `using DrWatson: datadir; datadir(file.jl)`
+2. `using DrWatson: DrWatson; DrWatson.datadir(file.jl)`
+
+In option 1) we are only loading the `datadir()` function into the `Main` namespace, but none of the other functions defined and exported by `{DrWatson}`.
+This is a useful compromise when we think we will need to use the `datadir()` function multiple times in a file/script as it reduces unnecessarily typing the package name for each function use, while also making it explicit which package the `datadir()` function was defined in.
+In reality, what we are actually calling is `Main.datadir()`, as the `datadir()` function now belongs to the `Main` namespace.
+Sometimes, though, option 1) isn't sufficient, such as when we expect a conflict (**method ambiguity**) to arise.
+
+In option 2), we do not load `datadir()` into the `Main` namespace, instead, leaving it contained within `DrWatson`'s namespace (remember, each package has its own namespace).
+To use the function, we need to specify that it is defined in the namespace of the `{DrWatson}` package, which we do using the package name followed by a period.
+Much like how we were calling `Main.datadir()` in option 1), what we are actually doing is loading the `DrWatson` package name into the `Main` namespace, and the same **syntactic sugar** is happening, so option 2) is really calling `Main.DrWatson.datadir(file.jl)`.
+You can think of this as the `{DrWatson}` package being treated as a submodule of `Main` (see [the module section](./misc.qmd#modules) for more information about submodules).
+
+## Modules

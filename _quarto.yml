@@ -25,6 +25,7 @@ book:
     - part: "TODO"
       chapters:
         - todo.qmd
+        - misc.qmd
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]
