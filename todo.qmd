@@ -42,6 +42,11 @@ date: "2023-05-26"
 ## Miscellaneous
 
 - [ ] Simulations with `{DrWatson}`
+- [ ] `{Revise}`
+  - [ ] Basics functionality
+  - [ ] Using for single scripts
+  - [ ] Using for modules/packages
+  - [ ] Adding to ***startup.jl*** file
 - [ ] Writing functions
   - [ ] Typing arguments
     - [ ] Parametric types
