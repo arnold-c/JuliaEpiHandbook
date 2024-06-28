@@ -53,6 +53,7 @@ date: "2023-05-26"
   - [ ] Testing
   - [ ] Documentation
   - [ ] Multiple dispatch
+  - [ ] Function/Type piracy
 - [ ] Developing packages
   - [ ] Modules
   - [ ] Dev local packages
