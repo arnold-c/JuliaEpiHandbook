@@ -1,5 +1,5 @@
 ---
-date: "2023-05-26"
+date: "2024-07-01"
 engine: julia
 ---
 
@@ -607,6 +607,92 @@ Generally speaking, use a `for` loop if you can, and be careful when using `whil
 
 :::
 
+#### Map
+
+An alternative to loops is the `map` function.
+If you are familiar with **functional programming** (or the [`{purrr}`](https://github.com/tidyverse/purrr) package and functions in **R**), the `map` function will be easy to grasp.
+If not, not to worry as it's just a different method of applying a set of functions to each element in a sequence.
+The main difference to be aware of is that each application of the function(s) happen independently from each other, so you can't increment a counter and then update a value from the prior iteration of a loop.
+
+Say we want to calculate take an array of integers and return an array of their squares.
+We can use a for loop (shown in the folded code below) to do this.
+Or we could use the `map` function, which accepts an array and a function as arguments.
+
+:::{.callout-note collapse="true"}
+
+```{julia}
+function squares(x)
+    y = zeros(eltype(x), length(x))
+
+    for i in eachindex(x)
+        y[i] = x[i]^2
+    end
+    return y
+end
+
+squares(1:10)
+```
+:::
+
+```{julia}
+map(x -> x^2, 1:10)
+```
+
+In the above example, we are using an anonymous function that takes each element of the array `1:10`, assigns it to the variable `x`, and then squares it before returning it in a Vector.
+The `map` function returns a vector of the same length as the input array, which is nice when we know want the output vector to be the same length as the input vector, as it removes the need for us to manually perform **bounds checking**.
+
+In slightly more complicated scenarios, the anonymous function may become unwieldy.
+Here, we can either write a named function that we use in the `map` function, or use a `do` block.
+
+```{julia}
+function square_element(x)
+    return x^2
+end
+
+map(square_element, 1:10)
+```
+
+Much like the anonymous function, when we use a `do` block, we assign the elements being iterated over to a variable name that we can manipulate.
+
+```{julia}
+map(1:10) do x
+    x^2
+end
+```
+
+The `do` block is useful when we only want to perform some operations once, so it's not necessary to create a named function.
+It is also very helpful when we want to pass multiple arguments to a function, as we will see.
+
+Here, we have two vectors of the same length and we want to perform element-wise addition i.e., add the first index of each vector together, the second elements, and so on.
+Doing this without the `do` block is possible, but much more cumbersome.
+Here, we can use the `zip` function to combine the two vectors into a vector of tuples that can be iterated over by `map`.
+
+```{julia}
+vec_a = 1:10
+vec_b = 11:20
+
+map(zip(vec_a, vec_b)) do (a, b)
+    a + b
+end
+```
+
+::: {.callout-note collapse="true"}
+```{julia}
+collect(zip(vec_a, vec_b))
+```
+:::
+
+::: {.callout-note collapse="true"}
+Without the `do` block, we could write this.
+Note the `,` between the two closing parentheses in the anonymous function i.e., `...b),)`
+
+```{julia}
+map(
+    ((a, b),) -> a + b,
+    zip(vec_a, vec_b)
+)
+```
+:::
 
 ## Additional Resources
 
