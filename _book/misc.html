@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Callum Arnold-Leps">
-<meta name="dcterms.date" content="2023-05-20">
+<meta name="dcterms.date" content="2024-06-27">
 
-<title>JuliaEpiHandbook – Keywords, Code, and Other Formatting</title>
+<title>JuliaEpiHandbook – Misc</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./install-julia.html" rel="next">
-<link href="./motivations-background.html" rel="prev">
+<link href="./todo.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -126,7 +125,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./motivations-background.html">Background</a></li><li class="breadcrumb-item"><a href="./technical-background.html">Keywords, Code, and Other Formatting</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./todo.html">TODO</a></li><li class="breadcrumb-item"><a href="./misc.html">Misc</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -178,7 +177,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./technical-background.html" class="sidebar-item-text sidebar-link active">
+  <a href="./technical-background.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Keywords, Code, and Other Formatting</span></a>
   </div>
 </li>
@@ -236,7 +235,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./misc.html" class="sidebar-item-text sidebar-link">
+  <a href="./misc.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Misc</span></a>
   </div>
 </li>
@@ -252,18 +251,21 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-formatting" id="toc-general-formatting" class="nav-link active" data-scroll-target="#general-formatting">General Formatting</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style">Code Style</a></li>
+  <li><a href="#namespaces" id="toc-namespaces" class="nav-link active" data-scroll-target="#namespaces">Namespaces</a>
+  <ul class="collapse">
+  <li><a href="#about-namespaces" id="toc-about-namespaces" class="nav-link" data-scroll-target="#about-namespaces">About Namespaces</a></li>
+  <li><a href="#namespace-management" id="toc-namespace-management" class="nav-link" data-scroll-target="#namespace-management">Namespace Management</a></li>
+  </ul></li>
+  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/technical-background.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/misc.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./motivations-background.html">Background</a></li><li class="breadcrumb-item"><a href="./technical-background.html">Keywords, Code, and Other Formatting</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./todo.html">TODO</a></li><li class="breadcrumb-item"><a href="./misc.html">Misc</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Keywords, Code, and Other Formatting</h1>
+<h1 class="title">Misc</h1>
 </div>
 
 
@@ -287,7 +289,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 20, 2023</p>
+      <p class="date">June 27, 2024</p>
     </div>
   </div>
   
@@ -299,35 +301,6 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 </header>
 
 
-<section id="general-formatting" class="level2">
-<h2 class="anchored" data-anchor-id="general-formatting">General Formatting</h2>
-<p>Throughout the book, you’ll see some keywords, code, and other points that I’ll try to delineate with the following formatting:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This will be a note, and will be used to highlight important points, or to provide additional information.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This will be used to highlight a useful tip.</p>
-</div>
-</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -338,67 +311,35 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This will provide a warning that you may get an unexpected result if you’re not careful.</p>
+<p>This section contains content that needs to be moved to appropriate sections and has just been drafted to help get some ideas out of my head and get over the inertia of writing. Everything that links here will likely be broken at some point and need updating.</p>
 </div>
 </div>
-<ul>
-<li><code>code</code> will be used to highlight code.</li>
-<li><code>{package}</code> will be used to denote a specific package, e.g., <code>{DataFrames}</code> denotes the <code>{DataFrames}</code> package.</li>
-<li><code>package.function()</code> will be used to denote a function that is part of a specific package, e.g., <code>DataFrames.subset()</code> denotes the <code>subset()</code> function from the <code>{DataFrames}</code> package. Some languages use a different convention, such as <code>package::function()</code> in R, but I will use the <code>package.function()</code> syntax listed above as this is how you would use a function in Julia.</li>
-<li><strong>keywords</strong> will be used to highlight keywords and phrases, e.g., <strong>Git</strong> or <strong>GitHub</strong>.
-<ul>
-<li><strong>actions</strong> will also be highlighted in this way, e.g., <strong>commits</strong> or <strong>pushed</strong> being the result of the code <code>git commit</code> or <code>git push</code></li>
-</ul></li>
-<li><strong><em>files</em></strong> will be used to highlight file names, e.g., <strong><em>README.md</em></strong> or <strong><em>LICENSE</em></strong>.</li>
-<li><em>italics</em> will be used for emphasis in certain circumstances, e.g., signifying a question from an interactive terminal command.</li>
-</ul>
-</section>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>Throughout this book, I will use a number of packages to help with the analysis and visualization of data. For each section, I will provide a list of the packages used in a particular set of analyses at the top of the page. The Julia language has an excellent package manager that makes it easy to install and use packages, and also share projects and collaborate with others without running into issues regarding dependencies that often plagues other languages. In the next section, I will walk through the process of getting started with Julia, and therefore, the process of installing packages, but below you can see the full list of packages and the installed version of Julia used in this book.</p>
+<section id="namespaces" class="level2">
+<h2 class="anchored" data-anchor-id="namespaces">Namespaces</h2>
+<section id="about-namespaces" class="level3">
+<h3 class="anchored" data-anchor-id="about-namespaces">About Namespaces</h3>
+<p>A <strong>namespace</strong> is the term used to describe how functions belong to different environments. Each module (and therefore package) has its own namespace. When we open up the REPL, we are operating in the <code>Main</code> namespace, and hitting <strong>tab</strong> on the keyboard populates the autocomplete with all the functions and constants that have been exported by Julia packages into the <code>Main</code> namespace. For example, one suggestion is the <code>√</code> operator. Examining the methods of the square root operator, we can see that it has been defined in multiple locations of <code>Base</code> (which you can think of as a package that wraps around a number of core packages required to provide necessary minimum functionality for the language, such as <code>Math</code> and <code>JuliaSyntax</code>) and other packages (such as <code>LinearAlgebra</code>).</p>
 <div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">InteractiveUtils</span> <span class="co"># Only required for notebook rendering</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">versioninfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Julia Version 1.10.4
-Commit 48d4fd48430 (2024-06-04 10:41 UTC)
-Build Info:
-  Official https://julialang.org/ release
-Platform Info:
-  OS: macOS (arm64-apple-darwin22.4.0)
-  CPU: 8 × Apple M1
-  WORD_SIZE: 64
-  LIBM: libopenlibm
-  LLVM: libLLVM-15.0.7 (ORCJIT, apple-m1)
-Threads: 4 default, 0 interactive, 2 GC (on 4 virtual cores)
-Environment:
-  JULIA_NUM_THREADS = auto
-  JULIA_LOAD_PATH = @:@stdlib</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(√)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+# 19 methods for generic function <b>sqrt</b> from [90mBase[39m:<ul><li> sqrt(x::<b>BigFloat</b>) in Base.MPFR at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/mpfr.jl#L636" target="_blank">mpfr.jl:636</a></li> <li> sqrt(::<b>Missing</b>) in Base.Math at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/math.jl#L1580" target="_blank">math.jl:1580</a></li> <li> sqrt(a::<b>Float16</b>) in Base.Math at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/math.jl#L1558" target="_blank">math.jl:1558</a></li> <li> sqrt(x::<b>BigInt</b>) in Base.MPFR at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/mpfr.jl#L644" target="_blank">mpfr.jl:644</a></li> <li> sqrt(a::<b>ComplexF16</b>) in Base.Math at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/math.jl#L1559" target="_blank">math.jl:1559</a></li> <li> sqrt(A::<b>LinearAlgebra.UnitUpperTriangular{T, S} where S&lt;:AbstractMatrix{T}</b>)<i> where T</i> in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl:2159</a></li> <li> sqrt(A::<b>LinearAlgebra.Hermitian{T, S} where S&lt;:(AbstractMatrix{&lt;:T})</b>; <i>rtol</i>)<i> where T&lt;:Complex</i> in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/symmetric.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/symmetric.jl:796</a></li> <li> sqrt(D::<b>LinearAlgebra.Diagonal</b>) in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/diagonal.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/diagonal.jl:713</a></li> <li> sqrt(x::<b>Union{Float32, Float64}</b>) in Base.Math at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/math.jl#L685" target="_blank">math.jl:685</a></li> <li> sqrt(x::<b>Real</b>) in Base.Math at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/math.jl#L1575" target="_blank">math.jl:1575</a></li> <li> sqrt(A::<b>LinearAlgebra.UpperTriangular</b>) in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl:2158</a></li> <li> sqrt(A::<b>LinearAlgebra.LowerTriangular</b>) in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl:2177</a></li> <li> sqrt(A::<b>LinearAlgebra.Transpose{T, &lt;:AbstractMatrix} where T</b>) in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/dense.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/dense.jl:908</a></li> <li> sqrt(J::<b>LinearAlgebra.UniformScaling</b>) in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/uniformscaling.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/uniformscaling.jl:173</a></li> <li> sqrt(A::<b>LinearAlgebra.Adjoint{T, &lt;:AbstractMatrix} where T</b>) in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/dense.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/dense.jl:907</a></li> <li> sqrt(A::<b>LinearAlgebra.UnitLowerTriangular</b>) in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/triangular.jl:2178</a></li> <li> sqrt(A::<b>Union{LinearAlgebra.Hermitian{T, S}, LinearAlgebra.Symmetric{T, S}} where S</b>; <i>rtol</i>)<i> where T&lt;:Real</i> in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/symmetric.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/symmetric.jl:785</a></li> <li> sqrt(A::<b>AbstractMatrix{T}</b>)<i> where T&lt;:Union{Real, Complex}</i> in LinearAlgebra at <a href="file:///Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-XG3Q6T6R70.0/build/default-honeycrisp-XG3Q6T6R70-0/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/dense.jl" target="_blank">/Users/cfa5228/.julia/juliaup/julia-1.10.4+0.aarch64.apple.darwin14/share/julia/stdlib/v1.10/LinearAlgebra/src/dense.jl:877</a></li> <li> sqrt(z::<b>Complex</b>) in Base at <a href="https://github.com/JuliaLang/julia/tree/48d4fd48430af58502699fdf3504b90589df3852/base/complex.jl#L527" target="_blank">complex.jl:527</a></li> </ul>
 </div>
 </div>
-<div id="4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Status `~/Documents/Repos/JuliaEpiHandbook/Project.toml`
-  [336ed68f] CSV v0.10.14
-⌃ [13f3f980] CairoMakie v0.12.2
-  [a93c6f00] DataFrames v1.6.1
-  [1313f7d8] DataFramesMeta v0.15.2
-  [634d3b9d] DrWatson v2.15.0
-⌃ [7073ff75] IJulia v1.24.2
-⌃ [c3a54625] JET v0.9.2
-  [98e50ef6] JuliaFormatter v1.0.56
-  [70703baa] JuliaSyntax v0.4.8
-⌃ [295af30f] Revise v3.5.14
-  [8ae5e7a9] TidierFiles v0.1.1
-Info Packages marked with ⌃ have new versions available and may be upgradable.</code></pre>
-</div>
-</div>
+<p>Each of these method definitions has been exported into the <code>Main</code> namespace so they can be used without requiring <strong>qualification</strong> (i.e., <code>Math.√</code> and <code>LinearAlgebra.√</code>).</p>
 </section>
-<section id="code-style" class="level2">
-<h2 class="anchored" data-anchor-id="code-style">Code Style</h2>
-<p>There are many different ways to write code, and many different styles. But, in the interest of consistency and ease of collaboration, I would strongly recommend you use the <a href="https://domluna.github.io/JuliaFormatter.jl/dev/"><code>{JuliaFormatter}</code> package</a> to format your code according to a specific style guide. In this book, I will use a lightly modified version of the <a href="https://github.com/invenia/BlueStyle">Blue style guide</a>, and you can see the specific changes to the default style in the <strong><em>.JuliaFormatter.toml</em></strong> file in the root directory of this book’s GitHub repository. In the next section, I will discuss how you can use the <code>{JuliaFormatter}</code> package to format your code.</p>
+<section id="namespace-management" class="level3">
+<h3 class="anchored" data-anchor-id="namespace-management">Namespace Management</h3>
+<p>In the above examples, the square root function was available from when we first opened up Julia. When we are writing code, this may not be the case, and in fact, we may not want it to be the case. Let’s imagine we want to load a data file from the <strong><em>data/</em></strong> directory. As seen before, we can do this using the <code>datadir()</code> function from the <code>{DrWatson}</code> package. We may not want to load all the functions <code>{DrWatson}</code> exports into our <code>Main</code> namespace (one reason being that we may be concerned about a conflict with another package using the same name and argument types, and we want to be explicit about where our function comes from). In this situation, there are two possible solutions:</p>
+<ol type="1">
+<li><code>using DrWatson: datadir; datadir(file.jl)</code></li>
+<li><code>using DrWatson: DrWatson; DrWatson.datadir(file.jl)</code></li>
+</ol>
+<p>In option 1) we are only loading the <code>datadir()</code> function into the <code>Main</code> namespace, but none of the other functions defined and exported by <code>{DrWatson}</code>. This is a useful compromise when we think we will need to use the <code>datadir()</code> function multiple times in a file/script as it reduces unnecessarily typing the package name for each function use, while also making it explicit which package the <code>datadir()</code> function was defined in. In reality, what we are actually calling is <code>Main.datadir()</code>, as the <code>datadir()</code> function now belongs to the <code>Main</code> namespace. Sometimes, though, option 1) isn’t sufficient, such as when we expect a conflict (<strong>method ambiguity</strong>) to arise.</p>
+<p>In option 2), we do not load <code>datadir()</code> into the <code>Main</code> namespace, instead, leaving it contained within <code>DrWatson</code>’s namespace (remember, each package has its own namespace). To use the function, we need to specify that it is defined in the namespace of the <code>{DrWatson}</code> package, which we do using the package name followed by a period. Much like how we were calling <code>Main.datadir()</code> in option 1), what we are actually doing is loading the <code>DrWatson</code> package name into the <code>Main</code> namespace, and the same <strong>syntactic sugar</strong> is happening, so option 2) is really calling <code>Main.DrWatson.datadir(file.jl)</code>. You can think of this as the <code>{DrWatson}</code> package being treated as a submodule of <code>Main</code> (see <a href="./misc.html#modules">the module section</a> for more information about submodules).</p>
+</section>
+</section>
+<section id="modules" class="level2">
+<h2 class="anchored" data-anchor-id="modules">Modules</h2>
 
 
 </section>
@@ -970,14 +911,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./motivations-background.html" class="pagination-link" aria-label="What Is Julia and Why Should I Care">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What Is Julia and Why Should I Care</span>
+      <a href="./todo.html" class="pagination-link" aria-label="TODO List">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TODO List</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./install-julia.html" class="pagination-link" aria-label="Setting Up Julia">
-        <span class="nav-page-text">Setting Up Julia</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -985,4 +923,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/technical-background.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/misc.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

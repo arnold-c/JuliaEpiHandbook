@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Callum Arnold-Leps">
-<meta name="dcterms.date" content="2024-06-02">
+<meta name="dcterms.date" content="2024-07-01">
 
-<title>JuliaEpiHandbook – Importing Files</title>
+<title>JuliaEpiHandbook – Importing and Exporting Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,7 +126,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./import-export.html">Importing Files</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./import-export.html">Importing and Exporting Files</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -214,7 +214,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./import-export.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Importing Files</span></a>
+ <span class="menu-text">Importing and Exporting Files</span></a>
   </div>
 </li>
       </ul>
@@ -234,6 +234,12 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
  <span class="menu-text">TODO List</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./misc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Misc</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -248,15 +254,26 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#file-paths" id="toc-file-paths" class="nav-link" data-scroll-target="#file-paths">File Paths</a></li>
+  <li><a href="#tidierfiles" id="toc-tidierfiles" class="nav-link" data-scroll-target="#tidierfiles"><code>{TidierFiles}</code></a></li>
+  <li><a href="#import-specific-options" id="toc-import-specific-options" class="nav-link" data-scroll-target="#import-specific-options">Import-Specific Options</a>
+  <ul class="collapse">
+  <li><a href="#specific-excel-sheets-ranges" id="toc-specific-excel-sheets-ranges" class="nav-link" data-scroll-target="#specific-excel-sheets-ranges">Specific Excel Sheets &amp; Ranges</a></li>
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data">Missing Data</a></li>
+  <li><a href="#skipping-rows" id="toc-skipping-rows" class="nav-link" data-scroll-target="#skipping-rows">Skipping Rows</a></li>
+  </ul></li>
+  <li><a href="#export-specific-options" id="toc-export-specific-options" class="nav-link" data-scroll-target="#export-specific-options">Export-Specific Options</a>
+  <ul class="collapse">
+  <li><a href="#specific-excel-sheets" id="toc-specific-excel-sheets" class="nav-link" data-scroll-target="#specific-excel-sheets">Specific Excel Sheets</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/arnold-c/JuliaEpiHandbook/edit/main/import-export.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./import-export.html">Importing Files</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install-julia.html">Getting Started With Julia</a></li><li class="breadcrumb-item"><a href="./import-export.html">Importing and Exporting Files</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Importing Files</h1>
+<h1 class="title">Importing and Exporting Files</h1>
 </div>
 
 
@@ -280,7 +297,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 2, 2024</p>
+      <p class="date">July 1, 2024</p>
     </div>
   </div>
   
@@ -294,12 +311,30 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Unfortunately, unlike R, Julia doesn’t have a single package to import the majority of file types. That being said, each package works well at the file type it is built around.</p>
+<p>Until recently, Julia didn’t have a single package to import the majority of file types. However, with the increasing development efforts put into the <a href="https://github.com/TidierOrg"><code>{Tidier.jl}</code></a> meta-packages, aimed at recreating the wildly popular set of <code>{tidyverse}</code> R packages in Julia, a new, convenient, single interface exists to the many excellent Julia I/O (input/output) packages. Here, we will explore some common workflows that can utilize the <code>{TidierFiles.jl}</code> package, though more details can be found in the <a href="https://tidierorg.github.io/TidierFiles.jl/latest/">documentation</a>.</p>
 </section>
 <section id="file-paths" class="level2">
 <h2 class="anchored" data-anchor-id="file-paths">File Paths</h2>
-<p>If you’ve set up your project using <code>{DrWatson}</code>, you should have a number of <a href="./new-project.html#drwatson-helpers">useful helpful functions</a> for you to use in your project (after loading and activating the project with <code>using DrWatson; quickactivate(Project)</code>). Because you creating a new folder for each project, and activating it as such with <code>{DrWatson}</code> (or using <code>]activate .</code>), Julia will create a <strong><em>Project.toml</em></strong> and a <strong><em>Manifest.toml</em></strong> file in your project folder. This does all the hard work of setting up relative paths, and making sure each project has it’s own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages.</p>
-<p>To load a file from the <strong><em>src/</em></strong> folder, we can simply using <code>include(DrWatson.srcdir("filename.jl"))</code></p>
+<p>If you’ve set up your project using <code>{DrWatson}</code>, you should have a number of <a href="./new-project.html#drwatson-helpers">useful helper functions</a> for you to use in your project (after loading and activating the project with <code>using DrWatson; quickactivate(Project)</code>). Because you created a new folder for the project, Julia will create a <strong><em>Project.toml</em></strong> and a <strong><em>Manifest.toml</em></strong> file in your project folder. This does all the hard work of setting up <strong>relative paths</strong>, and making sure each project has it’s own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages. To make use of your code and project-specific packages, you simply need to activate the project using <code>{DrWatson}</code>’s <code>quickactivate("Project")</code> function (or with <code>]activate .</code> if you are in the correct directory).</p>
+<p>A <strong>relative</strong> filepath is simply the steps that need to be taken to find your target file from the current location, e.g., the active file. For example, you may have the following files in a project:</p>
+<pre class="{bash}"><code>│projectdir
+│
+├── data
+│   └── exp_raw.csv
+├── out
+│   └── exp_clean.parquet
+.
+.
+.
+├── scripts
+│   ├── cleaning.jl
+│   └── intro.jl
+.
+.
+.
+├── Manifest.toml
+└── Project.toml</code></pre>
+<p>The relative filepath of the <strong><em>exp_raw.csv</em></strong> data file from the <strong><em>intro.jl</em></strong> scripts file is <code>../data/exp_raw.csv</code>. Here, <code>../</code> means look in the parent directory i.e., one directory up from the current location, with the rest pointing to the <strong><em>data/</em></strong> directory and appropriate file. If you wanted to <strong><em>cleaning.jl</em></strong> file from <strong><em>intro.jl</em></strong>, the relative path would just be <code>cleaning.jl</code> (or alternatively <code>./cleaning.jl</code>, where <code>./</code> means look in the current directory).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -310,15 +345,143 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In case you’re wondering what <code>{DrWatson}</code> is doing when it sets up these helper scripts, we can just have a look at the source code as most Julia packages are written in Julia!</p>
+<p>Generally you won’t need to refer to other <strong><em>script/</em></strong> files as they shouldn’t contain functions that are used for calculations, only the scripts that utilize the functions defined in the <strong><em>src/</em></strong> directory to produce your results. As we’ll come to later, Julia has been designed to make creating and working with packages very simple, which we will take full advantage to minimize the risk of files relying on each other in a circular fashion.</p>
+</div>
+</div>
+<p>As mentioned, <code>{DrWatson}</code> provides convenience functions to simplify the process of locating files with relative paths. To load a file from the <strong><em>data/</em></strong> folder, we need to <code>include()</code> it. This effectively finds the file and runs it, so everything defined in it is now available for use. In practice, we can simply use the command <code>include(DrWatson.datadir("filename.jl"))</code> (or drop the <code>DrWatson.</code> package namespace if you brought <code>{DrWatson}</code> into the <strong><code>Main</code> namespace</strong> with the <code>using</code> command - see <a href="./misc.html#namespaces">here</a> for more information about <strong>namespaces</strong>). This helpful function means that the file <strong><em>filename.jl</em></strong> can be loaded from within any file in your project without needing to use multiple <code>../</code> calls in the relative path, or specify the absolute filepath. It also means that you can send your code to the REPL and it will execute correctly, which is not a given as the directory that the REPL is started in is usually the project directory, and your current file may be in a subdirectory, so the relative paths to the file to load will be different.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In case you’re wondering what <code>{DrWatson}</code> is doing when it sets up these helper scripts, we can just have a look at the source code. The beauty of Julia is that its speed and expressiveness means that most Julia packages are written in pure Julia and don’t need to resort to lower-level languages for the internals!</p>
 <p>Looking at <a href="https://github.com/JuliaDynamics/DrWatson.jl/blob/3f2a6cf4b1c66bbfdeaab9527c436b1d275dba7d/src/project_setup.jl#L28-L33">these lines</a> in the source code, we can see that the <code>projectdir()</code> function is effectively a wrapper around the below code, with a check to make sure you have activated the project.</p>
 <div id="2" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dirname</span>(<span class="bu">Base</span>.<span class="fu">active_project</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dirname</span>(<span class="bu">Base</span>.<span class="fu">active_project</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Because we created the <code>out/</code> directory to save our processed data files to, it would be useful to have a similar helper function to <code>{DrWatson}</code>’s. We can do that very easily using the following function definition:</p>
+<div id="4" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outdir</span>(args<span class="op">...</span>) <span class="op">=</span> DrWatson.<span class="fu">projectdir</span>(<span class="st">"outdir"</span>, args<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Incidentally, this is exactly how <code>{DrWatson}</code> defines it’s helper functions, and states that the functions can take any number of arguments and should join the directory path of the <strong><em>outdir/</em></strong> and the function arguments. For example, <code>outdir("simulation-files")</code> becomes <strong><em>path-to-project/outdir/simulation-files/</em></strong>.</p>
+</div>
+</div>
+</section>
+<section id="tidierfiles" class="level2">
+<h2 class="anchored" data-anchor-id="tidierfiles"><code>{TidierFiles}</code></h2>
+<p>At the time of writing this section, the following file formats can be read and written to using <code>{TidierFiles}</code>:</p>
+<ul>
+<li>Delimited files
+<ul>
+<li>.csv</li>
+<li>.tsv</li>
+<li>.txt</li>
+</ul></li>
+<li>Excel files
+<ul>
+<li>.xlsx</li>
+</ul></li>
+<li>SPSS files
+<ul>
+<li>.sav</li>
+<li>.por</li>
+</ul></li>
+<li>SAS files
+<ul>
+<li>.sas7bdat</li>
+<li>.xpt</li>
+</ul></li>
+<li>Stata files
+<ul>
+<li>.dta</li>
+</ul></li>
+<li>Arrow files
+<ul>
+<li>.arrow</li>
+</ul></li>
+<li>Parquet files
+<ul>
+<li>.parquet</li>
+</ul></li>
+</ul>
+<p>Reading and writing files is greatly simplified by using a common interface. To read a file, the general command is <code>read_{format}(path-to-file.{format})</code> e.g., to read the <strong><em>exp_raw.csv</em></strong> file we would use the command <code>read_csv(DrWatson.datadir("exp_raw.csv"))</code>, and to read the <strong><em>exp_clean.parquet</em></strong> file we would use the command <code>read_parquet(outdir("exp_raw.parquet"))</code>. If you wish to use the values from the file, rather than just viewing them, you should assign them to a variable e.g.&nbsp;<code>raw_df = read_csv(DrWatson.datadir("exp_raw.csv"))</code>.</p>
+<p>Writing data to files is similarly simple, just replacing the <code>read_</code> with <code>write_</code>, and passing in a <code>DataFrame</code> as the first argument. For example, to write a dataframe to a csv file, you simply use the command <code>write_csv(raw_df, outdir("exp_clean.csv"))</code>. Currently, all write functions require the use of a <code>DataFrame</code> object, and all read functions return a <code>DataFrame</code> object.</p>
+</section>
+<section id="import-specific-options" class="level2">
+<h2 class="anchored" data-anchor-id="import-specific-options">Import-Specific Options</h2>
+<section id="specific-excel-sheets-ranges" class="level3">
+<h3 class="anchored" data-anchor-id="specific-excel-sheets-ranges">Specific Excel Sheets &amp; Ranges</h3>
+<p>While it’s generally preferable to try and use non-proprietary data files that can be read by multiple software tools, such as <code>.csv</code> files, we are sometimes just provided with Excel files (or need to create them). In these situations, we can use <code>{TidierFiles}</code>‘s Excel functions’ to access data from specific sheets, or use the underlying <a href="https://github.com/JuliaIO/XLSX.jl"><code>{XLSX}</code></a> package to read and write Excel files.</p>
+<p>To read data from a sheet, we use the <code>sheet =</code> keyword argument of <code>read_xlsx(path-to-file.xlsx, sheet = "sheet-name")</code> function.</p>
+<p>Often, Excel sheets contain multiple tables, which may be related to one-another, but should be considered as their own separate entities. In these situations we can use the <code>range =</code> keyword argument of the <code>read_xlsx</code> function to only read a portion of the Excel sheet.</p>
+</section>
+<section id="missing-data" class="level3">
+<h3 class="anchored" data-anchor-id="missing-data">Missing Data</h3>
+<p>For delimited and Excel files, it is possible to specify how missing data should be handled on file reads. This is done using the <code>missingstring =</code> keyword argument of the <code>read_{format}</code> functions, and defaults to <code>""</code>.</p>
+</section>
+<section id="skipping-rows" class="level3">
+<h3 class="anchored" data-anchor-id="skipping-rows">Skipping Rows</h3>
+<p>Your input data files may include a number of header rows that you do not want to include in the resulting dataframes, for example, a data dictionary that lists how values in the main table are coded. These rows can be skipped using the <code>skip =</code> keyword argument of all the <code>read_{format}</code> functions.</p>
+</section>
+</section>
+<section id="export-specific-options" class="level2">
+<h2 class="anchored" data-anchor-id="export-specific-options">Export-Specific Options</h2>
+<section id="specific-excel-sheets" class="level3">
+<h3 class="anchored" data-anchor-id="specific-excel-sheets">Specific Excel Sheets</h3>
+<p>If we want to write data to a specific sheet, we cannot use the <code>{TidierFiles}</code> excel functions. More information on how this can be accomplished can be found at the <a href="https://felipenoris.github.io/XLSX.jl/stable/tutorial/#Edit-Existing-Files">documentation</a> of the <code>{XLSX}</code> package, but in brief, you must open up an excel file in either <code>w</code> (write) or <code>rw</code> (read-write) mode, depending on whether the file already exists, before setting the sheet’s values equal to the data you wish to add to the sheet.</p>
+<p>An example of creating a new spreadsheet can from the <a href="https://felipenoris.github.io/XLSX.jl/stable/tutorial/#Create-New-Files">documentation</a> is shown below:</p>
+<div id="6" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>XLSX.<span class="fu">openxlsx</span>(<span class="st">"my_new_file.xlsx"</span>, mode<span class="op">=</span><span class="st">"w"</span>) <span class="cf">do</span> xf</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    sheet <span class="op">=</span> xf[<span class="fl">1</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    XLSX.<span class="fu">rename!</span>(sheet, <span class="st">"new_sheet"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A1"</span>] <span class="op">=</span> <span class="st">"this"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A2"</span>] <span class="op">=</span> <span class="st">"is a"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A3"</span>] <span class="op">=</span> <span class="st">"new file"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A4"</span>] <span class="op">=</span> <span class="fl">100</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a row from "A5" to "E5"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A5"</span>] <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">5</span>) <span class="co"># equivalent to `sheet["A5", dim=2] = collect(1:4)`</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a column from "B1" to "B4"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"B1"</span>, dim<span class="op">=</span><span class="fl">1</span>] <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a matrix from "A7" to "C9"</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A7:C9"</span>] <span class="op">=</span> [ <span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span> ; <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span> ; <span class="fl">7</span> <span class="fl">8</span> <span class="fl">9</span> ]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are not already familiar with <code>do</code> blocks, don’t worry, they are relatively simple. The Excel file is being created and assigned to the <code>xf</code> variable, which can then be manipulated with an anonymous function that has its own <strong>scope</strong>. You can use the <code>do</code> block when using the <code>map</code> function, as <a href="./julia-basics.html#map">shown earlier</a>.</p>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
