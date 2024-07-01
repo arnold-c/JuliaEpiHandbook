@@ -1,25 +1,65 @@
 ---
-date: "2024-06-02"
+date: "2024-07-01"
 engine: julia
 ---
 
-# Importing Files {.unnumbered}
+# Importing and Exporting Files {.unnumbered}
 
 ## Overview
 
-Unfortunately, unlike R, Julia doesn't have a single package to import the majority of file types.
-That being said, each package works well at the file type it is built around.
+Until recently, Julia didn't have a single package to import the majority of file types.
+However, with the increasing development efforts put into the [`{Tidier.jl}`](https://github.com/TidierOrg) meta-packages, aimed at recreating the wildly popular set of `{tidyverse}` R packages in Julia, a new, convenient, single interface exists to the many excellent Julia I/O (input/output) packages.
+Here, we will explore some common workflows that can utilize the `{TidierFiles.jl}` package, though more details can be found in the [documentation](https://tidierorg.github.io/TidierFiles.jl/latest/).
 
 ## File Paths
 
-If you've set up your project using `{DrWatson}`, you should have a number of [useful helpful functions](./new-project.qmd#drwatson-helpers) for you to use in your project (after loading and activating the project with `using DrWatson; quickactivate(Project)`).
-Because you creating a new folder for each project, and activating it as such with `{DrWatson}` (or using `]activate .`), Julia will create a ***Project.toml*** and a ***Manifest.toml*** file in your project folder.
-This does all the hard work of setting up relative paths, and making sure each project has it's own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages.
+If you've set up your project using `{DrWatson}`, you should have a number of [useful helper functions](./new-project.qmd#drwatson-helpers) for you to use in your project (after loading and activating the project with `using DrWatson; quickactivate(Project)`).
+Because you created a new folder for the project, Julia will create a ***Project.toml*** and a ***Manifest.toml*** file in your project folder.
+This does all the hard work of setting up **relative paths**, and making sure each project has it's own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages.
+To make use of your code and project-specific packages, you simply need to activate the project using `{DrWatson}`'s `quickactivate("Project")` function (or with `]activate .` if you are in the correct directory).
 
-To load a file from the ***src/*** folder, we can simply using `include(DrWatson.srcdir("filename.jl"))`
+A **relative** filepath is simply the steps that need to be taken to find your target file from the current location, e.g., the active file.
+For example, you may have the following files in a project:
+
+```{bash}
+│projectdir
+│
+├── data
+│   └── exp_raw.csv
+├── out
+│   └── exp_clean.parquet
+.
+.
+.
+├── scripts
+│   ├── cleaning.jl
+│   └── intro.jl
+.
+.
+.
+├── Manifest.toml
+└── Project.toml
+```
+
+The relative filepath of the ***exp_raw.csv*** data file from the ***intro.jl*** scripts file is `../data/exp_raw.csv`.
+Here, `../` means look in the parent directory i.e., one directory up from the current location, with the rest pointing to the ***data/*** directory and appropriate file.
+If you wanted to ***cleaning.jl*** file from ***intro.jl***, the relative path would just be `cleaning.jl` (or alternatively `./cleaning.jl`, where `./` means look in the current directory).
 
 ::: {.callout-note}
-In case you're wondering what `{DrWatson}` is doing when it sets up these helper scripts, we can just have a look at the source code as most Julia packages are written in Julia!
+Generally you won't need to refer to other ***script/*** files as they shouldn't contain functions that are used for calculations, only the scripts that utilize the functions defined in the ***src/*** directory to produce your results.
+As we'll come to later, Julia has been designed to make creating and working with packages very simple, which we will take full advantage to minimize the risk of files relying on each other in a circular fashion.
+:::
+
+As mentioned, `{DrWatson}` provides convenience functions to simplify the process of locating files with relative paths.
+To load a file from the ***data/*** folder, we need to `include()` it.
+This effectively finds the file and runs it, so everything defined in it is now available for use.
+In practice, we can simply use the command `include(DrWatson.datadir("filename.jl"))` (or drop the `DrWatson.` package namespace if you brought `{DrWatson}` into the **`Main` namespace** with the `using` command - see [here](./misc.qmd#namespaces) for more information about **namespaces**).
+This helpful function means that the file ***filename.jl*** can be loaded from within any file in your project without needing to use multiple `../` calls in the relative path, or specify the absolute filepath.
+It also means that you can send your code to the REPL and it will execute correctly, which is not a given as the directory that the REPL is started in is usually the project directory, and your current file may be in a subdirectory, so the relative paths to the file to load will be different.
+
+::: {.callout-note}
+In case you're wondering what `{DrWatson}` is doing when it sets up these helper scripts, we can just have a look at the source code.
+The beauty of Julia is that its speed and expressiveness means that most Julia packages are written in pure Julia and don't need to resort to lower-level languages for the internals!
 
 Looking at [these lines](https://github.com/JuliaDynamics/DrWatson.jl/blob/3f2a6cf4b1c66bbfdeaab9527c436b1d275dba7d/src/project_setup.jl#L28-L33) in the source code, we can see that the `projectdir()` function is effectively a wrapper around the below code, with a check to make sure you have activated the project.
 
@@ -27,4 +67,106 @@ Looking at [these lines](https://github.com/JuliaDynamics/DrWatson.jl/blob/3f2a6
 #| eval: false
 dirname(Base.active_project())
 ```
+:::
+
+::: {.callout-tip}
+Because we created the `out/` directory to save our processed data files to, it would be useful to have a similar helper function to `{DrWatson}`'s.
+We can do that very easily using the following function definition:
+
+```{julia}
+#| eval: false
+outdir(args...) = DrWatson.projectdir("outdir", args...)
+```
+
+Incidentally, this is exactly how `{DrWatson}` defines it's helper functions, and states that the functions can take any number of arguments and should join the directory path of the ***outdir/*** and the function arguments.
+For example, `outdir("simulation-files")` becomes ***path-to-project/outdir/simulation-files/***.
+:::
+
+## `{TidierFiles}`
+
+At the time of writing this section, the following file formats can be read and written to using `{TidierFiles}`:
+
+- Delimited files
+    - .csv
+    - .tsv
+    - .txt
+- Excel files
+    - .xlsx
+- SPSS files
+    - .sav
+    - .por
+- SAS files
+    - .sas7bdat
+    - .xpt
+- Stata files
+    - .dta
+- Arrow files
+    - .arrow
+- Parquet files
+    - .parquet
+
+Reading and writing files is greatly simplified by using a common interface.
+To read a file, the general command is `read_{format}(path-to-file.{format})` e.g., to read the ***exp_raw.csv*** file we would use the command `read_csv(DrWatson.datadir("exp_raw.csv"))`, and to read the ***exp_clean.parquet*** file we would use the command `read_parquet(outdir("exp_raw.parquet"))`.
+If you wish to use the values from the file, rather than just viewing them, you should assign them to a variable e.g. `raw_df = read_csv(DrWatson.datadir("exp_raw.csv"))`.
+
+Writing data to files is similarly simple, just replacing the `read_` with `write_`, and passing in a `DataFrame` as the first argument.
+For example, to write a dataframe to a csv file, you simply use the command `write_csv(raw_df, outdir("exp_clean.csv"))`.
+Currently, all write functions require the use of a `DataFrame` object, and all read functions return a `DataFrame` object.
+
+## Import-Specific Options
+
+### Specific Excel Sheets & Ranges
+
+While it's generally preferable to try and use non-proprietary data files that can be read by multiple software tools, such as `.csv` files, we are sometimes just provided with Excel files (or need to create them).
+In these situations, we can use `{TidierFiles}`'s Excel functions' to access data from specific sheets, or use the underlying [`{XLSX}`](https://github.com/JuliaIO/XLSX.jl) package to read and write Excel files.
+
+To read data from a sheet, we use the `sheet = ` keyword argument of `read_xlsx(path-to-file.xlsx, sheet = "sheet-name")` function.
+
+Often, Excel sheets contain multiple tables, which may be related to one-another, but should be considered as their own separate entities.
+In these situations we can use the `range = ` keyword argument of the `read_xlsx` function to only read a portion of the Excel sheet.
+
+### Missing Data
+
+For delimited and Excel files, it is possible to specify how missing data should be handled on file reads.
+This is done using the `missingstring = ` keyword argument of the `read_{format}` functions, and defaults to `""`.
+
+### Skipping Rows
+
+Your input data files may include a number of header rows that you do not want to include in the resulting dataframes, for example, a data dictionary that lists how values in the main table are coded.
+These rows can be skipped using the `skip = ` keyword argument of all the `read_{format}` functions.
+
+## Export-Specific Options
+
+### Specific Excel Sheets
+
+If we want to write data to a specific sheet, we cannot use the `{TidierFiles}` excel functions.
+More information on how this can be accomplished can be found at the [documentation](https://felipenoris.github.io/XLSX.jl/stable/tutorial/#Edit-Existing-Files) of the `{XLSX}` package, but in brief, you must open up an excel file in either `w` (write) or `rw` (read-write) mode, depending on whether the file already exists, before setting the sheet's values equal to the data you wish to add to the sheet.
+
+An example of creating a new spreadsheet can from the [documentation](https://felipenoris.github.io/XLSX.jl/stable/tutorial/#Create-New-Files) is shown below:
+
+```{julia}
+#| eval: false
+XLSX.openxlsx("my_new_file.xlsx", mode="w") do xf
+    sheet = xf[1]
+    XLSX.rename!(sheet, "new_sheet")
+    sheet["A1"] = "this"
+    sheet["A2"] = "is a"
+    sheet["A3"] = "new file"
+    sheet["A4"] = 100
+
+    # will add a row from "A5" to "E5"
+    sheet["A5"] = collect(1:5) # equivalent to `sheet["A5", dim=2] = collect(1:4)`
+
+    # will add a column from "B1" to "B4"
+    sheet["B1", dim=1] = collect(1:4)
+
+    # will add a matrix from "A7" to "C9"
+    sheet["A7:C9"] = [ 1 2 3 ; 4 5 6 ; 7 8 9 ]
+end
+```
+
+::: {.callout-note}
+If you are not already familiar with `do` blocks, don't worry, they are relatively simple.
+The Excel file is being created and assigned to the `xf` variable, which can then be manipulated with an anonymous function that has its own **scope**.
+You can use the `do` block when using the `map` function, as [shown earlier](./julia-basics.qmd#map).
 :::
