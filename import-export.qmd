@@ -87,22 +87,22 @@ For example, `outdir("simulation-files")` becomes ***path-to-project/outdir/simu
 At the time of writing this section, the following file formats can be read and written to using `{TidierFiles}`:
 
 - Delimited files
-    - .csv
-    - .tsv
-    - .txt
-- Excel files
+    - .csv `read_csv()` and `write_csv()`
+    - .tsv `read_tsv()` and `write_tsv()`/`write_table()`
+    - .txt `read_delim()`
+- Excel files `read_xlsx()` and `write_xlsx()`
     - .xlsx
-- SPSS files
+- SPSS files `read_sav()` and `write_sav()`
     - .sav
     - .por
-- SAS files
+- SAS files `read_sas()` and `write_sas()`
     - .sas7bdat
     - .xpt
-- Stata files
+- Stata files `read_dta()` and `write_dta()`
     - .dta
-- Arrow files
+- Arrow files `read_arrow()` and `write_arrow()`
     - .arrow
-- Parquet files
+- Parquet files `read_parquet()` and `write_parquet()`
     - .parquet
 
 Reading and writing files is greatly simplified by using a common interface.
@@ -115,6 +115,29 @@ Currently, all write functions require the use of a `DataFrame` object, and all 
 
 ## Import-Specific Options
 
+### CSV Files from Internet URLs
+
+With `{TidierFiles}` we can read data from URLs that are hosted on the web.
+To do this, we can use the `read_csv()` function and pass in the URL as the first argument, instead of a relative filepath.
+If the CSV or txt file is hosted on GitHub, you can navigate to the file in GitHub, open up the raw version, and pass the URL to the `read_csv()`/`read_delim()` function.
+
+![](./figs/import-export/GitHub-file-import-1.png)
+
+![](./figs/import-export/GitHub-file-import-2.png)
+
+
+```{julia}
+using TidierFiles
+
+read_csv(
+    "https://raw.githubusercontent.com/TidierOrg/TidierFiles.jl/main/testing_files/csvtest.csv";
+    skip = 1, # skip the first data row
+    n_max = 4, # only read the first 4 rows
+    col_select = ["ID", "Score"], # only read the "ID" and "Score" columns
+    missingstring = ["4"] # replace the value "4" with a missing value representation
+)
+```
+
 ### Specific Excel Sheets & Ranges
 
 While it's generally preferable to try and use non-proprietary data files that can be read by multiple software tools, such as `.csv` files, we are sometimes just provided with Excel files (or need to create them).
@@ -123,17 +146,18 @@ In these situations, we can use `{TidierFiles}`'s Excel functions' to access dat
 To read data from a sheet, we use the `sheet = ` keyword argument of `read_xlsx(path-to-file.xlsx, sheet = "sheet-name")` function.
 
 Often, Excel sheets contain multiple tables, which may be related to one-another, but should be considered as their own separate entities.
-In these situations we can use the `range = ` keyword argument of the `read_xlsx` function to only read a portion of the Excel sheet.
+In these situations we can use the `range = ` keyword argument of the `read_xlsx()` function to only read a portion of the Excel sheet.
 
 ### Missing Data
 
 For delimited and Excel files, it is possible to specify how missing data should be handled on file reads.
-This is done using the `missingstring = ` keyword argument of the `read_{format}` functions, and defaults to `""`.
+This is done using the `missingstring = ` keyword argument of the `read_{format}()` functions, and defaults to `""`.
 
 ### Skipping Rows
 
 Your input data files may include a number of header rows that you do not want to include in the resulting dataframes, for example, a data dictionary that lists how values in the main table are coded.
-These rows can be skipped using the `skip = ` keyword argument of all the `read_{format}` functions.
+These rows can be skipped using the `skip = ` keyword argument of all the `read_{format}()` functions.
+
 
 ## Export-Specific Options
 
@@ -168,5 +192,5 @@ end
 ::: {.callout-note}
 If you are not already familiar with `do` blocks, don't worry, they are relatively simple.
 The Excel file is being created and assigned to the `xf` variable, which can then be manipulated with an anonymous function that has its own **scope**.
-You can use the `do` block when using the `map` function, as [shown earlier](./julia-basics.qmd#map).
+You can use the `do` block when using the `map()` function, as [shown earlier](./julia-basics.qmd#map).
 :::
