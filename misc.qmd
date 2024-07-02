@@ -50,3 +50,7 @@ Much like how we were calling `Main.datadir()` in option 1), what we are actuall
 You can think of this as the `{DrWatson}` package being treated as a submodule of `Main` (see [the module section](./misc.qmd#modules) for more information about submodules).
 
 ## Modules
+
+## Result Types
+
+## Plotting

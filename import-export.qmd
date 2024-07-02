@@ -183,20 +183,15 @@ geo = "nation"
 geo_values = "us"
 time_type = "day"
 time_values = "20200415-20221231"
-url = base_url * "data_source=" * data_source * "&signal=" * signal * "&time_type=" * time_type * "&geo_type=" * geo * "&time_values=" * time_values * "&geo_values=" * geo_values
+
+url = base_url * "data_source=" * data_source *
+    "&signal=" * signal *
+    "&time_type=" * time_type *
+    "&geo_type=" * geo *
+    "&time_values=" * time_values *
+    "&geo_values=" * geo_values
 ```
 
-```{julia}
-Dict(
-
-data_source = "jhu-csse"
-signal = "deaths_incidence_num"
-geo = "nation"
-geo_values = "us"
-time_type = "day"
-time_values = "20200415-20221231"
-)
-```
 ::: {.callout-note collapse="true"}
 We use the `*` character to perform ***string concatenation*** i.e., to join two or more strings together.
 :::
@@ -211,17 +206,32 @@ The `body` property provides us with the response body, which in this case is th
 ```{julia}
 using HTTP
 
-response = get(url)
-propertynames(response)
-response.status
-response.body
+response = HTTP.get(url)
 ```
 
-Unfortunately the `body` property is a `Vector{UInt8}` and we can't use it in our code, so we need to convert it to a `String` first before we can manipulate it.
+::: {.callout-tip}
+Although it is good to know how to use string concatenation to create the API query, we can use the `query` keyword argument to pass a Dictionary of API parameters to the `get()` function, as shown in the [documentation](https://juliaweb.github.io/HTTP.jl/stable/client/#query), which is a little cleaner and less prone to errors.
+
+```{julia}
+#| eval: false
+response = HTTP.get(
+    base_url;
+    query = Dict(
+        "data_source" => "jhu-csse",
+        "signal" => "deaths_incidence_num",
+        "geo" => "nation",
+        "geo_values" => "us",
+        "time_type" => "day",
+        "time_values" => "20200415-20221231",
+    )
+)
+```
+:::
 
 ::: {.callout-warning}
 In practice, you would want to check the status code of the response to make sure that the request was successful, and if not, return an error to stop errors from being propagated throughout your code.
 In this case, we can just check the response code in the REPL using the following code which **asserts** that the status code is 200, which is commonly used to denote a successful API request.
+If the status code is 200, nothing will be printed, and if not, an error will be thrown.
 An example of an unsuccessful API request would be a 404 error, commonly used to denote that the requested resource does not exist (think about when you came across a 404 error when browsing the internet).
 HTTP status codes are not hard rules, but they are a standard that most people agree to follow.
 See [here](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) for a full list of HTTP status codes.
@@ -231,6 +241,33 @@ See [here](https://www.iana.org/assignments/http-status-codes/http-status-codes.
 ```
 
 See this later discussion of [Result types](./misc.qmd#result-types) for more information on returning **errors as values** for a better way to handle possible (likely) sources of errors in your code.
+:::
+
+```{julia}
+first(response.body, 10)
+```
+
+Unfortunately the `body` property is a `Vector{UInt8}` and we can't use it in our code, so we need to convert it to a `String` first before we can manipulate it for plotting purposes.
+
+```{julia}
+body = String(response.body)
+```
+
+::: {.callout-note collapse="true"}
+Once we convert the body to a `String`, the original data is deleted, so it cannot be used again.
+To confirm this, we can try calling it again.
+
+```{julia}
+response.body
+```
+
+This is not normally an issue, but it's something to be aware of.
+If you really wanted to make sure it was retained, you should instead use the command
+
+```{julia}
+#| eval: false
+body = String(copy(response.body))
+```
 :::
 
 Once we have downloaded the JSON data, we need to turn it into something that we can work with in Julia (i.e., a native data structure like a Dictionary).
@@ -266,21 +303,46 @@ An example from the Delphi COVIDcast API documentation, which states that it ret
 ```{julia}
 using Serde
 
-parsed = Serde.parse_json(String(copy(response.body)))
+parsed = Serde.parse_json(body)
+```
+
+We can see that `{Serde.jl}` has converted the JSON into a Dictionary, and the data we are interested in is in the `epidata` property, which is itself a `Vector{Dict{String, Any}}` (a vector of dictionaries that has strings for keys and any type for the values).
+
+```{julia}
 epidata = parsed["epidata"]
 ```
 
+Now we are finally ready to work with the data.
+The first  thing we want to do it examine what the data looks like, and the easiest way to do this is to just examine the first element in the Vector.
+
+```{julia}
+epidata[1]
+```
+
+We can double check that some of the other elements in the Vector also look the same, but assuming they do, we are really interested in the `time_value` and `value` properties as our goal is to plot the number of deaths over time.
+In order for us to plot the data, we need to create two vectors that can be passed to our plotting library: `{GLMakie.jl}`.
+Let's do that with a loop.
 
 ```{julia}
 using Dates
 
+# Create two empty vectors of the correct types
 dates = Vector{Date}(undef, length(epidata))
 vals = Vector{Float64}(undef, length(epidata))
-for i in eachindex(epidata)
-    vals[i] = epidata[i]["value"]
-    dates[i] = Date("$(epidata[i]["time_value"])", dateformat"yyyymmdd")
+
+# Use pairs to ensure we have the correct length of the dictionary
+# and create a pair of indices and values that we can iterate over
+for (index, dictionary) in pairs(epidata)
+    vals[index] = dictionary["value"]
+    # using the `Date` constructor and the `dateformat` string macro we can convert
+    # the `time_value` into a `Date` format
+    dates[index] = Date("$(dictionary["time_value"])", dateformat"yyyymmdd")
 end
 ```
+
+Now we have our data in vector form, let's plot it!
+Throughout this book we will use `{GLMakie.jl}` for plotting, and for the time being you can ignore the implementation details.
+In a [later chapter](./misc.qmd#plotting) we will cover the details of the plotting library.
 
 ```{julia}
 #| fig-align: center
@@ -310,6 +372,7 @@ set_theme!(
     linewidth = 2,
 )
 
+# Create a lineplot of the data using GLMakie
 fig = Figure()
 ax = Axis(fig[1, 1]; xlabel = "Date", ylabel = "Deaths incidence\nin the USA")
 lines!(ax, dates, vals)

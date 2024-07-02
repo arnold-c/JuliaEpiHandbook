@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Callum Arnold-Leps">
-<meta name="dcterms.date" content="2023-05-26">
+<meta name="dcterms.date" content="2024-07-01">
 
 <title>JuliaEpiHandbook – Julia Basics</title>
 <style>
@@ -214,7 +214,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./import-export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Importing Files</span></a>
+ <span class="menu-text">Importing and Exporting Files</span></a>
   </div>
 </li>
       </ul>
@@ -232,6 +232,12 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
   <div class="sidebar-item-container"> 
   <a href="./todo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TODO List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./misc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Misc</span></a>
   </div>
 </li>
       </ul>
@@ -300,7 +306,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 26, 2023</p>
+      <p class="date">July 1, 2024</p>
     </div>
   </div>
   
@@ -393,7 +399,7 @@ Note
 </ul></li>
 <li><strong>Named Tuple</strong>
 <ul>
-<li>A variant of the <strong>tuple</strong> is the <strong>named tuple</strong>. It is a cross between a <strong>tuple</strong> and a <strong>dictionary</strong>, and therefore has the benefits of being able to access values with keys instead of indices (though you use indices), but it is <strong>immutable</strong> and much smaller and faster than a <strong>dictionary</strong>. For our person example, a <strong>named tuple</strong> would look like <code>(name = "John", age = 25, height = 1.8)</code></li>
+<li>A variant of the <strong>tuple</strong> is the <strong>named tuple</strong>. It is a cross between a <strong>tuple</strong> and a <strong>dictionary</strong>, and therefore has the benefits of being able to access values with keys instead of indices (though you use indices), but it is <strong>immutable</strong> and much smaller and faster than a <strong>dictionary</strong>. For our person example, a <strong>named tuple</strong> would look like <code>(; name = "John", age = 25, height = 1.8)</code>. Note the <code>;</code> at the beginning of the tuple - the use of semicolons is common in Julia to separate named arguments from unnamed arguments in functions, and while it is not essential to create a named tuple with length &gt; 1, it must be used for a named tuple with only one element (<code>(name = "John", )</code> with a <code>,</code> after the pair could similar be used for 1-element named tuples).</li>
 </ul></li>
 <li><strong>Structs</strong>
 <ul>
@@ -934,6 +940,197 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p><code>while</code> loops are very useful in many situations, but are more dangerous than <code>for</code> loops, because it’s easy to get stuck in an infinite loop. For example, if we accidentally started our cumulative sum between 0:100 and forgot to update our counter, we would never reach our condition of y &lt; 100, and the loop would never end. To avoid this, people often add <code>break</code> statements to their <code>while</code> loops, which will break out of the loop if a certain condition is met i.e.&nbsp;if we added 100 numbers and still haven’t reached 100, we can early exit out of the loop. Generally speaking, use a <code>for</code> loop if you can, and be careful when using <code>while</code> loops.</p>
+</div>
+</div>
+</section>
+<section id="map" class="level4">
+<h4 class="anchored" data-anchor-id="map">Map</h4>
+<p>An alternative to loops is the <code>map()</code> function. If you are familiar with <strong>functional programming</strong> (or the <a href="https://github.com/tidyverse/purrr"><code>{purrr}</code></a> package and functions in <strong>R</strong>), the <code>map()</code> function will be easy to grasp. If not, not to worry as it’s just a different method of applying a set of functions to each element in a sequence. The main difference to be aware of is that each application of the function(s) happen independently from each other, so you can’t increment a counter and then update a value from the prior iteration of a loop.</p>
+<p>Say we want to calculate take an array of integers and return an array of their squares. We can use a for loop (shown in the folded code below) to do this. Or we could use the <code>map()</code> function, which accepts an array and a function as arguments.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="64" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">squares</span>(x)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">eltype</span>(x), <span class="fu">length</span>(x))</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(x)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>        y[i] <span class="op">=</span> x[i]<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="fu">squares</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10-element Vector{Int64}:
+   1
+   4
+   9
+  16
+  25
+  36
+  49
+  64
+  81
+ 100</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="66" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(x <span class="op">-&gt;</span> x<span class="op">^</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10-element Vector{Int64}:
+   1
+   4
+   9
+  16
+  25
+  36
+  49
+  64
+  81
+ 100</code></pre>
+</div>
+</div>
+<p>In the above example, we are using an anonymous function that takes each element of the array <code>1:10</code>, assigns it to the variable <code>x</code>, and then squares it before returning it in a Vector. The <code>map()</code> function returns a vector of the same length as the input array, which is nice when we know want the output vector to be the same length as the input vector, as it removes the need for us to manually perform <strong>bounds checking</strong>.</p>
+<p>In slightly more complicated scenarios, the anonymous function may become unwieldy. Here, we can either write a named function that we use in the <code>map()</code> function, or use a <code>do</code> block.</p>
+<div id="68" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">square_element</span>(x)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(square_element, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10-element Vector{Int64}:
+   1
+   4
+   9
+  16
+  25
+  36
+  49
+  64
+  81
+ 100</code></pre>
+</div>
+</div>
+<p>Much like the anonymous function, when we use a <code>do</code> block, we assign the elements being iterated over to a variable name that we can manipulate.</p>
+<div id="70" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>) <span class="cf">do</span> x</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10-element Vector{Int64}:
+   1
+   4
+   9
+  16
+  25
+  36
+  49
+  64
+  81
+ 100</code></pre>
+</div>
+</div>
+<p>The <code>do</code> block is useful when we only want to perform some operations once, so it’s not necessary to create a named function. It is also very helpful when we want to pass multiple arguments to a function, as we will see.</p>
+<p>Here, we have two vectors of the same length and we want to perform element-wise addition i.e., add the first index of each vector together, the second elements, and so on. Doing this without the <code>do</code> block is possible, but much more cumbersome. Here, we can use the <code>zip()</code> function to combine the two vectors into a vector of tuples that can be iterated over by <code>map()</code>.</p>
+<div id="72" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>vec_a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>vec_b <span class="op">=</span> <span class="fl">11</span><span class="op">:</span><span class="fl">20</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fu">zip</span>(vec_a, vec_b)) <span class="cf">do</span> (a, b)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">+</span> b</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10-element Vector{Int64}:
+ 12
+ 14
+ 16
+ 18
+ 20
+ 22
+ 24
+ 26
+ 28
+ 30</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="74" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(<span class="fu">zip</span>(vec_a, vec_b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10-element Vector{Tuple{Int64, Int64}}:
+ (1, 11)
+ (2, 12)
+ (3, 13)
+ (4, 14)
+ (5, 15)
+ (6, 16)
+ (7, 17)
+ (8, 18)
+ (9, 19)
+ (10, 20)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Without the <code>do</code> block, we could write this. Note the <code>,</code> between the two closing parentheses in the anonymous function i.e., <code>...b),)</code></p>
+<div id="76" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>    ((a, b),) <span class="op">-&gt;</span> a <span class="op">+</span> b,</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">zip</span>(vec_a, vec_b)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10-element Vector{Int64}:
+ 12
+ 14
+ 16
+ 18
+ 20
+ 22
+ 24
+ 26
+ 28
+ 30</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
