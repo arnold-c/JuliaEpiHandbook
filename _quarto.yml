@@ -52,6 +52,7 @@ execute:
   message: true
   warning: true
   cache: false
+  freeze: auto
 
 # Default author
 author:
