@@ -7,10 +7,11 @@ date: "2023-05-26"
 ## Data Management
 
 - [ ] Importing data
-  - [ ] CSV
-  - [ ] Excel
+  - [x] CSV
+  - [x] Excel
   - [ ] R data
-  - [ ] [`{TidierFiles.jl}`](https://tidierorg.github.io/TidierFiles.jl/latest/)
+  - [x] [`{TidierFiles.jl}`](https://tidierorg.github.io/TidierFiles.jl/latest/)
+  - [x] API with [`{HTTP.jl}`](https://github.com/JuliaWeb/HTTP.jl) and [`{Serde.jl}`](https://bhftbootcamp.github.io/Serde.jl/stable/)
 - [ ] Cleaning data
 
 ## Analyses
@@ -56,6 +57,7 @@ date: "2023-05-26"
   - [ ] Function/Type piracy
 - [ ] Developing packages
   - [ ] Modules
+  - [x] Namespaces
   - [ ] Dev local packages
   - [ ] Package registry with `{LocalRegistry}`
   - [ ] `{PkgTemplates}`

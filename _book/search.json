@@ -470,7 +470,7 @@
     "href": "todo.html#data-management",
     "title": "TODO List",
     "section": "",
-    "text": "Importing data\n\nCSV\nExcel\nR data\n{TidierFiles.jl}\n\nCleaning data",
+    "text": "Importing data\n\nCSV\nExcel\nR data\n{TidierFiles.jl}\nAPI with {HTTP.jl} and {Serde.jl}\n\nCleaning data",
     "crumbs": [
       "TODO",
       "TODO List"
@@ -514,7 +514,7 @@
     "href": "todo.html#miscellaneous",
     "title": "TODO List",
     "section": "Miscellaneous",
-    "text": "Miscellaneous\n\nSimulations with {DrWatson}\n{Revise}\n\nBasics functionality\nUsing for single scripts\nUsing for modules/packages\nAdding to startup.jl file\n\nWriting functions\n\nTyping arguments\n\nParametric types\n\nTesting\nDocumentation\nMultiple dispatch\nFunction/Type piracy\n\nDeveloping packages\n\nModules\nDev local packages\nPackage registry with {LocalRegistry}\n{PkgTemplates}\n\nPerformance\n\nMemory access (column-major vs row-major, @views())\nProfiling\nMulti-threading\nMulti-processing\nBenchmarking\n{Bumper}\n{DispatchDoctor}\nPipelines with {Dagger}\n\nR interoperability\n\n{RCall}\n{JuliaCall}",
+    "text": "Miscellaneous\n\nSimulations with {DrWatson}\n{Revise}\n\nBasics functionality\nUsing for single scripts\nUsing for modules/packages\nAdding to startup.jl file\n\nWriting functions\n\nTyping arguments\n\nParametric types\n\nTesting\nDocumentation\nMultiple dispatch\nFunction/Type piracy\n\nDeveloping packages\n\nModules\nNamespaces\nDev local packages\nPackage registry with {LocalRegistry}\n{PkgTemplates}\n\nPerformance\n\nMemory access (column-major vs row-major, @views())\nProfiling\nMulti-threading\nMulti-processing\nBenchmarking\n{Bumper}\n{DispatchDoctor}\nPipelines with {Dagger}\n\nR interoperability\n\n{RCall}\n{JuliaCall}",
     "crumbs": [
       "TODO",
       "TODO List"
