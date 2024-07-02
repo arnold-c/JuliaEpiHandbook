@@ -158,6 +158,163 @@ This is done using the `missingstring = ` keyword argument of the `read_{format}
 Your input data files may include a number of header rows that you do not want to include in the resulting dataframes, for example, a data dictionary that lists how values in the main table are coded.
 These rows can be skipped using the `skip = ` keyword argument of all the `read_{format}()` functions.
 
+## Automated Programming Interfaces (APIs)
+
+Sometimes an API is used to request and access data.
+Although it sounds very technical and complicated, an API is simply a (documented) method of interacting with a code and data source.
+In fact, we've already been using APIs throughout this book - every package provides a number of functions that are ***exported*** and available to end-users, which constitutes an API!
+Now that we're a little more comfortable with the notion of an API, let's see how it is often used in programming: to access data and information from websites.
+
+For this example, we are going to use the [Delphi COVIDcast API](https://delphi.cmu.edu/epidemic-signals/) to collect COVID-19 death incidence data for the USA between 2020 and 2022.
+Since the beginning of the COVID-19 pandemic, the CMU Delphi team has been collating data from multiple sources and have provided an API for use by researchers and the public alike.
+As part of this project they have created and [R package](https://cmu-delphi.github.io/covidcast/covidcastR/) and a [Python package](https://cmu-delphi.github.io/covidcast/covidcast-py/html/) to make interacting with the API easier.
+While there is not an equivalent Julia package, we can use the [API documentation](https://cmu-delphi.github.io/delphi-epidata/api/covidcast.html#constructing-api-queries) to assist us in downloading the data.
+
+Examining the instructions, we can see we need to use the following base URL: `https://api.delphi.cmu.edu/epidata/covidcast/`, and that there are a number of required query parameters.
+To see how we can piece together a query, the Delphi team have provided a [number of examples](https://cmu-delphi.github.io/delphi-epidata/api/covidcast.html#constructing-api-queries) we can use, along with our recently gained understanding of the API requirements.
+Looking at the examples we can see that each API query starts with `?` and uses `&` to join the query parameters.
+To fill out the rest of the details, we will look at the example provided in the [R package vignette](https://cmu-delphi.github.io/covidcast/covidcastR/), as this is what we are trying to recreate.
+
+```{julia}
+base_url = "https://api.delphi.cmu.edu/epidata/covidcast/?"
+data_source = "jhu-csse"
+signal = "deaths_incidence_num"
+geo = "nation"
+geo_values = "us"
+time_type = "day"
+time_values = "20200415-20221231"
+url = base_url * "data_source=" * data_source * "&signal=" * signal * "&time_type=" * time_type * "&geo_type=" * geo * "&time_values=" * time_values * "&geo_values=" * geo_values
+```
+
+```{julia}
+Dict(
+
+data_source = "jhu-csse"
+signal = "deaths_incidence_num"
+geo = "nation"
+geo_values = "us"
+time_type = "day"
+time_values = "20200415-20221231"
+)
+```
+::: {.callout-note collapse="true"}
+We use the `*` character to perform ***string concatenation*** i.e., to join two or more strings together.
+:::
+
+Now that we have our API query, we need to make the request.
+API calls often use the HTTP internet protocol (the same one that you will be using to access this book), that utilize four verb: **GET**, **SET**, **PUT**, and **POST**, though we will just focus on **GET**.
+In Julia, the `{HTTP}` package is useful for making HTTP requests, in this case making use of the `get()` function.
+Examining the resulting `response` object, we can see there are a number of **properties** that can be accessed, but the ones we are interested in are the `status` and `body`.
+The `status` property provides us with the HTTP status code of the response, i.e., whether the request was successful or not.
+The `body` property provides us with the response body, which in this case is the actual data we are interested in.
+
+```{julia}
+using HTTP
+
+response = get(url)
+propertynames(response)
+response.status
+response.body
+```
+
+Unfortunately the `body` property is a `Vector{UInt8}` and we can't use it in our code, so we need to convert it to a `String` first before we can manipulate it.
+
+::: {.callout-warning}
+In practice, you would want to check the status code of the response to make sure that the request was successful, and if not, return an error to stop errors from being propagated throughout your code.
+In this case, we can just check the response code in the REPL using the following code which **asserts** that the status code is 200, which is commonly used to denote a successful API request.
+An example of an unsuccessful API request would be a 404 error, commonly used to denote that the requested resource does not exist (think about when you came across a 404 error when browsing the internet).
+HTTP status codes are not hard rules, but they are a standard that most people agree to follow.
+See [here](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) for a full list of HTTP status codes.
+
+```{julia}
+@assert 200 == response.status
+```
+
+See this later discussion of [Result types](./misc.qmd#result-types) for more information on returning **errors as values** for a better way to handle possible (likely) sources of errors in your code.
+:::
+
+Once we have downloaded the JSON data, we need to turn it into something that we can work with in Julia (i.e., a native data structure like a Dictionary).
+There are a few different options, but here we will use the [`{Serde.jl}`](https://github.com/JuliaData/Serde.jl) package as it can convert many more file formats, not just JSON.
+`{Serde.jl}` is loosely based on the popular [`{serde.rs}`](https://github.com/serde-rs/serde) rust library (in that it aims to achieve the same goals), standing for serializing and deserializing data (i.e. converting language specific objects into common formats and back).
+The function we are interested in here is `Serde.parse_json()`, which takes the JSON object and converts it into a Dictionary.
+
+::: {.callout-note collapse="true"}
+JSON is a commonly used data format used to transfer data between web applications and APIs, as well as between many different programming languages.
+It is non-tabular and hierarchical, and looks a little like a Dictionary entry.
+
+An example from the Delphi COVIDcast API documentation, which states that it returns a JSON object by default, is shown below:
+
+```{json}
+{
+  "result": 1,
+  "epidata": [
+    {
+      "geo_value": "06001",
+      "time_value": 20200407,
+      "direction": null,
+      "value": 1.1293550689064,
+      "stderr": 0.53185454111042,
+      "sample_size": 281.0245
+    },
+    ...
+  ],
+  "message": "success"
+}
+```
+:::
+
+```{julia}
+using Serde
+
+parsed = Serde.parse_json(String(copy(response.body)))
+epidata = parsed["epidata"]
+```
+
+
+```{julia}
+using Dates
+
+dates = Vector{Date}(undef, length(epidata))
+vals = Vector{Float64}(undef, length(epidata))
+for i in eachindex(epidata)
+    vals[i] = epidata[i]["value"]
+    dates[i] = Date("$(epidata[i]["time_value"])", dateformat"yyyymmdd")
+end
+```
+
+```{julia}
+#| fig-align: center
+using GLMakie
+
+# Create a minimal custom theme with bold, larger axis labels
+function theme_adjustments()
+    return Theme(;
+        fontsize = 16,
+        Axis = (;
+            xlabelsize = 20,
+            ylabelsize = 20,
+            xlabelfont = :bold,
+            ylabelfont = :bold,
+        ),
+        Colorbar = (;
+            labelsize = 20,
+            labelfont = :bold,
+        ),
+    )
+end
+custom_theme = merge(theme_adjustments(), theme_minimal())
+
+set_theme!(
+    custom_theme;
+    fontsize = 16,
+    linewidth = 2,
+)
+
+fig = Figure()
+ax = Axis(fig[1, 1]; xlabel = "Date", ylabel = "Deaths incidence\nin the USA")
+lines!(ax, dates, vals)
+fig
+```
 
 ## Export-Specific Options
 
