@@ -82,7 +82,7 @@ Incidentally, this is exactly how `{DrWatson}` defines it's helper functions, an
 For example, `outdir("simulation-files")` becomes ***path-to-project/outdir/simulation-files/***.
 :::
 
-## `{TidierFiles}`
+## `{TidierFiles}` Overview
 
 At the time of writing this section, the following file formats can be read and written to using `{TidierFiles}`:
 
@@ -113,7 +113,7 @@ Writing data to files is similarly simple, just replacing the `read_` with `writ
 For example, to write a dataframe to a csv file, you simply use the command `write_csv(raw_df, outdir("exp_clean.csv"))`.
 Currently, all write functions require the use of a `DataFrame` object, and all read functions return a `DataFrame` object.
 
-## Import-Specific Options
+## Importing Files
 
 ### CSV Files from Internet URLs
 
@@ -158,7 +158,7 @@ This is done using the `missingstring = ` keyword argument of the `read_{format}
 Your input data files may include a number of header rows that you do not want to include in the resulting dataframes, for example, a data dictionary that lists how values in the main table are coded.
 These rows can be skipped using the `skip = ` keyword argument of all the `read_{format}()` functions.
 
-## Automated Programming Interfaces (APIs)
+### Automated Programming Interfaces (APIs)
 
 Sometimes an API is used to request and access data.
 Although it sounds very technical and complicated, an API is simply a (documented) method of interacting with a code and data source.
@@ -379,7 +379,37 @@ lines!(ax, dates, vals)
 fig
 ```
 
-## Export-Specific Options
+### R Files
+
+It is possible that you will be working with others who use R.
+While it would be ideal if all of your data was saved to common formats, such as CSV, that is not always the case, with many R users choosing to save with R-specific formats.
+`{TidierFiles.jl}` does not have the functionality to read R files yet (though there [are discussions](https://github.com/TidierOrg/TidierFiles.jl/issues/10) about implementing it), we can use the [`{RData.jl}` package](https://github.com/JuliaData/RData.jl) to load rds and Rdata files.
+As noted in the ***README.md***, we will also add and load the `{CodecBzip2.jl}` and `{CodecXz.jl}` packages for reading R data files that might use non-default compression methods.
+
+As an example, we will load the fictional [Malaria count data](https://epirhandbook.com/new_pages/data_used.html#data_malaria) from the EpiRHandbook, and the [Niamey data](https://github.com/objornstad/epimdr2) from Ottar Bjornstad's "Epidemics: Models and Data in R" Book.
+
+```{julia}
+using RData
+import CodecBzip2, CodecXz
+using DrWatson
+
+malaria = RData.load(DrWatson.datadir("malaria_facility_count_data.rds"))
+```
+
+```{julia}
+niamey_dict = RData.load(DrWatson.datadir("niamey.rda"))
+```
+
+As we can see, the malaria RDS file loaded as expected, creating a nice DataFrame object that we manipulate.
+However the Niamey RData file is not in the DataFrame format, instead creating a Dictionary, so we will need to extract the DataFrame.
+This highlights the difference between RData and RDS files: RDS files can only contain one object, so are effectively a subset of the RData files.
+In both cases, we should confirm that all the variable type guesses are correct, as well as inspecting them for missingness, but this is something we will cover in later chapters.
+
+```{julia}
+niamey = niamey_dict["niamey"]
+```
+
+## Exporting Files
 
 ### Specific Excel Sheets
 

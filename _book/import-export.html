@@ -254,16 +254,17 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#file-paths" id="toc-file-paths" class="nav-link" data-scroll-target="#file-paths">File Paths</a></li>
-  <li><a href="#tidierfiles" id="toc-tidierfiles" class="nav-link" data-scroll-target="#tidierfiles"><code>{TidierFiles}</code></a></li>
-  <li><a href="#import-specific-options" id="toc-import-specific-options" class="nav-link" data-scroll-target="#import-specific-options">Import-Specific Options</a>
+  <li><a href="#tidierfiles-overview" id="toc-tidierfiles-overview" class="nav-link" data-scroll-target="#tidierfiles-overview"><code>{TidierFiles}</code> Overview</a></li>
+  <li><a href="#importing-files" id="toc-importing-files" class="nav-link" data-scroll-target="#importing-files">Importing Files</a>
   <ul class="collapse">
   <li><a href="#csv-files-from-internet-urls" id="toc-csv-files-from-internet-urls" class="nav-link" data-scroll-target="#csv-files-from-internet-urls">CSV Files from Internet URLs</a></li>
   <li><a href="#specific-excel-sheets-ranges" id="toc-specific-excel-sheets-ranges" class="nav-link" data-scroll-target="#specific-excel-sheets-ranges">Specific Excel Sheets &amp; Ranges</a></li>
   <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data">Missing Data</a></li>
   <li><a href="#skipping-rows" id="toc-skipping-rows" class="nav-link" data-scroll-target="#skipping-rows">Skipping Rows</a></li>
-  </ul></li>
   <li><a href="#automated-programming-interfaces-apis" id="toc-automated-programming-interfaces-apis" class="nav-link" data-scroll-target="#automated-programming-interfaces-apis">Automated Programming Interfaces (APIs)</a></li>
-  <li><a href="#export-specific-options" id="toc-export-specific-options" class="nav-link" data-scroll-target="#export-specific-options">Export-Specific Options</a>
+  <li><a href="#r-files" id="toc-r-files" class="nav-link" data-scroll-target="#r-files">R Files</a></li>
+  </ul></li>
+  <li><a href="#exporting-files" id="toc-exporting-files" class="nav-link" data-scroll-target="#exporting-files">Exporting Files</a>
   <ul class="collapse">
   <li><a href="#specific-excel-sheets" id="toc-specific-excel-sheets" class="nav-link" data-scroll-target="#specific-excel-sheets">Specific Excel Sheets</a></li>
   </ul></li>
@@ -386,8 +387,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="tidierfiles" class="level2">
-<h2 class="anchored" data-anchor-id="tidierfiles"><code>{TidierFiles}</code></h2>
+<section id="tidierfiles-overview" class="level2">
+<h2 class="anchored" data-anchor-id="tidierfiles-overview"><code>{TidierFiles}</code> Overview</h2>
 <p>At the time of writing this section, the following file formats can be read and written to using <code>{TidierFiles}</code>:</p>
 <ul>
 <li>Delimited files
@@ -426,8 +427,8 @@ Tip
 <p>Reading and writing files is greatly simplified by using a common interface. To read a file, the general command is <code>read_{format}(path-to-file.{format})</code> e.g., to read the <strong><em>exp_raw.csv</em></strong> file we would use the command <code>read_csv(DrWatson.datadir("exp_raw.csv"))</code>, and to read the <strong><em>exp_clean.parquet</em></strong> file we would use the command <code>read_parquet(outdir("exp_raw.parquet"))</code>. If you wish to use the values from the file, rather than just viewing them, you should assign them to a variable e.g.&nbsp;<code>raw_df = read_csv(DrWatson.datadir("exp_raw.csv"))</code>.</p>
 <p>Writing data to files is similarly simple, just replacing the <code>read_</code> with <code>write_</code>, and passing in a <code>DataFrame</code> as the first argument. For example, to write a dataframe to a csv file, you simply use the command <code>write_csv(raw_df, outdir("exp_clean.csv"))</code>. Currently, all write functions require the use of a <code>DataFrame</code> object, and all read functions return a <code>DataFrame</code> object.</p>
 </section>
-<section id="import-specific-options" class="level2">
-<h2 class="anchored" data-anchor-id="import-specific-options">Import-Specific Options</h2>
+<section id="importing-files" class="level2">
+<h2 class="anchored" data-anchor-id="importing-files">Importing Files</h2>
 <section id="csv-files-from-internet-urls" class="level3">
 <h3 class="anchored" data-anchor-id="csv-files-from-internet-urls">CSV Files from Internet URLs</h3>
 <p>With <code>{TidierFiles}</code> we can read data from URLs that are hosted on the web. To do this, we can use the <code>read_csv()</code> function and pass in the URL as the first argument, instead of a relative filepath. If the CSV or txt file is hosted on GitHub, you can navigate to the file in GitHub, open up the raw version, and pass the URL to the <code>read_csv()</code>/<code>read_delim()</code> function.</p>
@@ -499,9 +500,8 @@ Tip
 <h3 class="anchored" data-anchor-id="skipping-rows">Skipping Rows</h3>
 <p>Your input data files may include a number of header rows that you do not want to include in the resulting dataframes, for example, a data dictionary that lists how values in the main table are coded. These rows can be skipped using the <code>skip =</code> keyword argument of all the <code>read_{format}()</code> functions.</p>
 </section>
-</section>
-<section id="automated-programming-interfaces-apis" class="level2">
-<h2 class="anchored" data-anchor-id="automated-programming-interfaces-apis">Automated Programming Interfaces (APIs)</h2>
+<section id="automated-programming-interfaces-apis" class="level3">
+<h3 class="anchored" data-anchor-id="automated-programming-interfaces-apis">Automated Programming Interfaces (APIs)</h3>
 <p>Sometimes an API is used to request and access data. Although it sounds very technical and complicated, an API is simply a (documented) method of interacting with a code and data source. In fact, we’ve already been using APIs throughout this book - every package provides a number of functions that are <strong><em>exported</em></strong> and available to end-users, which constitutes an API! Now that we’re a little more comfortable with the notion of an API, let’s see how it is often used in programming: to access data and information from websites.</p>
 <p>For this example, we are going to use the <a href="https://delphi.cmu.edu/epidemic-signals/">Delphi COVIDcast API</a> to collect COVID-19 death incidence data for the USA between 2020 and 2022. Since the beginning of the COVID-19 pandemic, the CMU Delphi team has been collating data from multiple sources and have provided an API for use by researchers and the public alike. As part of this project they have created and <a href="https://cmu-delphi.github.io/covidcast/covidcastR/">R package</a> and a <a href="https://cmu-delphi.github.io/covidcast/covidcast-py/html/">Python package</a> to make interacting with the API easier. While there is not an equivalent Julia package, we can use the <a href="https://cmu-delphi.github.io/delphi-epidata/api/covidcast.html#constructing-api-queries">API documentation</a> to assist us in downloading the data.</p>
 <p>Examining the instructions, we can see we need to use the following base URL: <code>https://api.delphi.cmu.edu/epidata/covidcast/</code>, and that there are a number of required query parameters. To see how we can piece together a query, the Delphi team have provided a <a href="https://cmu-delphi.github.io/delphi-epidata/api/covidcast.html#constructing-api-queries">number of examples</a> we can use, along with our recently gained understanding of the API requirements. Looking at the examples we can see that each API query starts with <code>?</code> and uses <code>&amp;</code> to join the query parameters. To fill out the rest of the details, we will look at the example provided in the <a href="https://cmu-delphi.github.io/covidcast/covidcastR/">R package vignette</a>, as this is what we are trying to recreate.</p>
@@ -549,7 +549,7 @@ Note
 <pre><code>HTTP.Messages.Response:
 """
 HTTP/1.1 200 OK
-Date: Tue, 02 Jul 2024 04:11:48 GMT
+Date: Tue, 02 Jul 2024 17:32:34 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
@@ -558,15 +558,14 @@ Set-Cookie: ******
 Server: openresty/1.21.4.1
 vary: Accept-Encoding
 x-my-limit: 60
-x-my-remaining: 47
-x-my-reset: 1719894378
-retry-after: 869
+x-my-remaining: 55
+x-my-reset: 1719943817
+retry-after: 2262
 access-control-allow-origin: *
 access-control-allow-methods: GET, POST, OPTIONS
 access-control-allow-headers: DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
 access-control-expose-headers: Content-Length,Content-Range
 content-encoding: gzip
-set-cookie: ******
 Strict-Transport-Security: max-age=63072000
 
 { "epidata": [{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200415,"direction":null,"issue":20230303,"lag":1052,"missing_value":0,"missing_stderr":5,"missing_sample_size":5,"value":2596.0,"stderr":null,"sample_size":null},{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200416,"direction":null,"issue":20230303,"lag":1051,"missing_value":0,"missing_stderr":5,"missing_sample_size":5,"value":2195.0,"stderr":null,"sample_size":null},{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200417,"direction":null,"issue":20230303,"lag":1050,"missing_value":0,"missing_stderr":5,"missing_sample_size":5,"value":2101.0,"stderr":null,"sample_size":null},{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200418,"
@@ -733,7 +732,7 @@ Note
  Dict{String, Any}("issue" =&gt; 20230210, "geo_type" =&gt; "nation", "lag" =&gt; 48, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 22.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221224, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"…)
  Dict{String, Any}("issue" =&gt; 20230224, "geo_type" =&gt; "nation", "lag" =&gt; 61, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 15.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221225, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"…)
  Dict{String, Any}("issue" =&gt; 20230217, "geo_type" =&gt; "nation", "lag" =&gt; 53, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 29.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221226, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"…)
- Dict{String, Any}("issue" =&gt; 20230224, "geo_type" =&gt; "nation", "lag" =&gt; 59, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 356.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221227, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"��)
+ Dict{String, Any}("issue" =&gt; 20230224, "geo_type" =&gt; "nation", "lag" =&gt; 59, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 356.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221227, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"…)
  Dict{String, Any}("issue" =&gt; 20230224, "geo_type" =&gt; "nation", "lag" =&gt; 58, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 990.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221228, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"…)
  Dict{String, Any}("issue" =&gt; 20230210, "geo_type" =&gt; "nation", "lag" =&gt; 43, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 924.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221229, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"…)
  Dict{String, Any}("issue" =&gt; 20230224, "geo_type" =&gt; "nation", "lag" =&gt; 56, "sample_size" =&gt; nothing, "missing_sample_size" =&gt; 5, "value" =&gt; 216.0, "missing_stderr" =&gt; 5, "time_value" =&gt; 20221230, "geo_value" =&gt; "us", "signal" =&gt; "deaths_incidence_num"…)
@@ -817,30 +816,894 @@ Note
 </div>
 </div>
 </section>
-<section id="export-specific-options" class="level2">
-<h2 class="anchored" data-anchor-id="export-specific-options">Export-Specific Options</h2>
+<section id="r-files" class="level3">
+<h3 class="anchored" data-anchor-id="r-files">R Files</h3>
+<p>It is possible that you will be working with others who use R. While it would be ideal if all of your data was saved to common formats, such as CSV, that is not always the case, with many R users choosing to save with R-specific formats. <code>{TidierFiles.jl}</code> does not have the functionality to read R files yet (though there <a href="https://github.com/TidierOrg/TidierFiles.jl/issues/10">are discussions</a> about implementing it), we can use the <a href="https://github.com/JuliaData/RData.jl"><code>{RData.jl}</code> package</a> to load rds and Rdata files. As noted in the <strong><em>README.md</em></strong>, we will also add and load the <code>{CodecBzip2.jl}</code> and <code>{CodecXz.jl}</code> packages for reading R data files that might use non-default compression methods.</p>
+<p>As an example, we will load the fictional <a href="https://epirhandbook.com/new_pages/data_used.html#data_malaria">Malaria count data</a> from the EpiRHandbook, and the <a href="https://github.com/objornstad/epimdr2">Niamey data</a> from Ottar Bjornstad’s “Epidemic’s: Models and Data in R” Book.</p>
+<div id="34" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">RData</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">CodecBzip2</span>, <span class="bu">CodecXz</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DrWatson</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>malaria <span class="op">=</span> RData.<span class="fu">load</span>(DrWatson.<span class="fu">datadir</span>(<span class="st">"malaria_facility_count_data.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>┌ Warning: 0xd element in a 0x2 list, assuming it's the last element
+└ @ RData ~/.julia/packages/RData/L5u8v/src/readers.jl:138
+┌ Warning: 0xd element in a 0x2 list, assuming it's the last element
+└ @ RData ~/.julia/packages/RData/L5u8v/src/readers.jl:138</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>3038×10 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">3013 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">location_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">data_date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">submitted_date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Province</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">District</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">malaria_rdt_0_4</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">malaria_rdt_5_14</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">malaria_rdt_15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">malaria_tot</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">newid</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Dates.Date">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Dates.Date">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Int32}">Int32?</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Int32}">Int32?</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Int32}">Int32?</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Int32}">Int32?</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">Facility 1</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Spring</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">Facility 2</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">Facility 3</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Dingo</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">Facility 4</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">Facility 5</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">Facility 6</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Dingo</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">Facility 6</td>
+<td style="text-align: left;">2020-08-10</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Dingo</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">Facility 5</td>
+<td style="text-align: left;">2020-08-10</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">Facility 5</td>
+<td style="text-align: left;">2020-08-09</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: left;">Facility 5</td>
+<td style="text-align: left;">2020-08-08</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">Facility 7</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Spring</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">Facility 8</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">Facility 9</td>
+<td style="text-align: left;">2020-08-11</td>
+<td style="text-align: left;">2020-08-12</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Spring</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3027</td>
+<td style="text-align: left;">Facility 60</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">2020-06-05</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3028</td>
+<td style="text-align: left;">Facility 21</td>
+<td style="text-align: left;">2020-06-05</td>
+<td style="text-align: left;">2020-06-05</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3029</td>
+<td style="text-align: left;">Facility 26</td>
+<td style="text-align: left;">2020-06-05</td>
+<td style="text-align: left;">2020-06-05</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">26</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3030</td>
+<td style="text-align: left;">Facility 2</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">2020-06-05</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3031</td>
+<td style="text-align: left;">Facility 60</td>
+<td style="text-align: left;">2020-06-03</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3032</td>
+<td style="text-align: left;">Facility 4</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3033</td>
+<td style="text-align: left;">Facility 2</td>
+<td style="text-align: left;">2020-06-03</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3034</td>
+<td style="text-align: left;">Facility 22</td>
+<td style="text-align: left;">2020-06-03</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3035</td>
+<td style="text-align: left;">Facility 19</td>
+<td style="text-align: left;">2020-06-03</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3036</td>
+<td style="text-align: left;">Facility 24</td>
+<td style="text-align: left;">2020-06-03</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3037</td>
+<td style="text-align: left;">Facility 21</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">2020-06-04</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3038</td>
+<td style="text-align: left;">Facility 21</td>
+<td style="text-align: left;">2020-06-03</td>
+<td style="text-align: left;">2020-06-03</td>
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">Bolo</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+<td style="text-align: right;">21</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="36" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>niamey_dict <span class="op">=</span> RData.<span class="fu">load</span>(DrWatson.<span class="fu">datadir</span>(<span class="st">"niamey.rda"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="ansi-escaped-output">
+<pre>Dict{String, Any} with 1 entry:
+  "niamey" =&gt; <span class="ansi-bold">31×13 DataFrame</span>…</pre>
+</div>
+</div>
+</div>
+<p>As we can see, the malaria RDS file loaded as expected, creating a nice DataFrame object that we manipulate. However the Niamey RData file is not in the DataFrame format, instead creating a Dictionary, so we will need to extract the DataFrame. This highlights the difference between RData and RDS files: RDS files can only contain one object, so are effectively a subset of the RData files. In both cases, we should confirm that all the variable type guesses are correct, as well as inspecting them for missingness, but this is something we will cover in later chapters.</p>
+<div id="38" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>niamey <span class="op">=</span> niamey_dict[<span class="st">"niamey"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>31×13 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">6 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">absweek</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">week</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">tot_cases</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">tot_mort</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lethality</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">tot_attack</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cases_1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">attack_1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cases_2</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">attack_2</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cases_3</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">attack_3</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cum_cases</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int32">Int32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00142958</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.00316486</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8.33333</td>
+<td style="text-align: right;">0.00155955</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.00316486</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000325975</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00194943</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0.004028</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000325975</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7.14286</td>
+<td style="text-align: right;">0.00181947</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0.00374029</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000325975</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">52</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00389887</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.00863143</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2.43902</td>
+<td style="text-align: right;">0.00532845</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">0.00978229</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.00228182</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">123</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00402883</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">0.00834371</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000325975</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000868697</td>
+<td style="text-align: right;">154</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00766777</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">0.0158243</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.000977925</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000868697</td>
+<td style="text-align: right;">213</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.5873</td>
+<td style="text-align: right;">0.00818762</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">0.0163997</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.00195585</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">276</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00948725</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">0.0169751</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0.00456365</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">349</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0110468</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">0.0187014</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0.00619353</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000868697</td>
+<td style="text-align: right;">434</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">129</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.775194</td>
+<td style="text-align: right;">0.0167651</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">0.0307854</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0.00619353</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.00260609</td>
+<td style="text-align: right;">563</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2.65487</td>
+<td style="text-align: right;">0.0146857</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">0.0207154</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">0.013365</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">676</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">893</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">2.46361</td>
+<td style="text-align: right;">0.116056</td>
+<td style="text-align: right;">465</td>
+<td style="text-align: right;">0.133787</td>
+<td style="text-align: right;">390</td>
+<td style="text-align: right;">0.12713</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">0.0330105</td>
+<td style="text-align: right;">5175</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">21</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">939</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">2.66241</td>
+<td style="text-align: right;">0.122035</td>
+<td style="text-align: right;">472</td>
+<td style="text-align: right;">0.135801</td>
+<td style="text-align: right;">412</td>
+<td style="text-align: right;">0.134302</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">0.0477783</td>
+<td style="text-align: right;">6114</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">22</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">829</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1.80941</td>
+<td style="text-align: right;">0.107739</td>
+<td style="text-align: right;">370</td>
+<td style="text-align: right;">0.106454</td>
+<td style="text-align: right;">398</td>
+<td style="text-align: right;">0.129738</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">0.0529905</td>
+<td style="text-align: right;">6943</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">23</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">971</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">2.16272</td>
+<td style="text-align: right;">0.126193</td>
+<td style="text-align: right;">448</td>
+<td style="text-align: right;">0.128896</td>
+<td style="text-align: right;">444</td>
+<td style="text-align: right;">0.144733</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">0.068627</td>
+<td style="text-align: right;">7914</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">24</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">798</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1.50376</td>
+<td style="text-align: right;">0.10371</td>
+<td style="text-align: right;">455</td>
+<td style="text-align: right;">0.13091</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">0.0841015</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">0.0738392</td>
+<td style="text-align: right;">8712</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">25</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1015</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">2.95567</td>
+<td style="text-align: right;">0.131912</td>
+<td style="text-align: right;">507</td>
+<td style="text-align: right;">0.145871</td>
+<td style="text-align: right;">398</td>
+<td style="text-align: right;">0.129738</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">0.0955566</td>
+<td style="text-align: right;">9727</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">26</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">525</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.14286</td>
+<td style="text-align: right;">0.0682302</td>
+<td style="text-align: right;">238</td>
+<td style="text-align: right;">0.068476</td>
+<td style="text-align: right;">238</td>
+<td style="text-align: right;">0.077582</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.0425661</td>
+<td style="text-align: right;">10252</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">27</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">265</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2.64151</td>
+<td style="text-align: right;">0.03444</td>
+<td style="text-align: right;">134</td>
+<td style="text-align: right;">0.0385537</td>
+<td style="text-align: right;">114</td>
+<td style="text-align: right;">0.0371611</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0.0147678</td>
+<td style="text-align: right;">10517</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">28</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2.60417</td>
+<td style="text-align: right;">0.0249528</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">0.022154</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">0.0322715</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0.0138991</td>
+<td style="text-align: right;">10709</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">29</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1.86916</td>
+<td style="text-align: right;">0.013906</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">0.016112</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">0.013691</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.00781827</td>
+<td style="text-align: right;">10816</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">30</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.5873</td>
+<td style="text-align: right;">0.00818762</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0.00776829</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">0.00945328</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.00608088</td>
+<td style="text-align: right;">10879</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">31</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.000129962</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.000325975</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">10880</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exporting-files" class="level2">
+<h2 class="anchored" data-anchor-id="exporting-files">Exporting Files</h2>
 <section id="specific-excel-sheets" class="level3">
 <h3 class="anchored" data-anchor-id="specific-excel-sheets">Specific Excel Sheets</h3>
 <p>If we want to write data to a specific sheet, we cannot use the <code>{TidierFiles}</code> excel functions. More information on how this can be accomplished can be found at the <a href="https://felipenoris.github.io/XLSX.jl/stable/tutorial/#Edit-Existing-Files">documentation</a> of the <code>{XLSX}</code> package, but in brief, you must open up an excel file in either <code>w</code> (write) or <code>rw</code> (read-write) mode, depending on whether the file already exists, before setting the sheet’s values equal to the data you wish to add to the sheet.</p>
 <p>An example of creating a new spreadsheet can from the <a href="https://felipenoris.github.io/XLSX.jl/stable/tutorial/#Create-New-Files">documentation</a> is shown below:</p>
-<div id="34" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>XLSX.<span class="fu">openxlsx</span>(<span class="st">"my_new_file.xlsx"</span>, mode<span class="op">=</span><span class="st">"w"</span>) <span class="cf">do</span> xf</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    sheet <span class="op">=</span> xf[<span class="fl">1</span>]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    XLSX.<span class="fu">rename!</span>(sheet, <span class="st">"new_sheet"</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A1"</span>] <span class="op">=</span> <span class="st">"this"</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A2"</span>] <span class="op">=</span> <span class="st">"is a"</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A3"</span>] <span class="op">=</span> <span class="st">"new file"</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A4"</span>] <span class="op">=</span> <span class="fl">100</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a row from "A5" to "E5"</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A5"</span>] <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">5</span>) <span class="co"># equivalent to `sheet["A5", dim=2] = collect(1:4)`</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a column from "B1" to "B4"</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"B1"</span>, dim<span class="op">=</span><span class="fl">1</span>] <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>)</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a matrix from "A7" to "C9"</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A7:C9"</span>] <span class="op">=</span> [ <span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span> ; <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span> ; <span class="fl">7</span> <span class="fl">8</span> <span class="fl">9</span> ]</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="40" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>XLSX.<span class="fu">openxlsx</span>(<span class="st">"my_new_file.xlsx"</span>, mode<span class="op">=</span><span class="st">"w"</span>) <span class="cf">do</span> xf</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    sheet <span class="op">=</span> xf[<span class="fl">1</span>]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    XLSX.<span class="fu">rename!</span>(sheet, <span class="st">"new_sheet"</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A1"</span>] <span class="op">=</span> <span class="st">"this"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A2"</span>] <span class="op">=</span> <span class="st">"is a"</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A3"</span>] <span class="op">=</span> <span class="st">"new file"</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A4"</span>] <span class="op">=</span> <span class="fl">100</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a row from "A5" to "E5"</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A5"</span>] <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">5</span>) <span class="co"># equivalent to `sheet["A5", dim=2] = collect(1:4)`</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a column from "B1" to "B4"</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"B1"</span>, dim<span class="op">=</span><span class="fl">1</span>] <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># will add a matrix from "A7" to "C9"</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    sheet[<span class="st">"A7:C9"</span>] <span class="op">=</span> [ <span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span> ; <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span> ; <span class="fl">7</span> <span class="fl">8</span> <span class="fl">9</span> ]</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
