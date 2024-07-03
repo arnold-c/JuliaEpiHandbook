@@ -409,6 +409,71 @@ In both cases, we should confirm that all the variable type guesses are correct,
 niamey = niamey_dict["niamey"]
 ```
 
+### Non-Tabular Data - `{JLD2.jl}`
+
+We don't always work with tabular data.
+For example, we may want to save the fit of a regression model to a file for later use, or we may just have a multi-dimensional array of epidemic simulations that we do not want to first transform into a matrix form.
+In these situations we need to use a different file format, and in Julia a common choice is the [`{JLD2.jl}` package](https://github.com/JuliaIO/JLD2.jl).
+
+`{JLD2.jl}` is a package that allows us to read and write files in a format that is compatible with the [`{HDF5.jl}` package](https://github.com/JuliaIO/HDF5.jl), written in pure Julia.
+HDF5 (Hierarchical Data Format v5) is a common file format that can be written and read by many programming languages, including a couple of R packages (['{hdf5r}'](https://github.com/hhoeflin/hdf5r), [`{rhdf5}`](https://github.com/grimbough/rhdf5)), making it an especially good choice for polyglot teams.
+
+::: {.callout-warning collapse="true"}
+
+`{JLD2.jl}` does it's [best to save custom **structs**](https://juliaio.github.io/JLD2.jl/dev/hdf5compat/#Understanding-how-Julia-structs-are-encoded) in a manner that other languages will be able to interpret, it may not always work, so if cross-language compatibility is essential it is better to try and convert them into a common format, such as Arrays.
+
+:::
+
+To load a JLD2 file we can use the `load()` or the `jldopen()` functions.
+`load()` works by reading the file and returning it as a Dictionary that can be saved to an object and indexed.
+
+```{julia}
+using JLD2
+
+example_load = JLD2.load(datadir("example.jld2"))
+```
+
+```{julia}
+example_load["dict"]
+```
+
+`jldopen()` works in a [similar way to the `XLSX.openxlsx()` function](#specific-excel-sheets) in that it opens a file in a certain mode (`r` for read-only; `r+` for read/write, failing if the file doesn't exists; `w` for read/write, overwriting existing files; and `a+` for read/write, preserving the file contents - amending).
+By default, `jldopen()` will open the file in read-only mode, but we are writing it explicitly for clarity in this example.
+Once the file has been opened, we can index it just like we do with a Dictionary.
+
+```{julia}
+example_jldopen = jldopen(datadir("example.jld2"), "r")
+```
+
+```{julia}
+example_jldopen["dict"]
+```
+
+Although objects are accessed in the same way between the two methods, we can see that they are not the same thing by examining the types (though for our purposes at the moment it doesn't matter).
+
+```{julia}
+typeof(example_load)
+```
+
+```{julia}
+typeof(example_jldopen)
+```
+
+::: {.callout-warning}
+
+Once you have finished reading/writing a file with with `jldopen()` you need to close it.
+If you don't, you will not be able to reference it again.
+For example, you may have multiple files that reference the same data file, but you are using the same long-running REPL (which is usually recommended in Julia development).
+To do this, use `close()` to close the file.
+
+```{julia}
+close(example_jldopen)
+```
+
+The `close()` function is not necessary if you use the `load()` function.
+
+:::
+
 ## Exporting Files
 
 ### Specific Excel Sheets
@@ -444,3 +509,62 @@ If you are not already familiar with `do` blocks, don't worry, they are relative
 The Excel file is being created and assigned to the `xf` variable, which can then be manipulated with an anonymous function that has its own **scope**.
 You can use the `do` block when using the `map()` function, as [shown earlier](./julia-basics.qmd#map).
 :::
+
+### Non-Tabular Data - `{JLD2.jl}`
+
+As mentioned earlier, we may want to save non-tabular data to a file.
+In these situations, we can use the `{JLD2.jl}` package, and there are two functions that we can use to do this.
+Let's recreate the jld2 file from earlier.
+
+```{julia}
+dict = Dict("a" => 100, "b" => "This is a string")
+x = 100
+
+jldsave(datadir("example.jld2"); dict, x)
+```
+
+We can also rename the objects to be saved with the keyword arguments.
+
+```{julia}
+jldsave(datadir("example_rename.jld2"); my_dict = dict, x)
+load(datadir("example_rename.jld2"))
+```
+
+The alternative method is to open up the file in read/write mode and edit it directly.
+
+::: {.callout-note collapse="true"}
+
+In this case, we have not created an object for the file, using a `do` block instead.
+To close the file, we need to use the `close()` function at the end of the block.
+
+:::
+
+```{julia}
+#| eval: false
+jldopen(datadir("example.jld2"), "w") do file
+    file["dict"] = dict
+    file["x"] = x
+
+    close(file)
+end
+```
+
+The advantage of this method is we can create **groups**, i.e., create a folder-like structure within the file to group objects.
+
+```{julia}
+jldopen(datadir("example_group.jld2"), "w") do file
+    group_1 = JLD2.Group(file, "group_1")
+    # equivalent to writing file["group_1/dict"] = dict
+    # and file["group_1"]["dict"] = dict
+    group_1["dict"] = dict
+    group_1["x"] = x
+
+    group_2 = JLD2.Group(file, "group_2")
+    group_2["string"] = "This exists in group 2"
+
+    close(file)
+end
+
+
+load(datadir("example_group.jld2"))
+```

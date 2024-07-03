@@ -12,9 +12,9 @@ date: "2023-05-26"
   - [x] R data
   - [x] [`{TidierFiles.jl}`](https://tidierorg.github.io/TidierFiles.jl/latest/)
   - [x] API with [`{HTTP.jl}`](https://github.com/JuliaWeb/HTTP.jl) and [`{Serde.jl}`](https://bhftbootcamp.github.io/Serde.jl/stable/)
-  - [ ] `{JLD2.jl}`/`{HDF5.jl}`
-- [ ] Exporting data
-  - [ ] `{JLD2.jl}`/`{HDF5.jl}`
+  - [x] `{JLD2.jl}`/`{HDF5.jl}`
+- [x] Exporting data
+  - [x] `{JLD2.jl}`/`{HDF5.jl}`
 - [ ] Cleaning data
 
 ## Analyses
