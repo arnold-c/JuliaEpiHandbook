@@ -10,7 +10,7 @@ engine: julia
     This is the interactive command line interface for Julia.
     When you start Julia in the command line (terminal in Mac/Linux, command prompt in Windows), you are in the REPL, and it is a common way to interact with Julia.
 - **Package**: A package is a collection of code that can be used to extend the functionality of Julia and complete specific tasks.
-    Packages are installed using the `Pkg` package manager.
+    Packages are installed using the `{Pkg.jl}` package manager.
 - **Variable**: A variable is a value or object that you have assigned a name.
     This may be as simple as a number or a sentence (a string variable), or as complex as a model or a plot.
 - **Function**: A function is a block of code that performs a specific task.
@@ -59,9 +59,25 @@ For example, `1 == true` returns `true` because `1` and `true` are equal, but `1
 :::
 
 - **Char**
-  - A single character e.g. `"H"`
+  - A single character e.g. `'H'`
 - **String**
     - A sequence of characters e.g. `"Hello World!"`
+
+
+:::{.callout-warning}
+
+Notices that the **Char** uses a single quotation mark `'`, while the **String** uses a double quotation mark `"`.
+We can confirm that using a double quotation mark for a single character does not produce a **Char** object, as we'd expect.
+
+
+
+```{julia}
+@show typeof('H')
+@show typeof("H");
+```
+
+:::
+
 
 **Data Structures**:
 
@@ -71,7 +87,7 @@ For example, `1 == true` returns `true` because `1` and `true` are equal, but `1
   Arrays are **mutable**, meaning that they can be changed after they are created.
   An example of an array is `[1, 2, 3]`
 - **DataFrame**
-  - A **DataFrame** is a special type of **array** created by the `{DataFrames}` package that is used to store tabular data.
+  - A **DataFrame** is a special type of **array** created by the `{DataFrames.jl}` package that is used to store tabular data.
   It is a collection of columns, where each column is an **array** of the same type.**DataFrames** are **mutable**, meaning that they can be changed after they are created.
 - **Tuple**
   - A **tuple** is a collection of values that do not all have to be the same type.
@@ -449,7 +465,7 @@ multiply_by_two_divide_by_three(3)
 
 ::: {.callout-warning}
 
-It is important to note that **keyword arguments** are not considered in multiple dispatch i.e., trying to define a new method of a function that differs only by keyword arguments *will not* create a new method, but just overwrite the old one.
+It is important to note that **keyword arguments** are not considered in multiple dispatch i.e., trying to define a new method of a function that differs only by keyword arguments _will not_ create a new method, but just overwrite the old one.
 So if you want/need a new method, use **positional arguments**.
 
 :::
@@ -457,13 +473,13 @@ So if you want/need a new method, use **positional arguments**.
 ## Packages
 
 Packages are an essential part of the Julia ecosystem.
-You've already seen an example of a package in action: `{DataFrames}`.
+You've already seen an example of a package in action: `{DataFrames.jl}`.
 At their core, a package is a way for someone to share code, data, and documentation with other people.
 By design, Julia can't do everything for everyone straight out of the box.
 Not only would it be an impossible task for the Julia developers to create a language that can do everything, but it would also be incredibly slow to load and run.
 Instead, packages extend the abilities of Julia by providing additional features (through functions) that are not included in the base language.
 
-The `{DataFrames}` package, for example, creates a special data structure that is very easy to read, as well as providing a number of functions that make it easy to manipulate and analyze data.
+The `{DataFrames.jl}` package, for example, creates a special data structure that is very easy to read, as well as providing a number of functions that make it easy to manipulate and analyze data.
 
 To add a package to your Julia environment (project), you can use the `add` command in the package manager (accessed by pressing `]` in the REPL).
 Then, you can use the `using` command to load the package into your current Julia session.

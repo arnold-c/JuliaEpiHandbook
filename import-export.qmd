@@ -13,10 +13,10 @@ Here, we will explore some common workflows that can utilize the `{TidierFiles.j
 
 ## File Paths
 
-If you've set up your project using `{DrWatson}`, you should have a number of [useful helper functions](./new-project.qmd#drwatson-helpers) for you to use in your project (after loading and activating the project with `using DrWatson; quickactivate(Project)`).
-Because you created a new folder for the project, Julia will create a ***Project.toml*** and a ***Manifest.toml*** file in your project folder.
+If you've set up your project using `{DrWatson.jl}`, you should have a number of [useful helper functions](./new-project.qmd#drwatson-helpers) for you to use in your project (after loading and activating the project with `using DrWatson; quickactivate(Project)`).
+Because you created a new folder for the project, Julia will create a _**Project.toml**_ and a _**Manifest.toml**_ file in your project folder.
 This does all the hard work of setting up **relative paths**, and making sure each project has it's own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages.
-To make use of your code and project-specific packages, you simply need to activate the project using `{DrWatson}`'s `quickactivate("Project")` function (or with `]activate .` if you are in the correct directory).
+To make use of your code and project-specific packages, you simply need to activate the project using `{DrWatson.jl}`'s `quickactivate("Project")` function (or with `]activate .` if you are in the correct directory).
 
 A **relative** filepath is simply the steps that need to be taken to find your target file from the current location, e.g., the active file.
 For example, you may have the following files in a project:
@@ -41,24 +41,24 @@ For example, you may have the following files in a project:
 └── Project.toml
 ```
 
-The relative filepath of the ***exp_raw.csv*** data file from the ***intro.jl*** scripts file is `../data/exp_raw.csv`.
-Here, `../` means look in the parent directory i.e., one directory up from the current location, with the rest pointing to the ***data/*** directory and appropriate file.
-If you wanted to ***cleaning.jl*** file from ***intro.jl***, the relative path would just be `cleaning.jl` (or alternatively `./cleaning.jl`, where `./` means look in the current directory).
+The relative filepath of the _**exp_raw.csv**_ data file from the _**intro.jl**_ scripts file is `../data/exp_raw.csv`.
+Here, `../` means look in the parent directory i.e., one directory up from the current location, with the rest pointing to the _**data/**_ directory and appropriate file.
+If you wanted to _**cleaning.jl**_ file from _**intro.jl**_, the relative path would just be `cleaning.jl` (or alternatively `./cleaning.jl`, where `./` means look in the current directory).
 
 ::: {.callout-note}
-Generally you won't need to refer to other ***script/*** files as they shouldn't contain functions that are used for calculations, only the scripts that utilize the functions defined in the ***src/*** directory to produce your results.
+Generally you won't need to refer to other _**script/**_ files as they shouldn't contain functions that are used for calculations, only the scripts that utilize the functions defined in the _**src/**_ directory to produce your results.
 As we'll come to later, Julia has been designed to make creating and working with packages very simple, which we will take full advantage to minimize the risk of files relying on each other in a circular fashion.
 :::
 
-As mentioned, `{DrWatson}` provides convenience functions to simplify the process of locating files with relative paths.
-To load a file from the ***data/*** folder, we need to `include()` it.
+As mentioned, `{DrWatson.jl}` provides convenience functions to simplify the process of locating files with relative paths.
+To load a file from the _**data/**_ folder, we need to `include()` it.
 This effectively finds the file and runs it, so everything defined in it is now available for use.
-In practice, we can simply use the command `include(DrWatson.datadir("filename.jl"))` (or drop the `DrWatson.` package namespace if you brought `{DrWatson}` into the **`Main` namespace** with the `using` command - see [here](./misc.qmd#namespaces) for more information about **namespaces**).
-This helpful function means that the file ***filename.jl*** can be loaded from within any file in your project without needing to use multiple `../` calls in the relative path, or specify the absolute filepath.
+In practice, we can simply use the command `include(DrWatson.datadir("filename.jl"))` (or drop the `DrWatson.` package namespace if you brought `{DrWatson.jl}` into the **`Main` namespace** with the `using` command - see [here](./misc.qmd#namespaces) for more information about **namespaces**).
+This helpful function means that the file _**filename.jl**_ can be loaded from within any file in your project without needing to use multiple `../` calls in the relative path, or specify the absolute filepath.
 It also means that you can send your code to the REPL and it will execute correctly, which is not a given as the directory that the REPL is started in is usually the project directory, and your current file may be in a subdirectory, so the relative paths to the file to load will be different.
 
 ::: {.callout-note}
-In case you're wondering what `{DrWatson}` is doing when it sets up these helper scripts, we can just have a look at the source code.
+In case you're wondering what `{DrWatson.jl}` is doing when it sets up these helper scripts, we can just have a look at the source code.
 The beauty of Julia is that its speed and expressiveness means that most Julia packages are written in pure Julia and don't need to resort to lower-level languages for the internals!
 
 Looking at [these lines](https://github.com/JuliaDynamics/DrWatson.jl/blob/3f2a6cf4b1c66bbfdeaab9527c436b1d275dba7d/src/project_setup.jl#L28-L33) in the source code, we can see that the `projectdir()` function is effectively a wrapper around the below code, with a check to make sure you have activated the project.
@@ -70,7 +70,7 @@ dirname(Base.active_project())
 :::
 
 ::: {.callout-tip}
-Because we created the `out/` directory to save our processed data files to, it would be useful to have a similar helper function to `{DrWatson}`'s.
+Because we created the `out/` directory to save our processed data files to, it would be useful to have a similar helper function to `{DrWatson.jl}`'s.
 We can do that very easily using the following function definition:
 
 ```{julia}
@@ -78,8 +78,8 @@ We can do that very easily using the following function definition:
 outdir(args...) = DrWatson.projectdir("outdir", args...)
 ```
 
-Incidentally, this is exactly how `{DrWatson}` defines it's helper functions, and states that the functions can take any number of arguments and should join the directory path of the ***outdir/*** and the function arguments.
-For example, `outdir("simulation-files")` becomes ***path-to-project/outdir/simulation-files/***.
+Incidentally, this is exactly how `{DrWatson.jl}` defines it's helper functions, and states that the functions can take any number of arguments and should join the directory path of the _**outdir/**_ and the function arguments.
+For example, `outdir("simulation-files")` becomes _**path-to-project/outdir/simulation-files/**_.
 :::
 
 ## `{TidierFiles}` Overview
@@ -106,7 +106,7 @@ At the time of writing this section, the following file formats can be read and 
     - .parquet
 
 Reading and writing files is greatly simplified by using a common interface.
-To read a file, the general command is `read_{format}(path-to-file.{format})` e.g., to read the ***exp_raw.csv*** file we would use the command `read_csv(DrWatson.datadir("exp_raw.csv"))`, and to read the ***exp_clean.parquet*** file we would use the command `read_parquet(outdir("exp_raw.parquet"))`.
+To read a file, the general command is `read_{format}(path-to-file.{format})` e.g., to read the _**exp_raw.csv**_ file we would use the command `read_csv(DrWatson.datadir("exp_raw.csv"))`, and to read the _**exp_clean.parquet**_ file we would use the command `read_parquet(outdir("exp_raw.parquet"))`.
 If you wish to use the values from the file, rather than just viewing them, you should assign them to a variable e.g. `raw_df = read_csv(DrWatson.datadir("exp_raw.csv"))`.
 
 Writing data to files is similarly simple, just replacing the `read_` with `write_`, and passing in a `DataFrame` as the first argument.
@@ -162,7 +162,7 @@ These rows can be skipped using the `skip = ` keyword argument of all the `read_
 
 Sometimes an API is used to request and access data.
 Although it sounds very technical and complicated, an API is simply a (documented) method of interacting with a code and data source.
-In fact, we've already been using APIs throughout this book - every package provides a number of functions that are ***exported*** and available to end-users, which constitutes an API!
+In fact, we've already been using APIs throughout this book - every package provides a number of functions that are _**exported**_ and available to end-users, which constitutes an API!
 Now that we're a little more comfortable with the notion of an API, let's see how it is often used in programming: to access data and information from websites.
 
 For this example, we are going to use the [Delphi COVIDcast API](https://delphi.cmu.edu/epidemic-signals/) to collect COVID-19 death incidence data for the USA between 2020 and 2022.
@@ -193,7 +193,7 @@ url = base_url * "data_source=" * data_source *
 ```
 
 ::: {.callout-note collapse="true"}
-We use the `*` character to perform ***string concatenation*** i.e., to join two or more strings together.
+We use the `*` character to perform _**string concatenation**_ i.e., to join two or more strings together.
 :::
 
 Now that we have our API query, we need to make the request.
@@ -270,7 +270,7 @@ body = String(copy(response.body))
 ```
 :::
 
-Once we have downloaded the JSON data, we need to turn it into something that we can work with in Julia (i.e., a native data structure like a Dictionary).
+Once we have downloaded the JSON data, we need to turn it into something that we can work with in Julia (e.g., a native data structure like a Dictionary).
 There are a few different options, but here we will use the [`{Serde.jl}`](https://github.com/JuliaData/Serde.jl) package as it can convert many more file formats, not just JSON.
 `{Serde.jl}` is loosely based on the popular [`{serde.rs}`](https://github.com/serde-rs/serde) rust library (in that it aims to achieve the same goals), standing for serializing and deserializing data (i.e. converting language specific objects into common formats and back).
 The function we are interested in here is `Serde.parse_json()`, which takes the JSON object and converts it into a Dictionary.
@@ -384,7 +384,7 @@ fig
 It is possible that you will be working with others who use R.
 While it would be ideal if all of your data was saved to common formats, such as CSV, that is not always the case, with many R users choosing to save with R-specific formats.
 `{TidierFiles.jl}` does not have the functionality to read R files yet (though there [are discussions](https://github.com/TidierOrg/TidierFiles.jl/issues/10) about implementing it), we can use the [`{RData.jl}` package](https://github.com/JuliaData/RData.jl) to load rds and Rdata files.
-As noted in the ***README.md***, we will also add and load the `{CodecBzip2.jl}` and `{CodecXz.jl}` packages for reading R data files that might use non-default compression methods.
+As noted in the _**README.md**_, we will also add and load the `{CodecBzip2.jl}` and `{CodecXz.jl}` packages for reading R data files that might use non-default compression methods.
 
 As an example, we will load the fictional [Malaria count data](https://epirhandbook.com/new_pages/data_used.html#data_malaria) from the EpiRHandbook, and the [Niamey data](https://github.com/objornstad/epimdr2) from Ottar Bjornstad's "Epidemics: Models and Data in R" Book.
 

@@ -7,7 +7,7 @@ date: "2023-05-20"
 ## Background
 
 Now that we've gotten a sense of what this book aims to achieve, let's take a step back and talk about what Julia is, and why you should care.
-Julia is a relatively new *free* programming language that was first released in 2012 by some computational scientists at MIT, and has been growing in popularity ever since.
+Julia is a relatively new _free_ programming language that was first released in 2012 by some computational scientists at MIT, and has been growing in popularity ever since.
 It's a general purpose language, meaning that it can be used for pretty much anything, but it's particularly well suited for scientific computing, and is often compared to R, Python, and Matlab.
 There are plenty of reasons why you might want to learn Julia, but the main ones are that it's fast, easy to learn (as far as coding goes), and has a great community.
 And with that, let's dive in to the benefits and drawbacks of Julia!
@@ -22,7 +22,7 @@ Excellent questions.
 I use R every day and think it's a great language for epidemiology, statistics, visualization, and many more things.
 But it's not exactly a fast language.
 And for me, and plenty more epidemiologists, that can be a problem when working with large data sets or running simulations.
-Large data is less of an issue because package developers often have already rewritten the core code in a faster language, typically C++. 
+Large data is less of an issue because package developers often have already rewritten the core code in a faster language, typically C++.
 But this is less that ideal if you want to look under the hood as it requires you to learn a second language (and C++ isn't exactly known for being friendly to newcomers).
 The bigger issues, though, come when you need to write something from scratch, such as creating a large and complex simulation model, R is sometimes just too slow to actually run on your laptop in a reasonable time period, breaking up the development workflow.
 In this instance, you have two options: 1) suck it up and just hope your first attempt at the code was correct and don't need to change anything, or 2) learn and rewrite your slow code in something faster.
@@ -34,8 +34,8 @@ Another good question that covers a decent chunk of working epidemiologists.
 If you don't need performance, I think it's a slightly less compelling case, but there are still plenty of good reasons to think about learning Julia.
 
 Firstly, it has an excellent syntax and design structure that makes it one of the easier (and fun!) languages out there to learn.
-It's incredibly helpful to be able to think in plain language and pretty much just implement that in code - for loops are quick so you don't need to do mental gymnastics to think about how to *vectorize* your code.
-I know that's a jargony term that might not mean anything to you, but in slower languages, you have to think about more abstract and unintuitive ways of implementing what you want, whereas much of your instincts *are idiomatic* in Julia i.e. are a fast and preferred implentation.
+It's incredibly helpful to be able to think in plain language and pretty much just implement that in code - for loops are quick so you don't need to do mental gymnastics to think about how to _vectorize_ your code.
+I know that's a jargony term that might not mean anything to you, but in slower languages, you have to think about more abstract and unintuitive ways of implementing what you want, whereas much of your instincts _are idiomatic_ in Julia i.e. are a fast and preferred implementation.
 This means that you can do more things more easily in Julia than you could in R, which has shoehorned many capabilities into it with varying degrees of success.
 Metaprogramming and multiple-dispatch are killer features that are core to how Julia works, and will eventually allow you to write simple and interpretable code that would require tons of `if` statements that result in hard-to-read code in other languages, such as R.
 And the package manager is excellent, making it so easy to create fully reproducible code, whereas R and Python almost seem to be it intentionally hard to do.
@@ -64,7 +64,7 @@ This is known as the "Time to first X" (TTFX) problem, and while everything will
 Thankfully, with the recent [release of Julia 1.9.0](https://julialang.org/blog/2023/04/julia-1.9-highlights/#:~:text=9%20May%202023%20%7C%20The%20Julia,finally(!)%20been%20released.), this is effectively a problem of the past, with most Julia sessions loading packages and creating your first plot within a few seconds, not a minute.
 
 And the last main issue with Julia is that packages aren't always documented as clearly as in other languages, and debugging can be a painful experience.
-Every package is different, and while the [Documenter.jl package](https://documenter.juliadocs.org/stable/) does an excellent job of standardizing package documentation, unfortuately not everyone does a great job of writing robust tests and guides to help the user.
+Every package is different, and while the [`{Documenter.jl package}`](https://documenter.juliadocs.org/stable/) does an excellent job of standardizing package documentation, unfortunately not everyone does a great job of writing robust tests and guides to help the user.
 Sometimes you just need to dig in the weeds to figure something out.
 
 But, that's part of the motivation for writing this book.

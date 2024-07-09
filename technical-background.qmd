@@ -24,13 +24,13 @@ This will provide a warning that you may get an unexpected result if you're not 
 :::
 
 - `code` will be used to highlight code.
-- `{package}` will be used to denote a specific package, e.g., `{DataFrames}` denotes the `{DataFrames}` package.
-- `package.function()` will be used to denote a function that is part of a specific package, e.g., `DataFrames.subset()` denotes the `subset()` function from the `{DataFrames}` package.
+- `{package}` will be used to denote a specific package, e.g., `{DataFrames.jl}` denotes the `{DataFrames.jl}` package.
+- `package.function()` will be used to denote a function that is part of a specific package, e.g., `DataFrames.subset()` denotes the `subset()` function from the `{DataFrames.jl}` package.
 Some languages use a different convention, such as `package::function()` in R, but I will use the `package.function()` syntax listed above as this is how you would use a function in Julia.
 - **keywords** will be used to highlight keywords and phrases, e.g., **Git** or **GitHub**.
     - **actions** will also be highlighted in this way, e.g., **commits** or **pushed** being the result of the code `git commit` or `git push`
-- ***files*** will be used to highlight file names, e.g., ***README.md*** or ***LICENSE***.
-- *italics* will be used for emphasis in certain circumstances, e.g., signifying a question from an interactive terminal command.
+- _**files**_ will be used to highlight file names, e.g., _**README.md**_ or _**LICENSE**_.
+- _italics_ will be used for emphasis in certain circumstances, e.g., signifying a question from an interactive terminal command.
 
 ## Packages
 
@@ -52,6 +52,6 @@ Pkg.status()
 ## Code Style
 
 There are many different ways to write code, and many different styles.
-But, in the interest of consistency and ease of collaboration, I would strongly recommend you use the [`{JuliaFormatter}` package](https://domluna.github.io/JuliaFormatter.jl/dev/) to format your code according to a specific style guide.
-In this book, I will use a lightly modified version of the [Blue style guide](https://github.com/invenia/BlueStyle), and you can see the specific changes to the default style in the ***.JuliaFormatter.toml*** file in the root directory of this book's GitHub repository.
-In the next section, I will discuss how you can use the `{JuliaFormatter}` package to format your code.
+But, in the interest of consistency and ease of collaboration, I would strongly recommend you use the [`{JuliaFormatter.jl}` package](https://domluna.github.io/JuliaFormatter.jl/dev/) to format your code according to a specific style guide.
+In this book, I will use a lightly modified version of the [Blue style guide](https://github.com/invenia/BlueStyle), and you can see the specific changes to the default style in the _**.JuliaFormatter.toml**_ file in the root directory of this book's GitHub repository.
+In the next section, I will discuss how you can use the `{JuliaFormatter.jl}` package to format your code.

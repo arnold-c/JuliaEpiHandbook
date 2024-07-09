@@ -50,7 +50,7 @@ date: "2023-05-26"
   - [ ] Basics functionality
   - [ ] Using for single scripts
   - [ ] Using for modules/packages
-  - [ ] Adding to ***startup.jl*** file
+  - [ ] Adding to_**startup.jl**_ file
 - [ ] Writing functions
   - [ ] Typing arguments
     - [ ] Parametric types

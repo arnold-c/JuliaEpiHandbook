@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -113,6 +113,9 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -320,7 +323,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 </section>
 <section id="file-paths" class="level2">
 <h2 class="anchored" data-anchor-id="file-paths">File Paths</h2>
-<p>If you’ve set up your project using <code>{DrWatson}</code>, you should have a number of <a href="./new-project.html#drwatson-helpers">useful helper functions</a> for you to use in your project (after loading and activating the project with <code>using DrWatson; quickactivate(Project)</code>). Because you created a new folder for the project, Julia will create a <strong><em>Project.toml</em></strong> and a <strong><em>Manifest.toml</em></strong> file in your project folder. This does all the hard work of setting up <strong>relative paths</strong>, and making sure each project has it’s own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages. To make use of your code and project-specific packages, you simply need to activate the project using <code>{DrWatson}</code>’s <code>quickactivate("Project")</code> function (or with <code>]activate .</code> if you are in the correct directory).</p>
+<p>If you’ve set up your project using <code>{DrWatson.jl}</code>, you should have a number of <a href="./new-project.html#drwatson-helpers">useful helper functions</a> for you to use in your project (after loading and activating the project with <code>using DrWatson; quickactivate(Project)</code>). Because you created a new folder for the project, Julia will create a <em><strong>Project.toml</strong></em> and a <em><strong>Manifest.toml</strong></em> file in your project folder. This does all the hard work of setting up <strong>relative paths</strong>, and making sure each project has it’s own list of packages and versions, avoiding any conflicts that may arise when you set up another project with similar packages. To make use of your code and project-specific packages, you simply need to activate the project using <code>{DrWatson.jl}</code>’s <code>quickactivate("Project")</code> function (or with <code>]activate .</code> if you are in the correct directory).</p>
 <p>A <strong>relative</strong> filepath is simply the steps that need to be taken to find your target file from the current location, e.g., the active file. For example, you may have the following files in a project:</p>
 <pre class="{bash}"><code>│projectdir
 │
@@ -339,7 +342,7 @@ gtag('config', 'G-EVYBCCRZHE', { 'anonymize_ip': true});
 .
 ├── Manifest.toml
 └── Project.toml</code></pre>
-<p>The relative filepath of the <strong><em>exp_raw.csv</em></strong> data file from the <strong><em>intro.jl</em></strong> scripts file is <code>../data/exp_raw.csv</code>. Here, <code>../</code> means look in the parent directory i.e., one directory up from the current location, with the rest pointing to the <strong><em>data/</em></strong> directory and appropriate file. If you wanted to <strong><em>cleaning.jl</em></strong> file from <strong><em>intro.jl</em></strong>, the relative path would just be <code>cleaning.jl</code> (or alternatively <code>./cleaning.jl</code>, where <code>./</code> means look in the current directory).</p>
+<p>The relative filepath of the <em><strong>exp_raw.csv</strong></em> data file from the <em><strong>intro.jl</strong></em> scripts file is <code>../data/exp_raw.csv</code>. Here, <code>../</code> means look in the parent directory i.e., one directory up from the current location, with the rest pointing to the <em><strong>data/</strong></em> directory and appropriate file. If you wanted to <em><strong>cleaning.jl</strong></em> file from <em><strong>intro.jl</strong></em>, the relative path would just be <code>cleaning.jl</code> (or alternatively <code>./cleaning.jl</code>, where <code>./</code> means look in the current directory).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -350,10 +353,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Generally you won’t need to refer to other <strong><em>script/</em></strong> files as they shouldn’t contain functions that are used for calculations, only the scripts that utilize the functions defined in the <strong><em>src/</em></strong> directory to produce your results. As we’ll come to later, Julia has been designed to make creating and working with packages very simple, which we will take full advantage to minimize the risk of files relying on each other in a circular fashion.</p>
+<p>Generally you won’t need to refer to other <em><strong>script/</strong></em> files as they shouldn’t contain functions that are used for calculations, only the scripts that utilize the functions defined in the <em><strong>src/</strong></em> directory to produce your results. As we’ll come to later, Julia has been designed to make creating and working with packages very simple, which we will take full advantage to minimize the risk of files relying on each other in a circular fashion.</p>
 </div>
 </div>
-<p>As mentioned, <code>{DrWatson}</code> provides convenience functions to simplify the process of locating files with relative paths. To load a file from the <strong><em>data/</em></strong> folder, we need to <code>include()</code> it. This effectively finds the file and runs it, so everything defined in it is now available for use. In practice, we can simply use the command <code>include(DrWatson.datadir("filename.jl"))</code> (or drop the <code>DrWatson.</code> package namespace if you brought <code>{DrWatson}</code> into the <strong><code>Main</code> namespace</strong> with the <code>using</code> command - see <a href="./misc.html#namespaces">here</a> for more information about <strong>namespaces</strong>). This helpful function means that the file <strong><em>filename.jl</em></strong> can be loaded from within any file in your project without needing to use multiple <code>../</code> calls in the relative path, or specify the absolute filepath. It also means that you can send your code to the REPL and it will execute correctly, which is not a given as the directory that the REPL is started in is usually the project directory, and your current file may be in a subdirectory, so the relative paths to the file to load will be different.</p>
+<p>As mentioned, <code>{DrWatson.jl}</code> provides convenience functions to simplify the process of locating files with relative paths. To load a file from the <em><strong>data/</strong></em> folder, we need to <code>include()</code> it. This effectively finds the file and runs it, so everything defined in it is now available for use. In practice, we can simply use the command <code>include(DrWatson.datadir("filename.jl"))</code> (or drop the <code>DrWatson.</code> package namespace if you brought <code>{DrWatson.jl}</code> into the <strong><code>Main</code> namespace</strong> with the <code>using</code> command - see <a href="./misc.html#namespaces">here</a> for more information about <strong>namespaces</strong>). This helpful function means that the file <em><strong>filename.jl</strong></em> can be loaded from within any file in your project without needing to use multiple <code>../</code> calls in the relative path, or specify the absolute filepath. It also means that you can send your code to the REPL and it will execute correctly, which is not a given as the directory that the REPL is started in is usually the project directory, and your current file may be in a subdirectory, so the relative paths to the file to load will be different.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -364,7 +367,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In case you’re wondering what <code>{DrWatson}</code> is doing when it sets up these helper scripts, we can just have a look at the source code. The beauty of Julia is that its speed and expressiveness means that most Julia packages are written in pure Julia and don’t need to resort to lower-level languages for the internals!</p>
+<p>In case you’re wondering what <code>{DrWatson.jl}</code> is doing when it sets up these helper scripts, we can just have a look at the source code. The beauty of Julia is that its speed and expressiveness means that most Julia packages are written in pure Julia and don’t need to resort to lower-level languages for the internals!</p>
 <p>Looking at <a href="https://github.com/JuliaDynamics/DrWatson.jl/blob/3f2a6cf4b1c66bbfdeaab9527c436b1d275dba7d/src/project_setup.jl#L28-L33">these lines</a> in the source code, we can see that the <code>projectdir()</code> function is effectively a wrapper around the below code, with a check to make sure you have activated the project.</p>
 <div id="2" class="cell" data-execution_count="0">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dirname</span>(<span class="bu">Base</span>.<span class="fu">active_project</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -381,11 +384,11 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Because we created the <code>out/</code> directory to save our processed data files to, it would be useful to have a similar helper function to <code>{DrWatson}</code>’s. We can do that very easily using the following function definition:</p>
+<p>Because we created the <code>out/</code> directory to save our processed data files to, it would be useful to have a similar helper function to <code>{DrWatson.jl}</code>’s. We can do that very easily using the following function definition:</p>
 <div id="4" class="cell" data-execution_count="0">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outdir</span>(args<span class="op">...</span>) <span class="op">=</span> DrWatson.<span class="fu">projectdir</span>(<span class="st">"outdir"</span>, args<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Incidentally, this is exactly how <code>{DrWatson}</code> defines it’s helper functions, and states that the functions can take any number of arguments and should join the directory path of the <strong><em>outdir/</em></strong> and the function arguments. For example, <code>outdir("simulation-files")</code> becomes <strong><em>path-to-project/outdir/simulation-files/</em></strong>.</p>
+<p>Incidentally, this is exactly how <code>{DrWatson.jl}</code> defines it’s helper functions, and states that the functions can take any number of arguments and should join the directory path of the <em><strong>outdir/</strong></em> and the function arguments. For example, <code>outdir("simulation-files")</code> becomes <em><strong>path-to-project/outdir/simulation-files/</strong></em>.</p>
 </div>
 </div>
 </section>
@@ -426,7 +429,7 @@ Tip
 <li>.parquet</li>
 </ul></li>
 </ul>
-<p>Reading and writing files is greatly simplified by using a common interface. To read a file, the general command is <code>read_{format}(path-to-file.{format})</code> e.g., to read the <strong><em>exp_raw.csv</em></strong> file we would use the command <code>read_csv(DrWatson.datadir("exp_raw.csv"))</code>, and to read the <strong><em>exp_clean.parquet</em></strong> file we would use the command <code>read_parquet(outdir("exp_raw.parquet"))</code>. If you wish to use the values from the file, rather than just viewing them, you should assign them to a variable e.g.&nbsp;<code>raw_df = read_csv(DrWatson.datadir("exp_raw.csv"))</code>.</p>
+<p>Reading and writing files is greatly simplified by using a common interface. To read a file, the general command is <code>read_{format}(path-to-file.{format})</code> e.g., to read the <em><strong>exp_raw.csv</strong></em> file we would use the command <code>read_csv(DrWatson.datadir("exp_raw.csv"))</code>, and to read the <em><strong>exp_clean.parquet</strong></em> file we would use the command <code>read_parquet(outdir("exp_raw.parquet"))</code>. If you wish to use the values from the file, rather than just viewing them, you should assign them to a variable e.g.&nbsp;<code>raw_df = read_csv(DrWatson.datadir("exp_raw.csv"))</code>.</p>
 <p>Writing data to files is similarly simple, just replacing the <code>read_</code> with <code>write_</code>, and passing in a <code>DataFrame</code> as the first argument. For example, to write a dataframe to a csv file, you simply use the command <code>write_csv(raw_df, outdir("exp_clean.csv"))</code>. Currently, all write functions require the use of a <code>DataFrame</code> object, and all read functions return a <code>DataFrame</code> object.</p>
 </section>
 <section id="importing-files" class="level2">
@@ -504,7 +507,7 @@ Tip
 </section>
 <section id="automated-programming-interfaces-apis" class="level3">
 <h3 class="anchored" data-anchor-id="automated-programming-interfaces-apis">Automated Programming Interfaces (APIs)</h3>
-<p>Sometimes an API is used to request and access data. Although it sounds very technical and complicated, an API is simply a (documented) method of interacting with a code and data source. In fact, we’ve already been using APIs throughout this book - every package provides a number of functions that are <strong><em>exported</em></strong> and available to end-users, which constitutes an API! Now that we’re a little more comfortable with the notion of an API, let’s see how it is often used in programming: to access data and information from websites.</p>
+<p>Sometimes an API is used to request and access data. Although it sounds very technical and complicated, an API is simply a (documented) method of interacting with a code and data source. In fact, we’ve already been using APIs throughout this book - every package provides a number of functions that are <em><strong>exported</strong></em> and available to end-users, which constitutes an API! Now that we’re a little more comfortable with the notion of an API, let’s see how it is often used in programming: to access data and information from websites.</p>
 <p>For this example, we are going to use the <a href="https://delphi.cmu.edu/epidemic-signals/">Delphi COVIDcast API</a> to collect COVID-19 death incidence data for the USA between 2020 and 2022. Since the beginning of the COVID-19 pandemic, the CMU Delphi team has been collating data from multiple sources and have provided an API for use by researchers and the public alike. As part of this project they have created and <a href="https://cmu-delphi.github.io/covidcast/covidcastR/">R package</a> and a <a href="https://cmu-delphi.github.io/covidcast/covidcast-py/html/">Python package</a> to make interacting with the API easier. While there is not an equivalent Julia package, we can use the <a href="https://cmu-delphi.github.io/delphi-epidata/api/covidcast.html#constructing-api-queries">API documentation</a> to assist us in downloading the data.</p>
 <p>Examining the instructions, we can see we need to use the following base URL: <code>https://api.delphi.cmu.edu/epidata/covidcast/</code>, and that there are a number of required query parameters. To see how we can piece together a query, the Delphi team have provided a <a href="https://cmu-delphi.github.io/delphi-epidata/api/covidcast.html#constructing-api-queries">number of examples</a> we can use, along with our recently gained understanding of the API requirements. Looking at the examples we can see that each API query starts with <code>?</code> and uses <code>&amp;</code> to join the query parameters. To fill out the rest of the details, we will look at the example provided in the <a href="https://cmu-delphi.github.io/covidcast/covidcastR/">R package vignette</a>, as this is what we are trying to recreate.</p>
 <div id="8" class="cell" data-execution_count="1">
@@ -538,7 +541,7 @@ Note
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We use the <code>*</code> character to perform <strong><em>string concatenation</em></strong> i.e., to join two or more strings together.</p>
+<p>We use the <code>*</code> character to perform <em><strong>string concatenation</strong></em> i.e., to join two or more strings together.</p>
 </div>
 </div>
 </div>
@@ -551,7 +554,7 @@ Note
 <pre><code>HTTP.Messages.Response:
 """
 HTTP/1.1 200 OK
-Date: Wed, 03 Jul 2024 22:24:02 GMT
+Date: Fri, 05 Jul 2024 21:44:20 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
@@ -560,14 +563,15 @@ Set-Cookie: ******
 Server: openresty/1.21.4.1
 vary: Accept-Encoding
 x-my-limit: 60
-x-my-remaining: 49
-x-my-reset: 1720047589
-retry-after: 2146
+x-my-remaining: 53
+x-my-reset: 1720218984
+retry-after: 3123
 access-control-allow-origin: *
 access-control-allow-methods: GET, POST, OPTIONS
 access-control-allow-headers: DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
 access-control-expose-headers: Content-Length,Content-Range
 content-encoding: gzip
+set-cookie: ******
 Strict-Transport-Security: max-age=63072000
 
 { "epidata": [{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200415,"direction":null,"issue":20230303,"lag":1052,"missing_value":0,"missing_stderr":5,"missing_sample_size":5,"value":2596.0,"stderr":null,"sample_size":null},{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200416,"direction":null,"issue":20230303,"lag":1051,"missing_value":0,"missing_stderr":5,"missing_sample_size":5,"value":2195.0,"stderr":null,"sample_size":null},{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200417,"direction":null,"issue":20230303,"lag":1050,"missing_value":0,"missing_stderr":5,"missing_sample_size":5,"value":2101.0,"stderr":null,"sample_size":null},{"geo_value":"us","signal":"deaths_incidence_num","source":"jhu-csse","geo_type":"nation","time_type":"day","time_value":20200418,"
@@ -668,7 +672,7 @@ Note
 </div>
 </div>
 </div>
-<p>Once we have downloaded the JSON data, we need to turn it into something that we can work with in Julia (i.e., a native data structure like a Dictionary). There are a few different options, but here we will use the <a href="https://github.com/JuliaData/Serde.jl"><code>{Serde.jl}</code></a> package as it can convert many more file formats, not just JSON. <code>{Serde.jl}</code> is loosely based on the popular <a href="https://github.com/serde-rs/serde"><code>{serde.rs}</code></a> rust library (in that it aims to achieve the same goals), standing for serializing and deserializing data (i.e.&nbsp;converting language specific objects into common formats and back). The function we are interested in here is <code>Serde.parse_json()</code>, which takes the JSON object and converts it into a Dictionary.</p>
+<p>Once we have downloaded the JSON data, we need to turn it into something that we can work with in Julia (e.g., a native data structure like a Dictionary). There are a few different options, but here we will use the <a href="https://github.com/JuliaData/Serde.jl"><code>{Serde.jl}</code></a> package as it can convert many more file formats, not just JSON. <code>{Serde.jl}</code> is loosely based on the popular <a href="https://github.com/serde-rs/serde"><code>{serde.rs}</code></a> rust library (in that it aims to achieve the same goals), standing for serializing and deserializing data (i.e.&nbsp;converting language specific objects into common formats and back). The function we are interested in here is <code>Serde.parse_json()</code>, which takes the JSON object and converts it into a Dictionary.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -818,7 +822,7 @@ Note
 </section>
 <section id="r-files" class="level3">
 <h3 class="anchored" data-anchor-id="r-files">R Files</h3>
-<p>It is possible that you will be working with others who use R. While it would be ideal if all of your data was saved to common formats, such as CSV, that is not always the case, with many R users choosing to save with R-specific formats. <code>{TidierFiles.jl}</code> does not have the functionality to read R files yet (though there <a href="https://github.com/TidierOrg/TidierFiles.jl/issues/10">are discussions</a> about implementing it), we can use the <a href="https://github.com/JuliaData/RData.jl"><code>{RData.jl}</code> package</a> to load rds and Rdata files. As noted in the <strong><em>README.md</em></strong>, we will also add and load the <code>{CodecBzip2.jl}</code> and <code>{CodecXz.jl}</code> packages for reading R data files that might use non-default compression methods.</p>
+<p>It is possible that you will be working with others who use R. While it would be ideal if all of your data was saved to common formats, such as CSV, that is not always the case, with many R users choosing to save with R-specific formats. <code>{TidierFiles.jl}</code> does not have the functionality to read R files yet (though there <a href="https://github.com/TidierOrg/TidierFiles.jl/issues/10">are discussions</a> about implementing it), we can use the <a href="https://github.com/JuliaData/RData.jl"><code>{RData.jl}</code> package</a> to load rds and Rdata files. As noted in the <em><strong>README.md</strong></em>, we will also add and load the <code>{CodecBzip2.jl}</code> and <code>{CodecXz.jl}</code> packages for reading R data files that might use non-default compression methods.</p>
 <p>As an example, we will load the fictional <a href="https://epirhandbook.com/new_pages/data_used.html#data_malaria">Malaria count data</a> from the EpiRHandbook, and the <a href="https://github.com/objornstad/epimdr2">Niamey data</a> from Ottar Bjornstad’s “Epidemics: Models and Data in R” Book.</p>
 <div id="34" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">RData</span></span>
