@@ -24,3 +24,5 @@ docs/site/
 Manifest.toml
 
 /.quarto/
+
+**/*.quarto_ipynb

@@ -1,0 +1,88 @@
+---
+date: "2024-08-03"
+engine: julia
+---
+
+# Packages {.unnumbered}
+
+During the process of producing our data analysis, we may wish to bundle our code in a manner that can be easily loaded and re-used i.e., create our own package.
+There are a number of reasons why this may be beneficial, but common ones are:
+
+- We find ourselves re-writing the same functions in multiple projects
+- We want to make it easier for our collaborators to download the code and reproduce our results
+- We wish to create a **release** to signify which version of the code produced a specific set of results e.g., the code version used for a manuscript, vs for a later internal report
+
+In addition to the above, producing a package also comes with some quality of life niceties, such as improved **Language Server Protocol (LSP)** integration (the smart autocomplete in your editor that can show you information about the function, and much more).
+
+So now we have an idea of why we might create a package out of our analysis, let's look at how we can integrate this into our workflow.
+
+## [`{PkgSkeleton.jl}`](https://github.com/JuliaCI/PkgTemplates.jl)
+
+`{PkgSkeleton.jl}` is a useful package that helps you create packages using predefined templates, removing a lot of the work of setting up test directories, CI pipelines, and a few other niceties.
+To make it even simpler, I have edited my _**startup.jl**_ file so my go-to template is always available.
+To learn more about the _**startup.jl**_ file, see [this section](./misc-sections.qmd#startup.jl)
+
+## Project-Specific Packages
+
+For many projects, we don't expect to reuse much of the code in other work, however, as mentioned previously, we may still want to create a package for the core functions.
+In these situations, because our package is tied to our project, it makes sense to have the package code as a subdirectory of the main project.
+Generally, I tend to append `Utils` to the project name.
+So for a project titled `OutbreakDetection`, the internal package would be called `OutbreakDetectionUtils`.
+Going back to our [project structure from earlier](./new-project.qmd#drwatson-project-structure), our project would now look like this:
+
+```{bash}
+│OutbreakDetection
+│
+├── OutbreakDetectionUtils          <- Internal package
+│
+├── _research
+│   └── tmp
+│
+├── data
+│
+├── plots
+├── notebooks
+│
+├── papers
+│
+├── scripts
+│   └── intro.jl
+│
+├── src
+│
+├── README.md
+├── .gitignore
+├── Manifest.toml
+└── Project.toml
+```
+
+Our package is a subdirectory of our project, which is already under Git control, so we probably don't want to manage separate Git histories.
+Because I use this workflow fairly often, I have added a wrapper template function to my _**startup.jl**_ file that takes care of this.
+
+If you do this, you will need to `Pkg> dev` your internal package (much like you `Pkg> add`) external packages.
+This tells julia that your current project relies on the internal package, and that the internal package is subject to updates - it will try to update dependencies as needed, but you will likely need to manually `Pkg> resolve` package differences (when the main project is activated) every now and then to ensure the internal and main project are both using the same package versions.
+
+### Where to Place Code
+
+In these situations, we want to think carefully about what code goes into the package, and what stays in source files.
+My general rule of thumb is to put all non-plotting functions into the internal package, all plotting functions into the source code files of the main project (_**src/\*.jl**_), and all scripts into the _**scripts/\*.jl**_ files.
+The reasoning behind keeping the plotting functions outside of my packages is that plotting libraries e.g., `{Makie.jl}`, tend to be very large and slow to precompile, so putting them inside a rapidly changing package will result in a very slow developer cycle as the package will often re-precompile when new dependencies are added or there are substantial changes to the code base.
+
+### Setting up a Project in Practice
+
+If you decide to go through this process of using an internal package, there is a little bit of extra mental overhead that you will need to deal with.
+In practice, the workflow looks like this:
+
+1. Create a main project directory somewhere e.g., `mkdir ~/Documents/Repos/TestProject; cd ~/Documents/Repos/TestProject/`
+2. Initialize project at git repository `git init`
+3. Initialize the internal project: `julia --project=. -e "internal_template()"`
+4. Initialize the main project with `inplace_template()` startup function: `julia --project=. -e "inplace_template()"`
+5. Add the internal package to the main project: `julia> ]; (PkgName) pkg> dev {PkgNameUtils}`
+
+If you have used the template functions from my _**startup.jl**_ file, both the main and internal packages will have a _**test/**_ directory and associated _**Project.toml**_ file for the testing environments.
+This is useful as it helps you separate the unit tests from the rest of the code - it is likely that the test environment does not require all the packages that you use in the source code, particularly in simulation heavy projects that you may not want to run as part of your unit tests.
+
+### Adding Our Package to Our Project
+
+- Dev
+    - Dev vs Add

@@ -7,15 +7,16 @@ date: "2023-05-26"
 ## Data Management
 
 - [x] Importing data
-  - [x] CSV
-  - [x] Excel
-  - [x] R data
-  - [x] [`{TidierFiles.jl}`](https://tidierorg.github.io/TidierFiles.jl/latest/)
-  - [x] API with [`{HTTP.jl}`](https://github.com/JuliaWeb/HTTP.jl) and [`{Serde.jl}`](https://bhftbootcamp.github.io/Serde.jl/stable/)
-  - [x] `{JLD2.jl}`/`{HDF5.jl}`
+	- [x] CSV
+	- [x] Excel
+	- [x] R data
+	- [x] [`{TidierFiles.jl}`](https://tidierorg.github.io/TidierFiles.jl/latest/)
+	- [x] API with [`{HTTP.jl}`](https://github.com/JuliaWeb/HTTP.jl) and [`{Serde.jl}`](https://bhftbootcamp.github.io/Serde.jl/stable/)
+	- [x] `{JLD2.jl}`/`{HDF5.jl}`
 - [x] Exporting data
-  - [x] `{JLD2.jl}`/`{HDF5.jl}`
+	- [x] `{JLD2.jl}`/`{HDF5.jl}`
 - [ ] Cleaning data
+- [ ] Data provisioning & providence with `{DataToolkit.jl}`
 
 ## Analyses
 
@@ -33,7 +34,7 @@ date: "2023-05-26"
 
 ## Data Visualization
 
-- [ ] `{CairoMakie}` basics
+- [ ] `{CairoMakie.jl}` basics
 - [ ] `{CairoMakie}` tips
 - [ ] Interactive plots with `{GLMakie}`
 - [ ] `{AlgebraOfGraphics}`
@@ -43,36 +44,54 @@ date: "2023-05-26"
 - [ ] Version control
 - [ ] Quarto
 
-## Miscellaneous
+## Data Analysis Pipelines
 
 - [ ] Simulations with `{DrWatson}`
+- [ ] Testing
+	- [ ] What is a unit test
+	- [ ] How to write unit tests
+	- [ ] `{TestPicker.jl}`
+	- [ ] `{TestPicker.jl}`
+
+## QOL Tools & Processes
+
 - [ ] `{Revise}`
-  - [ ] Basics functionality
-  - [ ] Using for single scripts
-  - [ ] Using for modules/packages
-  - [ ] Adding to_**startup.jl**_ file
+	- [ ] Basics functionality
+	- [ ] Using for single scripts
+	- [ ] Using for modules/packages
+	- [ ] Adding to_**startup.jl**_ file
+- [ ] Code formatting with `{Runic.jl}`
+	- [ ] GitHub Actions to automatically format on push/merge
+- [ ] Code quality check with `{Aqua.jl}`
+- [ ] Static code checks:
+	- [ ] `{JET.jl}`
+	- [ ] `{DispatchDoctor.jl}`
+
+## Miscellaneous
+
 - [ ] Writing functions
-  - [ ] Typing arguments
-    - [ ] Parametric types
-  - [ ] Testing
-  - [ ] Documentation
-  - [ ] Multiple dispatch
-  - [ ] Function/Type piracy
+	- [ ] Typing arguments
+		- [ ] Parametric types
+	- [ ] Testing
+	- [ ] Documentation
+	- [ ] Multiple dispatch
+	- [ ] Function/Type piracy
 - [ ] Developing packages
-  - [ ] Modules
-  - [x] Namespaces
-  - [ ] Dev local packages
-  - [ ] Package registry with `{LocalRegistry}`
-  - [ ] `{PkgTemplates}`
+	- [ ] Modules
+	- [x] Namespaces
+	- [ ] Dev local packages
+	- [ ] Package registry with `{LocalRegistry.jl}`
+	- [ ] `{PkgTemplates.jl}`
+	- [ ] `{PkgSkeleton.jl}`
 - [ ] Performance
-  - [ ] Memory access (column-major vs row-major, `@views()`)
-  - [ ] Profiling
-  - [ ] Multi-threading
-  - [ ] Multi-processing
-  - [ ] Benchmarking
-  - [ ] `{Bumper}`
-  - [ ] `{DispatchDoctor}`
-  - [ ] Pipelines with `{Dagger}`
+	- [ ] Memory access (column-major vs row-major, `@views()`)
+	- [ ] Profiling
+	- [ ] Multi-threading
+	- [ ] Multi-processing
+	- [ ] Benchmarking
+	- [ ] `{Bumper}`
+	- [ ] `{DispatchDoctor.jl}`
+	- [ ] Pipelines with `{Dagger}`
 - [ ] R interoperability
-  - [ ] `{RCall}`
-  - [ ] `{JuliaCall}`
+	- [ ] `{RCall}`
+	- [ ] `{JuliaCall}`

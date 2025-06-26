@@ -1,0 +1,24 @@
+---
+date: 2025-06-16
+---
+
+# The Julia Development Environment
+
+## Useful Packages
+
+### Workflow Improvements
+
+- [ ] Revise
+
+### Code Formatting
+
+- [ ] Runic
+
+### Code Quality Checks
+
+- [ ] Aqua
+
+### Static Code Analysis
+
+- [ ] JET
+- [ ] DispatchDoctor

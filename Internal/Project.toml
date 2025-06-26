@@ -1,0 +1,7 @@
+name = "Internal"
+uuid = "91e660d9-1d1a-47d5-b254-3ab28887907f"
+authors = ["Callum Arnold <24391445+arnold-c@users.noreply.github.com> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.6.7"

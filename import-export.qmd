@@ -53,7 +53,7 @@ As we'll come to later, Julia has been designed to make creating and working wit
 As mentioned, `{DrWatson.jl}` provides convenience functions to simplify the process of locating files with relative paths.
 To load a file from the _**data/**_ folder, we need to `include()` it.
 This effectively finds the file and runs it, so everything defined in it is now available for use.
-In practice, we can simply use the command `include(DrWatson.datadir("filename.jl"))` (or drop the `DrWatson.` package namespace if you brought `{DrWatson.jl}` into the **`Main` namespace** with the `using` command - see [here](./misc.qmd#namespaces) for more information about **namespaces**).
+In practice, we can simply use the command `include(DrWatson.datadir("filename.jl"))` (or drop the `DrWatson.` package namespace if you brought `{DrWatson.jl}` into the **`Main` namespace** with the `using` command - see [here](./misc-sections.qmd#namespaces) for more information about **namespaces**).
 This helpful function means that the file _**filename.jl**_ can be loaded from within any file in your project without needing to use multiple `../` calls in the relative path, or specify the absolute filepath.
 It also means that you can send your code to the REPL and it will execute correctly, which is not a given as the directory that the REPL is started in is usually the project directory, and your current file may be in a subdirectory, so the relative paths to the file to load will be different.
 
@@ -240,7 +240,7 @@ See [here](https://www.iana.org/assignments/http-status-codes/http-status-codes.
 @assert 200 == response.status
 ```
 
-See this later discussion of [Result types](./misc.qmd#result-types) for more information on returning **errors as values** for a better way to handle possible (likely) sources of errors in your code.
+See this later discussion of [Result types](./misc-sections.qmd#result-types) for more information on returning **errors as values** for a better way to handle possible (likely) sources of errors in your code.
 :::
 
 ```{julia}
@@ -342,7 +342,7 @@ end
 
 Now we have our data in vector form, let's plot it!
 Throughout this book we will use `{GLMakie.jl}` for plotting, and for the time being you can ignore the implementation details.
-In a [later chapter](./misc.qmd#plotting) we will cover the details of the plotting library.
+In a [later chapter](./misc-sections.qmd#plotting) we will cover the details of the plotting library.
 
 ```{julia}
 #| fig-align: center
@@ -485,7 +485,7 @@ An example of creating a new spreadsheet can from the [documentation](https://fe
 
 ```{julia}
 #| eval: false
-XLSX.openxlsx("my_new_file.xlsx", mode="w") do xf
+XLSX.openxlsx("my_new_file.xlsx", mode = "w") do xf
     sheet = xf[1]
     XLSX.rename!(sheet, "new_sheet")
     sheet["A1"] = "this"
@@ -497,7 +497,7 @@ XLSX.openxlsx("my_new_file.xlsx", mode="w") do xf
     sheet["A5"] = collect(1:5) # equivalent to `sheet["A5", dim=2] = collect(1:4)`
 
     # will add a column from "B1" to "B4"
-    sheet["B1", dim=1] = collect(1:4)
+    sheet["B1", dim = 1] = collect(1:4)
 
     # will add a matrix from "A7" to "C9"
     sheet["A7:C9"] = [ 1 2 3 ; 4 5 6 ; 7 8 9 ]

@@ -20,12 +20,14 @@ book:
       chapters:
         - install-julia.qmd
         - julia-basics.qmd
+        - development-environment.qmd
         - new-project.qmd
         - import-export.qmd
-    - part: "TODO"
+    - part: "TODO/Miscellaneous"
       chapters:
         - todo.qmd
-        - misc.qmd
+        - misc-sections.qmd
+        - packages.qmd
     # - references.qmd
   repo-url: https://github.com/arnold-c/JuliaEpiHandbook
   repo-actions: [edit]
