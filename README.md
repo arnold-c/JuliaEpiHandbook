@@ -1,3 +1,5 @@
+
+
 # JuliaEpiHandbook
 ## About This Project
 
@@ -14,7 +16,7 @@ Many people get started with Excel analysis, and this book tries to provide a ne
 As a result, the earlier chapters will lay out fundamental concepts of Julia and best practices for setting up a project, including concepts on version control and Git.
 But if you've got experience with R (or another language), then I hope to try and draw parallels and examples that will help speed up your learning.
 
-The purpose of this book is not to teach you how to write the most performant code, though we will cover some key concepts as we go along, nor show you ever way to do a particular task.
+The purpose of this book is not to teach you how to write the most performant code, though we will cover some key concepts as we go along, nor show you every way to do a particular task.
 Neither is it's purpose to teach you to become a Julia developer.
 There are many other resources that are better suited for those purposes, and I've tried to include links where appropriate.
 Instead, the goal is to help you get started with Julia, working through problems that you might encounter in your day-to-day work, providing you with the tools to carry out your work as an epidemiologist, and sufficient Julia knowledge to know how to research and think your way through other obstacles you may encounter.
